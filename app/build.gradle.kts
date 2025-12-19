@@ -23,6 +23,111 @@ plugins {
 }
 
 
+android {
+    namespace = "dev.aurakai.auraframefx"
+    compileSdk = 36
+
+    defaultConfig {
+        applicationId = "dev.aurakai.auraframefx"
+        minSdk = 34
+        versionCode = 1
+        versionName = "0.1.0"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        val geminiApiKey = project.findProperty("GEMINI_API_KEY")?.toString() ?: ""
+        buildConfigField("String", "GEMINI_API_KEY", "\"$geminiApiKey\"")
+        buildConfigField("String", "API_BASE_URL", "\"https://api.aurakai.dev/v1/\"")
+
+        vectorDrawables {
+            useSupportLibrary = true
+        }
+
+        if (project.file("src/main/cpp/CMakeLists.txt").exists()) {
+            ndk {
+                abiFilters.addAll(listOf("arm64-v8a", "armeabi-v7a", "x86", "x86_64"))
+            }
+        }
+    }
+
+    if (project.file("src/main/cpp/CMakeLists.txt").exists()) {
+        externalNativeBuild {
+            cmake {
+                path = file("src/main/cpp/CMakeLists.txt")
+                version = "3.22.1"
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+            buildConfigField("Boolean", "ENABLE_PAYWALL", "false")
+        }
+        release {
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+            buildConfigField("Boolean", "ENABLE_PAYWALL", "true")
+        }
+    }
+
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "/META-INF/DEPENDENCIES"
+            excludes += "/META-INF/LICENSE.txt"
+            excludes += "/META-INF/NOTICE.txt"
+            excludes += "**/kotlin/**"
+            excludes += "**/*.txt"
+        }
+        jniLibs {
+            useLegacyPackaging = false
+            pickFirsts += listOf("**/libc++_shared.so", "**/libjsc.so")
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_24
+        targetCompatibility = JavaVersion.VERSION_24
+        isCoreLibraryDesugaringEnabled = true
+    }
+
+    lint {
+        baseline = file("lint-baseline.xml")
+        abortOnError = false
+        checkReleaseBuilds = false
+    }
+
+    buildFeatures {
+        buildConfig = true
+        compose = true
+        viewBinding = true
+        aidl = true
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    // DEDUPLICATION: Exclude duplicate files to fix compile collisions
+    // ═══════════════════════════════════════════════════════════════════════════
+    sourceSets {
+        getByName("main") {
+            java.directories.add("dev/aurakai/auraframefx/ai/agents/BaseAgent.kt")
+        }
+        getByName("release") {
+            java.directories.add("dev/aurakai/auraframefx/logging/TimberInitializer.kt")
+        }
+        getByName("debug") {
+            java.directories.add("dev/aurakai/auraframefx/logging/TimberInitializer.kt")
+        }
+    }
+}
+
 dependencies {
     // ═══════════════════════════════════════════════════════════════════════════
     // AUTO-PROVIDED by genesis.android.application:
