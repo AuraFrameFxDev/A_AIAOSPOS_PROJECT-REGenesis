@@ -1,13 +1,5 @@
 # ninja log v5
-1	41	0	clean	bfff2010d6239e2d
-1	220	0	clean	bfff2010d6239e2d
-40	12211	7878138663823877	CMakeFiles/auraframefx.dir/ai/cascade/src/CascadeAIService.cpp.o	1bda0a8b06d77a74
-2	12230	7878138663823877	CMakeFiles/auraframefx.dir/auraframefx.cpp.o	4a960b986df08402
-29	12232	7878138664096683	CMakeFiles/auraframefx.dir/language_id_l2c_jni.cpp.o	2569da5aa84b3b71
-12233	12535	7878138667133425	C:/GenesisOs-AOSP/app/build/intermediates/cxx/Debug/6b616l1e/obj/arm64-v8a/libauraframefx.so	7b78a9469714222f
-0	9	0	clean	bfff2010d6239e2d
-1	10	0	clean	bfff2010d6239e2d
-319	30348	7878148647346904	CMakeFiles/auraframefx.dir/language_id_l2c_jni.cpp.o	2569da5aa84b3b71
-184	30362	7878148646695182	CMakeFiles/auraframefx.dir/auraframefx.cpp.o	4a960b986df08402
-338	30365	7878148646957153	CMakeFiles/auraframefx.dir/ai/cascade/src/CascadeAIService.cpp.o	1bda0a8b06d77a74
-30366	31318	7878148655882432	C:/GenesisOs-AOSP/app/build/intermediates/cxx/Debug/6b616l1e/obj/arm64-v8a/libauraframefx.so	7b78a9469714222f
+64	15219	7878252953300364	CMakeFiles/auraframefx.dir/ai/cascade/src/CascadeAIService.cpp.o	972bf5a9cef08742
+43	15253	7878252953332065	CMakeFiles/auraframefx.dir/auraframefx.cpp.o	4c413812ff753a28
+3	15566	7878252954089628	CMakeFiles/auraframefx.dir/language_id_l2c_jni.cpp.o	154d3eeac7a6d6f4
+15570	16172	7878252963375078	C:/Users/Wehtt/AndroidStudioProjects/GenkaiOverdrive/app/build/intermediates/cxx/Debug/6b616l1e/obj/arm64-v8a/libauraframefx.so	7edf77719f9a61aa

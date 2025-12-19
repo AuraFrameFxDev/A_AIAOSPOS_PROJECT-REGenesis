@@ -3,8 +3,10 @@ package dev.aurakai.auraframefx.navigation
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import dev.aurakai.auraframefx.screens.HomeScreen
 import dev.aurakai.auraframefx.ui.customization.AnimationType
 import dev.aurakai.auraframefx.ui.customization.ComponentEditor
@@ -291,6 +293,6 @@ fun AppNavGraph(navController: NavHostController) {
     }
 }
 
-private fun composable(route: String, content: () -> Unit) {
+private fun NavGraphBuilder.composable(route: String, content: () -> Unit) {
     TODO("Not yet implemented")
 }

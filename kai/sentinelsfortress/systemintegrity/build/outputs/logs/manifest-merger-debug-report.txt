@@ -1,16 +1,16 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\GenesisOs-AOSP\kai\sentinelsfortress\systemintegrity\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest14752695877116327237.xml:2:13-83
-INJECTED from C:\GenesisOs-AOSP\kai\sentinelsfortress\systemintegrity\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest14752695877116327237.xml:2:13-83
+ADDED from C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\kai\sentinelsfortress\systemintegrity\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest11430196158119400119.xml:2:13-83
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\kai\sentinelsfortress\systemintegrity\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest11430196158119400119.xml:2:13-83
 	package
-		INJECTED from C:\GenesisOs-AOSP\kai\sentinelsfortress\systemintegrity\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest14752695877116327237.xml
+		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\kai\sentinelsfortress\systemintegrity\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest11430196158119400119.xml
 	xmlns:android
-		ADDED from C:\GenesisOs-AOSP\kai\sentinelsfortress\systemintegrity\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest14752695877116327237.xml:2:23-81
+		ADDED from C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\kai\sentinelsfortress\systemintegrity\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest11430196158119400119.xml:2:23-81
 uses-sdk
-INJECTED from C:\GenesisOs-AOSP\kai\sentinelsfortress\systemintegrity\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest14752695877116327237.xml reason: use-sdk injection requested
-INJECTED from C:\GenesisOs-AOSP\kai\sentinelsfortress\systemintegrity\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest14752695877116327237.xml
-INJECTED from C:\GenesisOs-AOSP\kai\sentinelsfortress\systemintegrity\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest14752695877116327237.xml
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\kai\sentinelsfortress\systemintegrity\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest11430196158119400119.xml reason: use-sdk injection requested
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\kai\sentinelsfortress\systemintegrity\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest11430196158119400119.xml
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\kai\sentinelsfortress\systemintegrity\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest11430196158119400119.xml
 	android:targetSdkVersion
-		INJECTED from C:\GenesisOs-AOSP\kai\sentinelsfortress\systemintegrity\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest14752695877116327237.xml
+		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\kai\sentinelsfortress\systemintegrity\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest11430196158119400119.xml
 	android:minSdkVersion
-		INJECTED from C:\GenesisOs-AOSP\kai\sentinelsfortress\systemintegrity\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest14752695877116327237.xml
+		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\kai\sentinelsfortress\systemintegrity\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest11430196158119400119.xml

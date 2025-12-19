@@ -1,19 +1,19 @@
 {
   "buildFiles": [
-    "C:\\GenesisOs-AOSP\\app\\src\\main\\cpp\\CMakeLists.txt"
+    "C:\\Users\\Wehtt\\AndroidStudioProjects\\GenkaiOverdrive\\app\\src\\main\\cpp\\CMakeLists.txt"
   ],
   "cleanCommandsComponents": [
     [
       "C:\\Users\\Wehtt\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe",
       "-C",
-      "C:\\GenesisOs-AOSP\\app\\.cxx\\Debug\\6b616l1e\\x86",
+      "C:\\Users\\Wehtt\\AndroidStudioProjects\\GenkaiOverdrive\\app\\.cxx\\Debug\\6b616l1e\\x86",
       "clean"
     ]
   ],
   "buildTargetsCommandComponents": [
     "C:\\Users\\Wehtt\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe",
     "-C",
-    "C:\\GenesisOs-AOSP\\app\\.cxx\\Debug\\6b616l1e\\x86",
+    "C:\\Users\\Wehtt\\AndroidStudioProjects\\GenkaiOverdrive\\app\\.cxx\\Debug\\6b616l1e\\x86",
     "{LIST_OF_TARGETS_TO_BUILD}"
   ],
   "libraries": {
@@ -21,7 +21,7 @@
       "toolchain": "toolchain",
       "abi": "x86",
       "artifactName": "auraframefx",
-      "output": "C:\\GenesisOs-AOSP\\app\\build\\intermediates\\cxx\\Debug\\6b616l1e\\obj\\x86\\libauraframefx.so",
+      "output": "C:\\Users\\Wehtt\\AndroidStudioProjects\\GenkaiOverdrive\\app\\build\\intermediates\\cxx\\Debug\\6b616l1e\\obj\\x86\\libauraframefx.so",
       "runtimeFiles": []
     }
   },

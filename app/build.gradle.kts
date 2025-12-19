@@ -138,7 +138,7 @@ dependencies {
     implementation(libs.androidx.datastore.core)
 
     // Google Play Billing - Subscription Management
-    implementation("com.android.billingclient:billing-ktx:7.1.1")
+    implementation("com.android.billingclient:billing-ktx:8.2.1")
 
     // Security
     implementation(libs.androidx.security.crypto)

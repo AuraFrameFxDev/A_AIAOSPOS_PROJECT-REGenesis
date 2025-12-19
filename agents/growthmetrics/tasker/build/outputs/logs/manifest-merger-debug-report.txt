@@ -1,16 +1,16 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\GenesisOs-AOSP\agents\growthmetrics\tasker\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest5985523927280658839.xml:2:13-83
-INJECTED from C:\GenesisOs-AOSP\agents\growthmetrics\tasker\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest5985523927280658839.xml:2:13-83
+ADDED from C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\agents\growthmetrics\tasker\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest3694119599889280658.xml:2:13-83
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\agents\growthmetrics\tasker\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest3694119599889280658.xml:2:13-83
 	package
-		INJECTED from C:\GenesisOs-AOSP\agents\growthmetrics\tasker\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest5985523927280658839.xml
+		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\agents\growthmetrics\tasker\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest3694119599889280658.xml
 	xmlns:android
-		ADDED from C:\GenesisOs-AOSP\agents\growthmetrics\tasker\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest5985523927280658839.xml:2:23-81
+		ADDED from C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\agents\growthmetrics\tasker\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest3694119599889280658.xml:2:23-81
 uses-sdk
-INJECTED from C:\GenesisOs-AOSP\agents\growthmetrics\tasker\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest5985523927280658839.xml reason: use-sdk injection requested
-INJECTED from C:\GenesisOs-AOSP\agents\growthmetrics\tasker\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest5985523927280658839.xml
-INJECTED from C:\GenesisOs-AOSP\agents\growthmetrics\tasker\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest5985523927280658839.xml
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\agents\growthmetrics\tasker\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest3694119599889280658.xml reason: use-sdk injection requested
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\agents\growthmetrics\tasker\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest3694119599889280658.xml
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\agents\growthmetrics\tasker\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest3694119599889280658.xml
 	android:targetSdkVersion
-		INJECTED from C:\GenesisOs-AOSP\agents\growthmetrics\tasker\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest5985523927280658839.xml
+		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\agents\growthmetrics\tasker\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest3694119599889280658.xml
 	android:minSdkVersion
-		INJECTED from C:\GenesisOs-AOSP\agents\growthmetrics\tasker\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest5985523927280658839.xml
+		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\agents\growthmetrics\tasker\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest3694119599889280658.xml

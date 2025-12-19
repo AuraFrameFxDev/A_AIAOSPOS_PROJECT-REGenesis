@@ -101,7 +101,8 @@ includeIfExists(":cascade:datastream:delivery")
 includeIfExists(":cascade:datastream:taskmanager")
 
 // --- Agents → GrowthMetrics ---
-include(":agents")
+// Note: :agents is just a directory container, not a Gradle module
+// Only the submodules under :agents:growthmetrics:* are actual modules
 includeIfExists(":agents:growthmetrics:metareflection")
 includeIfExists(":agents:growthmetrics:nexusmemory")
 includeIfExists(":agents:growthmetrics:spheregrid")

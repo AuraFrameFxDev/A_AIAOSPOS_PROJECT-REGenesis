@@ -1,4 +1,4 @@
-                        -HC:\GenesisOs-AOSP\app\src\main\cpp
+                        -HC:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\app\src\main\cpp
 -DCMAKE_SYSTEM_NAME=Android
 -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 -DCMAKE_SYSTEM_VERSION=34
@@ -9,10 +9,10 @@
 -DCMAKE_TOOLCHAIN_FILE=C:\Users\Wehtt\AppData\Local\Android\Sdk\ndk\29.0.14206865\build\cmake\android.toolchain.cmake
 -DCMAKE_MAKE_PROGRAM=C:\Users\Wehtt\AppData\Local\Android\Sdk\cmake\3.22.1\bin\ninja.exe
 -DCMAKE_CXX_FLAGS=-std=c++20
--DCMAKE_LIBRARY_OUTPUT_DIRECTORY=C:\GenesisOs-AOSP\app\build\intermediates\cxx\Debug\6b616l1e\obj\x86
--DCMAKE_RUNTIME_OUTPUT_DIRECTORY=C:\GenesisOs-AOSP\app\build\intermediates\cxx\Debug\6b616l1e\obj\x86
+-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\app\build\intermediates\cxx\Debug\6b616l1e\obj\x86
+-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\app\build\intermediates\cxx\Debug\6b616l1e\obj\x86
 -DCMAKE_BUILD_TYPE=Debug
--BC:\GenesisOs-AOSP\app\.cxx\Debug\6b616l1e\x86
+-BC:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\app\.cxx\Debug\6b616l1e\x86
 -GNinja
 -DANDROID_STL=c++_shared
 -DANDROID_PLATFORM=android-34

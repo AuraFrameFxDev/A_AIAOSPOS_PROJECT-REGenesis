@@ -1,3 +1,3 @@
-C:/GenesisOs-AOSP/app/.cxx/Debug/6b616l1e/x86/CMakeFiles/auraframefx.dir
-C:/GenesisOs-AOSP/app/.cxx/Debug/6b616l1e/x86/CMakeFiles/edit_cache.dir
-C:/GenesisOs-AOSP/app/.cxx/Debug/6b616l1e/x86/CMakeFiles/rebuild_cache.dir
+C:/Users/Wehtt/AndroidStudioProjects/GenkaiOverdrive/app/.cxx/Debug/6b616l1e/x86/CMakeFiles/auraframefx.dir
+C:/Users/Wehtt/AndroidStudioProjects/GenkaiOverdrive/app/.cxx/Debug/6b616l1e/x86/CMakeFiles/edit_cache.dir
+C:/Users/Wehtt/AndroidStudioProjects/GenkaiOverdrive/app/.cxx/Debug/6b616l1e/x86/CMakeFiles/rebuild_cache.dir

@@ -1,16 +1,16 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\GenesisOs-AOSP\cascade\datastream\taskmanager\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest17378120082914628557.xml:2:13-83
-INJECTED from C:\GenesisOs-AOSP\cascade\datastream\taskmanager\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest17378120082914628557.xml:2:13-83
+ADDED from C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\cascade\datastream\taskmanager\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest12899840173489960577.xml:2:13-83
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\cascade\datastream\taskmanager\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest12899840173489960577.xml:2:13-83
 	package
-		INJECTED from C:\GenesisOs-AOSP\cascade\datastream\taskmanager\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest17378120082914628557.xml
+		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\cascade\datastream\taskmanager\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest12899840173489960577.xml
 	xmlns:android
-		ADDED from C:\GenesisOs-AOSP\cascade\datastream\taskmanager\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest17378120082914628557.xml:2:23-81
+		ADDED from C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\cascade\datastream\taskmanager\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest12899840173489960577.xml:2:23-81
 uses-sdk
-INJECTED from C:\GenesisOs-AOSP\cascade\datastream\taskmanager\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest17378120082914628557.xml reason: use-sdk injection requested
-INJECTED from C:\GenesisOs-AOSP\cascade\datastream\taskmanager\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest17378120082914628557.xml
-INJECTED from C:\GenesisOs-AOSP\cascade\datastream\taskmanager\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest17378120082914628557.xml
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\cascade\datastream\taskmanager\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest12899840173489960577.xml reason: use-sdk injection requested
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\cascade\datastream\taskmanager\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest12899840173489960577.xml
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\cascade\datastream\taskmanager\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest12899840173489960577.xml
 	android:targetSdkVersion
-		INJECTED from C:\GenesisOs-AOSP\cascade\datastream\taskmanager\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest17378120082914628557.xml
+		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\cascade\datastream\taskmanager\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest12899840173489960577.xml
 	android:minSdkVersion
-		INJECTED from C:\GenesisOs-AOSP\cascade\datastream\taskmanager\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest17378120082914628557.xml
+		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\cascade\datastream\taskmanager\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest12899840173489960577.xml

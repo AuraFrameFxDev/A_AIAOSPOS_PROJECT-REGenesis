@@ -1,4 +1,4 @@
-# Install script for directory: C:/GenesisOs-AOSP/app/src/main/cpp
+# Install script for directory: C:/Users/Wehtt/AndroidStudioProjects/GenkaiOverdrive/app/src/main/cpp
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/GenesisOs-AOSP/app/.cxx/Debug/6b616l1e/x86/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/Wehtt/AndroidStudioProjects/GenkaiOverdrive/app/.cxx/Debug/6b616l1e/x86/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
