@@ -15,7 +15,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_24
         isCoreLibraryDesugaringEnabled = true
     }
-    buildConfig = true
+    
     buildFeatures {
         compose = true
     }
