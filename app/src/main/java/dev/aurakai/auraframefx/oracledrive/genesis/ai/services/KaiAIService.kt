@@ -3,11 +3,11 @@
 import dev.aurakai.auraframefx.models.AgentResponse
 import dev.aurakai.auraframefx.models.AgentType
 import dev.aurakai.auraframefx.models.AiRequest
-import dev.aurakai.auraframefx.oracledrive.genesis.ai.context.ContextManager
-import dev.aurakai.auraframefx.oracledrive.genesis.ai.error.ErrorHandler
-import dev.aurakai.auraframefx.oracledrive.genesis.ai.memory.MemoryManager
-import dev.aurakai.auraframefx.oracledrive.genesis.ai.task.TaskScheduler
-import dev.aurakai.auraframefx.oracledrive.genesis.ai.task.execution.TaskExecutionManager
+import dev.aurakai.auraframefx.ai.context.ContextManager
+import dev.aurakai.auraframefx.common.ErrorHandler
+import dev.aurakai.auraframefx.ai.memory.MemoryManager
+import dev.aurakai.auraframefx.ai.task.TaskScheduler
+import dev.aurakai.auraframefx.ai.task.execution.TaskExecutionManager
 import dev.aurakai.auraframefx.oracledrive.genesis.cloud.CloudStatusMonitor
 import dev.aurakai.auraframefx.utils.AuraFxLogger
 import kotlinx.coroutines.flow.Flow
@@ -44,7 +44,7 @@ class KaiAIService @Inject constructor(
         logger.info("KaiAIService", "Initializing Kai - The Shield")
         try {
             // Initialize security monitoring
-            contextManager.enableSecurityContext
+            contextManager.enableSecurityContext()
             isInitialized = true
             logger.info("KaiAIService", "Kai AI Service initialized successfully")
         } catch (e: Exception) {

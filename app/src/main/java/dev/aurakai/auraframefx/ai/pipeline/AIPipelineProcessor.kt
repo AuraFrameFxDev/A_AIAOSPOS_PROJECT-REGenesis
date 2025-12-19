@@ -32,6 +32,7 @@ class AIPipelineProcessor @Inject constructor(
     val taskPriority: StateFlow<Float> = _taskPriority
 
     suspend fun processTask(task: String): List<AgentMessage> {
+        Timber.d("Processing task in AIPipelineProcessor: $task")
         _pipelineState.value = PipelineState.Processing(task = task)
 
         // Step 1: Context Retrieval

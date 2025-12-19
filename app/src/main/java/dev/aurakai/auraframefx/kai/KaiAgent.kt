@@ -20,6 +20,8 @@ import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.buildJsonObject
+import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -127,14 +129,15 @@ open class KaiAgent @Inject constructor(
 
             InteractionResponse(
                 content = responseText,
-                metadata = JsonObject(mapOf()), // Use proper JsonObject construction
+                metadata = buildJsonObject { },
                 timestamp = System.currentTimeMillis()
             )
         } catch (e: Exception) {
-            dev.aurakai.auraframefx.ai.agents.InteractionResponse(
-                "Error",
-                JsonObject(mapOf()),
-                System.currentTimeMillis()
+            Timber.tag("KaiAgent").e(e, "Security interaction failed")
+            InteractionResponse(
+                content = "Error",
+                metadata = buildJsonObject { },
+                timestamp = System.currentTimeMillis()
             )
         }
     }

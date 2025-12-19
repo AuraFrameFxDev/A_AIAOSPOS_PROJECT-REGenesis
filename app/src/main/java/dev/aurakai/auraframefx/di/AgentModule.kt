@@ -5,10 +5,10 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.aurakai.auraframefx.oracledrive.genesis.ai.clients.VertexAIClient
-import dev.aurakai.auraframefx.oracledrive.genesis.ai.context.ContextManager
-import dev.aurakai.auraframefx.oracledrive.genesis.ai.context.DefaultContextManager
-import dev.aurakai.auraframefx.oracledrive.genesis.ai.memory.DefaultMemoryManager
-import dev.aurakai.auraframefx.oracledrive.genesis.ai.memory.MemoryManager
+import dev.aurakai.auraframefx.ai.context.ContextManager
+import dev.aurakai.auraframefx.ai.context.DefaultContextManager
+import dev.aurakai.auraframefx.ai.memory.DefaultMemoryManager
+import dev.aurakai.auraframefx.ai.memory.MemoryManager
 import dev.aurakai.auraframefx.oracledrive.genesis.ai.services.AuraAIService
 import dev.aurakai.auraframefx.model.AgentType
 import dev.aurakai.auraframefx.oracledrive.genesis.ai.services.KaiAIService

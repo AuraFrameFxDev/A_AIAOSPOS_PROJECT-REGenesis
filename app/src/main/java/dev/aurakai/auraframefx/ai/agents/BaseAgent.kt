@@ -130,7 +130,7 @@ abstract class BaseAgent(
         Timber.d("initializeAdaptiveProtection called for %s", agentName)
     }
 
-    abstract fun AiRequest(
+    open fun AiRequest(
         query: String,
         prompt: String,
         type: String,
@@ -138,9 +138,21 @@ abstract class BaseAgent(
         metadata: JsonObject,
         agentId: String?,
         sessionId: String
-    ): AiRequest
+    ): AiRequest {
+        return AiRequest(
+            query = query,
+            prompt = prompt,
+            type = type,
+            context = context,
+            metadata = metadata,
+            agentId = agentId,
+            sessionId = sessionId
+        )
+    }
 
-    abstract fun AgentResponse(content: String, confidence: Float, p2: Any)
+    open fun AgentResponse(content: String, confidence: Float, p2: Any) {
+        // Default implementation
+    }
 }
 
 /**

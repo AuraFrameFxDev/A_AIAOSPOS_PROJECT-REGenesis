@@ -1,4 +1,4 @@
-package dev.aurakai.auraframefx.genesis.storage
+package dev.aurakai.genesis.storage
 
 import android.content.Context
 import javax.inject.Inject

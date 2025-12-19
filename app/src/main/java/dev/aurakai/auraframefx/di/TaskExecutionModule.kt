@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import dev.aurakai.auraframefx.oracledrive.genesis.ai.task.execution.TaskExecutionManager
+import dev.aurakai.auraframefx.ai.task.execution.TaskExecutionManager
 import javax.inject.Singleton
 
 @Module

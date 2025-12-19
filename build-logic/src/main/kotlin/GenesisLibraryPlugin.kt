@@ -48,6 +48,7 @@ class GenesisLibraryPlugin : Plugin<Project> {
             // Apply plugins in correct order
             // Note: Kotlin is built into AGP 9.0.0-alpha14+
             pluginManager.apply("com.android.library")
+            pluginManager.apply("org.jetbrains.kotlin.android")
             pluginManager.apply("org.jetbrains.kotlin.plugin.compose")
             pluginManager.apply("org.jetbrains.kotlin.plugin.serialization")
 
@@ -76,8 +77,8 @@ class GenesisLibraryPlugin : Plugin<Project> {
 
                 // Java 24 bytecode (Firebase + AGP 9.0 compatible)
                 compileOptions {
-                    sourceCompatibility = JavaVersion.VERSION_24
-                    targetCompatibility = JavaVersion.VERSION_24
+                    sourceCompatibility = JavaVersion.VERSION_21
+                    targetCompatibility = JavaVersion.VERSION_21
                     isCoreLibraryDesugaringEnabled = true
                 }
 

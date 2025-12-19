@@ -7,8 +7,9 @@ import kotlinx.serialization.Serializable
  */
 interface AuraAIService {
     suspend fun initialize()
-    suspend fun generateText(prompt: String, context: String): String
-    suspend fun generateTheme(preferences: ThemePreferences, context: String): ThemeConfiguration
+    suspend fun generateText(prompt: String, context: String = ""): String
+    suspend fun generateText(prompt: String, options: Map<String, String>): String
+    suspend fun generateTheme(preferences: ThemePreferences, context: String = ""): ThemeConfiguration
 }
 
 @Serializable
@@ -33,12 +34,14 @@ data class ThemeConfiguration(
  */
 class DefaultAuraAIService : AuraAIService {
 
-    override suspend fun initialize() {
-        // Initialize AI service
-    }
+    override suspend fun initialize() {}
 
     override suspend fun generateText(prompt: String, context: String): String {
         return "Generated creative text for: $prompt (Context: $context)"
+    }
+
+    override suspend fun generateText(prompt: String, options: Map<String, String>): String {
+        return "Generated creative text for: $prompt (Options: $options)"
     }
 
     override suspend fun generateTheme(
