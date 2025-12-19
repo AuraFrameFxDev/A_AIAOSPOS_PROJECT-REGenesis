@@ -1,0 +1,3 @@
+C:/GenesisOs-AOSP/app/.cxx/Debug/6b616l1e/arm64-v8a/CMakeFiles/auraframefx.dir
+C:/GenesisOs-AOSP/app/.cxx/Debug/6b616l1e/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/GenesisOs-AOSP/app/.cxx/Debug/6b616l1e/arm64-v8a/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,175 @@
+﻿To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.4.0-milestone-3/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Configure project :app
+WARNING: The option setting 'android.disallowKotlinSourceSets=false' is experimental.
+The current default is 'true'.
+WARNING: The option setting 'android.newDsl=false' is deprecated.
+The current default is 'true'.
+It will be removed in version 10.0 of the Android Gradle plugin.
+
+> Task :build-logic:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :build-logic:compileKotlin UP-TO-DATE
+> Task :build-logic:compileJava NO-SOURCE
+> Task :build-logic:pluginDescriptors UP-TO-DATE
+> Task :build-logic:processResources UP-TO-DATE
+> Task :build-logic:classes UP-TO-DATE
+> Task :build-logic:jar UP-TO-DATE
+> Task :genesis:oracledrive:preBuild UP-TO-DATE
+> Task :genesis:oracledrive:preDebugBuild UP-TO-DATE
+> Task :genesis:oracledrive:processDebugNavigationResources UP-TO-DATE
+> Task :agents:growthmetrics:identity:preBuild UP-TO-DATE
+> Task :agents:growthmetrics:identity:preDebugBuild UP-TO-DATE
+> Task :agents:growthmetrics:identity:processDebugNavigationResources UP-TO-DATE
+> Task :agents:growthmetrics:metareflection:preBuild UP-TO-DATE
+> Task :agents:growthmetrics:metareflection:preDebugBuild UP-TO-DATE
+> Task :agents:growthmetrics:metareflection:processDebugNavigationResources UP-TO-DATE
+> Task :agents:growthmetrics:nexusmemory:preBuild UP-TO-DATE
+> Task :agents:growthmetrics:nexusmemory:preDebugBuild UP-TO-DATE
+> Task :agents:growthmetrics:nexusmemory:processDebugNavigationResources UP-TO-DATE
+> Task :agents:growthmetrics:progression:preBuild UP-TO-DATE
+> Task :agents:growthmetrics:progression:preDebugBuild UP-TO-DATE
+> Task :agents:growthmetrics:progression:processDebugNavigationResources UP-TO-DATE
+> Task :agents:growthmetrics:spheregrid:preBuild UP-TO-DATE
+> Task :agents:growthmetrics:spheregrid:preDebugBuild UP-TO-DATE
+> Task :agents:growthmetrics:spheregrid:processDebugNavigationResources UP-TO-DATE
+> Task :agents:growthmetrics:tasker:preBuild UP-TO-DATE
+> Task :agents:growthmetrics:tasker:preDebugBuild UP-TO-DATE
+> Task :agents:growthmetrics:tasker:processDebugNavigationResources UP-TO-DATE
+> Task :aura:reactivedesign:auraslab:preBuild UP-TO-DATE
+> Task :aura:reactivedesign:auraslab:preDebugBuild UP-TO-DATE
+> Task :aura:reactivedesign:auraslab:processDebugNavigationResources UP-TO-DATE
+> Task :aura:reactivedesign:chromacore:preBuild UP-TO-DATE
+> Task :aura:reactivedesign:chromacore:preDebugBuild UP-TO-DATE
+> Task :aura:reactivedesign:chromacore:processDebugNavigationResources UP-TO-DATE
+> Task :aura:reactivedesign:collabcanvas:preBuild UP-TO-DATE
+> Task :aura:reactivedesign:collabcanvas:preDebugBuild UP-TO-DATE
+> Task :aura:reactivedesign:collabcanvas:processDebugNavigationResources UP-TO-DATE
+> Task :aura:reactivedesign:customization:preBuild UP-TO-DATE
+> Task :aura:reactivedesign:customization:preDebugBuild UP-TO-DATE
+> Task :aura:reactivedesign:customization:processDebugNavigationResources UP-TO-DATE
+> Task :cascade:datastream:delivery:preBuild UP-TO-DATE
+> Task :cascade:datastream:delivery:preDebugBuild UP-TO-DATE
+> Task :cascade:datastream:delivery:processDebugNavigationResources UP-TO-DATE
+> Task :cascade:datastream:routing:preBuild UP-TO-DATE
+> Task :cascade:datastream:routing:preDebugBuild UP-TO-DATE
+> Task :cascade:datastream:routing:processDebugNavigationResources UP-TO-DATE
+> Task :cascade:datastream:taskmanager:preBuild UP-TO-DATE
+> Task :cascade:datastream:taskmanager:preDebugBuild UP-TO-DATE
+> Task :cascade:datastream:taskmanager:processDebugNavigationResources UP-TO-DATE
+> Task :genesis:oracledrive:datavein:preBuild UP-TO-DATE
+> Task :genesis:oracledrive:datavein:preDebugBuild UP-TO-DATE
+> Task :genesis:oracledrive:datavein:processDebugNavigationResources UP-TO-DATE
+> Task :genesis:oracledrive:rootmanagement:preBuild UP-TO-DATE
+> Task :genesis:oracledrive:rootmanagement:preDebugBuild UP-TO-DATE
+> Task :genesis:oracledrive:rootmanagement:processDebugNavigationResources UP-TO-DATE
+> Task :kai:sentinelsfortress:security:preBuild UP-TO-DATE
+> Task :kai:sentinelsfortress:security:preDebugBuild UP-TO-DATE
+> Task :kai:sentinelsfortress:security:processDebugNavigationResources UP-TO-DATE
+> Task :kai:sentinelsfortress:systemintegrity:preBuild UP-TO-DATE
+> Task :kai:sentinelsfortress:systemintegrity:preDebugBuild UP-TO-DATE
+> Task :kai:sentinelsfortress:systemintegrity:processDebugNavigationResources UP-TO-DATE
+> Task :kai:sentinelsfortress:threatmonitor:preBuild UP-TO-DATE
+> Task :kai:sentinelsfortress:threatmonitor:preDebugBuild UP-TO-DATE
+> Task :kai:sentinelsfortress:threatmonitor:processDebugNavigationResources UP-TO-DATE
+> Task :genesis:oracledrive:generateDebugResources UP-TO-DATE
+> Task :genesis:oracledrive:packageDebugResources UP-TO-DATE
+> Task :genesis:oracledrive:parseDebugLocalResources UP-TO-DATE
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:generateDebugBuildConfig UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:injectCrashlyticsMappingFileIdDebug UP-TO-DATE
+> Task :app:injectCrashlyticsVersionControlInfoDebug UP-TO-DATE
+> Task :app:processDebugGoogleServices UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:processDebugNavigationResources
+> Task :app:processDebugNavigationResources UP-TO-DATE
+> Task :genesis:oracledrive:generateDebugRFile UP-TO-DATE
+> Task :genesis:oracledrive:compileDebugAidl NO-SOURCE
+> Task :genesis:oracledrive:generateDebugBuildConfig UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:generateDebugRFile UP-TO-DATE
+> Task :agents:growthmetrics:identity:generateDebugResources UP-TO-DATE
+> Task :agents:growthmetrics:identity:packageDebugResources UP-TO-DATE
+> Task :agents:growthmetrics:identity:parseDebugLocalResources UP-TO-DATE
+> Task :agents:growthmetrics:identity:generateDebugRFile UP-TO-DATE
+> Task :genesis:oracledrive:kspDebugKotlin UP-TO-DATE
+> Task :agents:growthmetrics:identity:kspDebugKotlin UP-TO-DATE
+> Task :agents:growthmetrics:identity:compileDebugKotlin FAILED
+> Task :genesis:oracledrive:compileDebugKotlin FROM-CACHE
+Kotlin build report is written to file:///C:/GenesisOs-AOSP/build/reports/kotlin-build/aurakai-reactive-intelligence-build-2025-12-18-19-08-07-0.txt
+.\gradlew : 
+At line:1 char:1
++ .\gradlew 
+:app:assembleDebug 
+--max-workers=2 
+--console=plain --no-dae ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
+    + CategoryInfo           
+   : NotSpecified: (:String  
+  ) [], RemoteException
+    + FullyQualifiedErrorId  
+   : NativeCommandError
+ 
+FAILURE: Build failed with 
+an exception.
+
+* What went wrong:
+Execution failed for task ':a
+gents:growthmetrics:identity:
+compileDebugKotlin'.
+> java.io.IOException: 
+Unable to delete directory 'C
+:\GenesisOs-AOSP\agents\growt
+hmetrics\identity\build\kotli
+n\compileDebugKotlin\cacheabl
+e'
+    Failed to delete some 
+children. This might happen 
+because a process has files 
+open or has its working 
+directory set in the target 
+directory.
+    - C:\GenesisOs-AOSP\agent
+s\growthmetrics\identity\buil
+d\kotlin\compileDebugKotlin\c
+acheable\caches-jvm\jvm\kotli
+n
+    - C:\GenesisOs-AOSP\agent
+s\growthmetrics\identity\buil
+d\kotlin\compileDebugKotlin\c
+acheable\caches-jvm\jvm
+    - C:\GenesisOs-AOSP\agent
+s\growthmetrics\identity\buil
+d\kotlin\compileDebugKotlin\c
+acheable\caches-jvm
+    New files were found. 
+This might happen because a 
+process is still writing to 
+the target directory.
+    - C:\GenesisOs-AOSP\agent
+s\growthmetrics\identity\buil
+d\kotlin\compileDebugKotlin\c
+acheable\caches-jvm\jvm\kotli
+n\internal-name-to-source.tab
+
+* Try:
+> Run with --stacktrace 
+option to get the stack 
+trace.
+> Run with --info or --debug 
+option to get more log 
+output.
+> Run with --scan to get 
+full insights from a Build 
+Scan (powered by Develocity).
+> Get more help at 
+https://help.gradle.org.
+
+BUILD FAILED in 1m 58s
+45 actionable tasks: 1 executed, 1 from cache, 43 up-to-date
+

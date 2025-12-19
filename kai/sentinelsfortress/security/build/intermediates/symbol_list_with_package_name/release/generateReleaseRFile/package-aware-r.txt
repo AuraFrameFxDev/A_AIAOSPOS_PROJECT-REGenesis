@@ -1,3 +1,0 @@
-dev.aurakai.auraframefx.kai.sentinelsfortress.security
-string secure_comm_main_name
-string secure_comm_release_name

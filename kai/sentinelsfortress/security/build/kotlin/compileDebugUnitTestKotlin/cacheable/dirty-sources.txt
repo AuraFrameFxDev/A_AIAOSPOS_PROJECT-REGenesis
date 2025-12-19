@@ -1,1 +1,0 @@
-C:\Users\Wehtt\AndroidStudioProjects\GenkaiOverdrive\kai\sentinelsfortress\security\src\test\kotlin\BuildScriptTest.kt

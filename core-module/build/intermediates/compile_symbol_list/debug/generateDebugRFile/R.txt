@@ -1,2 +1,0 @@
-int string core_module_debug_name 0x0
-int string core_module_main_name 0x0

@@ -1,8 +1,0 @@
-Gradle start parameters:
-  tasks = [:app:assembleDebug]
-  excluded tasks = []
-  current dir = C:\GenesisOs-AOSP
-  project properties args = []
-  system properties args = [user.variant: , file.encoding: UTF-8, user.country: US, user.language: en]
-
-No Kotlin task was run

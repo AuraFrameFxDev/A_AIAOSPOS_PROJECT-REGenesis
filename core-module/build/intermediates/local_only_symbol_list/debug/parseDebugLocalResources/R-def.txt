@@ -1,4 +1,0 @@
-R_DEF: Internal format may change without notice
-local
-string core_module_debug_name
-string core_module_main_name

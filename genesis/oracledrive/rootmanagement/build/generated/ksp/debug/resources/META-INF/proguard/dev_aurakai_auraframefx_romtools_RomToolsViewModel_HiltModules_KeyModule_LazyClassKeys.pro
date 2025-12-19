@@ -1,1 +1,0 @@
--keep,allowobfuscation,allowshrinking class dev.aurakai.auraframefx.romtools.RomToolsViewModel

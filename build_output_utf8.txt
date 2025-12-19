@@ -1,0 +1,65 @@
+﻿To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.4.0-milestone-3/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Configure project :app
+WARNING: The option setting 'android.newDsl=false' is deprecated.
+The current default is 'true'.
+It will be removed in version 10.0 of the Android Gradle plugin.
+.\gradlew : 
+At line:1 char:1
++ .\gradlew 
+:app:assembleDebug 
+--max-workers=2 
+--console=plain --no-dae ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
+    + CategoryInfo           
+   : NotSpecified: (:String  
+  ) [], RemoteException
+    + FullyQualifiedErrorId  
+   : NativeCommandError
+ 
+FAILURE: Build failed with 
+an exception.
+
+* What went wrong:
+A problem occurred 
+configuring project ':app'.
+> com.android.builder.errors.
+EvalIssueException: Using 
+kotlin.sourceSets DSL to add 
+Kotlin sources is not 
+allowed with built-in Kotlin.
+  Kotlin source set 'debug' 
+contains: [C:\GenesisOs-AOSP\
+app\build\generated\ksp\debug
+\kotlin, C:\GenesisOs-AOSP\ap
+p\build\generated\ksp\debug\j
+ava]
+  Solution: Use 
+android.sourceSets DSL 
+instead.
+  For more information, see h
+ttps://developer.android.com/
+r/tools/built-in-kotlin
+  To suppress this error, 
+set android.disallowKotlinSou
+rceSets=false in 
+gradle.properties.
+
+* Try:
+> Run with --stacktrace 
+option to get the stack 
+trace.
+> Run with --info or --debug 
+option to get more log 
+output.
+> Run with --scan to get 
+full insights from a Build 
+Scan (powered by Develocity).
+> Get more help at 
+https://help.gradle.org.
+
+BUILD FAILED in 29s
+
