@@ -1,4 +1,4 @@
-@echo off
+H@echo off
 REM Gradle Daemon Cleanup Script for Genesis Protocol (Windows)
 REM Fixes: "Unable to load class 'com.android.ide.gradle.model.builder.AndroidStudioToolingPlugin'"
 

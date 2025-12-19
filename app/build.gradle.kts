@@ -22,69 +22,6 @@ plugins {
     id("com.google.firebase.crashlytics")
 }
 
-android {
-    namespace = "dev.aurakai.auraframefx"
-    ndkVersion = libs.versions.ndk.get()
-    compileSdk = libs.versions.compile.sdk.get().toInt()
-
-    defaultConfig {
-        applicationId = "dev.aurakai.auraframefx"
-        minSdk = libs.versions.min.sdk.get().toInt()
-        targetSdk = libs.versions.target.sdk.get().toInt()
-        versionCode = 1
-        versionName = "0.1.0"
-
-        // Genesis Protocol: Gemini 2.0 Flash API Key
-        // Add to local.properties: GEMINI_API_KEY=your_key_here
-        // Get key from: https://aistudio.google.com/app/apikey
-        val geminiApiKey = project.findProperty("GEMINI_API_KEY")?.toString() ?: ""
-        buildConfigField("String", "GEMINI_API_KEY", "\"$geminiApiKey\"")
-
-        externalNativeBuild {
-            cmake {
-                cppFlags += "-std=c++20"
-                arguments += listOf(
-                    "-DANDROID_STL=c++_shared",
-                    "-DANDROID_PLATFORM=android-${libs.versions.min.sdk.get()}"
-                )
-            }
-        }
-    }
-    freeCompilerArgs
-        listOf(
-        "-Xcontext-receivers"
-    )
-
-
-
-buildFeatures {
-    compose = true
-
-}
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_25
-        targetCompatibility = JavaVersion.VERSION_25
-        isCoreLibraryDesugaringEnabled = true
-    }
-
-    lint {
-        baseline = file("lint-baseline.xml")
-        abortOnError = false
-        checkReleaseBuilds = false
-    }
-
-    buildFeatures {
-        buildConfig = true
-        compose = true
-    }
-
-    externalNativeBuild {
-        cmake {
-            path = file("src/main/cpp/CMakeLists.txt")
-            version = libs.versions.cmake.get()
-        }
-    }
-}
 
 dependencies {
     // ═══════════════════════════════════════════════════════════════════════════
