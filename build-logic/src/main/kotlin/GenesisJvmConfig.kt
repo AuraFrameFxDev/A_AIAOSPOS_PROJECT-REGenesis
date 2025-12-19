@@ -41,34 +41,41 @@ object GenesisJvmConfig {
      */
     fun configureKotlinJvm(project: Project) {
         with(project) {
-            // Configure Kotlin JVM toolchain to match Java toolchain (uses foojay-resolver)
-            // This automatically sets jvmTarget, making manual jvmTarget.set() redundant
-            // CRITICAL: Use afterEvaluate to ensure both Kotlin and Android plugins have been applied
-            // and their extensions are available (required for AGP 9.0 with built-in Kotlin)
-            afterEvaluate {
-                pluginManager.withPlugin("org.jetbrains.kotlin.android") {
-                    try {
-                        extensions.configure<KotlinAndroidProjectExtension> {
-                            jvmToolchain(JVM_VERSION)
-                        }
-                    } catch (e: Exception) {
-                        // Extension not available yet - skip configuration
-                        logger.debug("KotlinAndroidProjectExtension not yet available: ${e.message}")
-                    }
-                }
-            }
-
-            // Configure Kotlin compilation options with opt-ins
+            // Configure Kotlin compilation options with opt-ins (works for both built-in and external)
             tasks.withType<KotlinJvmCompile>().configureEach {
                 compilerOptions {
-                    // Note: jvmTarget is automatically set by jvmToolchain() above
-                    // Manual jvmTarget.set(JvmTarget.JVM_25) is redundant
                     freeCompilerArgs.addAll(
-                        "-Xcontext-parameters",  // Enable Kotlin 2.2 context parameters (preview)
+                        "-Xcontext-parameters",
                         "-opt-in=kotlin.RequiresOptIn",
                         "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
                         "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api"
                     )
+                }
+            }
+
+            // Configure toolchain - use afterEvaluate so extensions are ready
+            afterEvaluate {
+                // Technique 1: Try via 'kotlin' extension (Standard/External)
+                try {
+                    extensions.findByType(org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension::class.java)?.apply {
+                        jvmToolchain(JVM_VERSION)
+                    }
+                } catch (e: Exception) {
+                    logger.debug("Could not configure toolchain via 'kotlin' extension: ${e.message}")
+                }
+
+                // Technique 2: Try via 'android' extension (AGP 9.0 Built-in)
+                try {
+                    // This is harder to do type-safely without importing AGP internal types,
+                    // but we can try to find the extension named "android"
+                    val android = extensions.findByName("android")
+                    if (android != null) {
+                        // AGP 9.0 built-in Kotlin might expose a 'kotlin' block
+                        // Alternatively, we rely on compileOptions.sourceCompatibility/targetCompatibility
+                        // which are already set in the convention plugins.
+                    }
+                } catch (e: Exception) {
+                    logger.debug("Could not configure toolchain via 'android' extension: ${e.message}")
                 }
             }
         }

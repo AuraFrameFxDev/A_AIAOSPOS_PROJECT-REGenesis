@@ -1,0 +1,1 @@
+C:\GenesisOs-AOSP\app\src\main\cpp\CMakeLists.txt

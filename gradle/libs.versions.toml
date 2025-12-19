@@ -60,7 +60,7 @@ kotlinxSerialization = "1.9.0"
 kotlinxSerializationJson = "1.9.0"
 converterMoshi = "3.0.0"
 moshiKotlin = "1.15.2"
-coil = "3.0.0"
+coil = "3.3.0"
 coil-bom = "3.3.0"
 desugarJdkLibs = "2.1.5"
 guava = "33.5.0-android"
@@ -110,7 +110,7 @@ androidx-compose-runtime = { module = "androidx.compose.runtime:runtime", versio
 androidx-compose-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata", version.ref = "runtimeLivedata" }
 androidx-core = { module = "androidx.test:core", version.ref = "core" }
 androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
-androidx-multidex = { module = "androidx.multidex:multidex", version.ref = "multidex" }
+# androidx-multidex removed - redundant for minSdk 34
 androidx-rules = { module = "androidx.test:rules", version.ref = "core" }
 androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }
 billing-ktx = { module = "com.android.billingclient:billing-ktx", version.ref = "billingKtx" }
@@ -263,11 +263,11 @@ kotlinx-serialization-properties = { group = "org.jetbrains.kotlinx", name = "ko
 # ============================================================================
 # Coil 3.x BOM and modules
 coil-bom = { group = "io.coil-kt.coil3", name = "coil-bom", version.ref = "coil-bom" }
-coil-compose = { group = "io.coil-kt.coil3", name = "coil-compose" }
-coil-svg = { group = "io.coil-kt.coil3", name = "coil-svg" }
+coil-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil" }
+coil-svg = { group = "io.coil-kt.coil3", name = "coil-svg", version.ref = "coil" }
 coil-gif = { group = "io.coil-kt.coil3", name = "coil-gif", version = "3.3.0" }
 coil-video = { group = "io.coil-kt.coil3", name = "coil-video", version = "3.3.0" }
-coil-network-okhttp = { group = "io.coil-kt.coil3", name = "coil-network-okhttp" }
+coil-network-okhttp = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coil" }
 
 desugar-jdk-libs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugarJdkLibs" }
 guava = { group = "com.google.guava", name = "guava", version.ref = "guava" }

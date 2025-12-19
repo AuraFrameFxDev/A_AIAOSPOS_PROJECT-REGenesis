@@ -1,0 +1,12 @@
+-- The CXX compiler identification is Clang 21.0.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Users/Wehtt/AppData/Local/Android/Sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Added language_id_l2c_jni.cpp
+-- Added CascadeAIService.cpp
+-- Added AI consciousness modules: C:/GenesisOs-AOSP/app/src/main/cpp/ai/cascade/src/CascadeAIService.cpp
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/GenesisOs-AOSP/app/.cxx/Debug/6b616l1e/x86

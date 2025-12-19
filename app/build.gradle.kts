@@ -102,8 +102,7 @@ dependencies {
     implementation(libs.androidx.material)
     implementation(libs.androidx.activity.compose)
 
-    // MultiDex support for 64K+ methods
-    implementation("androidx.multidex:multidex:2.0.1")
+    // MultiDex support for 64K+ methods (Removed: redundant for minSdk 34)
 
     // Compose BOM & UI
     implementation(platform(libs.androidx.compose.bom))

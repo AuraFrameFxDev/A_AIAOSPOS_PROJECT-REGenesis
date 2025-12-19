@@ -3,8 +3,64 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/build-logic" name="build-logic">
+                <projects>
+                  <project path="$PROJECT_DIR$/build-logic" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
         <option name="testRunner" value="CHOOSE_PER_TEST" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/agents" />
+            <option value="$PROJECT_DIR$/agents/growthmetrics" />
+            <option value="$PROJECT_DIR$/agents/growthmetrics/identity" />
+            <option value="$PROJECT_DIR$/agents/growthmetrics/metareflection" />
+            <option value="$PROJECT_DIR$/agents/growthmetrics/nexusmemory" />
+            <option value="$PROJECT_DIR$/agents/growthmetrics/progression" />
+            <option value="$PROJECT_DIR$/agents/growthmetrics/spheregrid" />
+            <option value="$PROJECT_DIR$/agents/growthmetrics/tasker" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/aura" />
+            <option value="$PROJECT_DIR$/aura/reactivedesign" />
+            <option value="$PROJECT_DIR$/aura/reactivedesign/auraslab" />
+            <option value="$PROJECT_DIR$/aura/reactivedesign/chromacore" />
+            <option value="$PROJECT_DIR$/aura/reactivedesign/collabcanvas" />
+            <option value="$PROJECT_DIR$/aura/reactivedesign/customization" />
+            <option value="$PROJECT_DIR$/build-logic" />
+            <option value="$PROJECT_DIR$/cascade" />
+            <option value="$PROJECT_DIR$/cascade/datastream" />
+            <option value="$PROJECT_DIR$/cascade/datastream/delivery" />
+            <option value="$PROJECT_DIR$/cascade/datastream/routing" />
+            <option value="$PROJECT_DIR$/cascade/datastream/taskmanager" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/core-module" />
+            <option value="$PROJECT_DIR$/extendsysa" />
+            <option value="$PROJECT_DIR$/extendsysb" />
+            <option value="$PROJECT_DIR$/extendsysc" />
+            <option value="$PROJECT_DIR$/extendsysd" />
+            <option value="$PROJECT_DIR$/extendsyse" />
+            <option value="$PROJECT_DIR$/extendsysf" />
+            <option value="$PROJECT_DIR$/genesis" />
+            <option value="$PROJECT_DIR$/genesis/oracledrive" />
+            <option value="$PROJECT_DIR$/genesis/oracledrive/datavein" />
+            <option value="$PROJECT_DIR$/genesis/oracledrive/rootmanagement" />
+            <option value="$PROJECT_DIR$/kai" />
+            <option value="$PROJECT_DIR$/kai/sentinelsfortress" />
+            <option value="$PROJECT_DIR$/kai/sentinelsfortress/security" />
+            <option value="$PROJECT_DIR$/kai/sentinelsfortress/systemintegrity" />
+            <option value="$PROJECT_DIR$/kai/sentinelsfortress/threatmonitor" />
+            <option value="$PROJECT_DIR$/list" />
+            <option value="$PROJECT_DIR$/utilities" />
+          </set>
+        </option>
       </GradleProjectSettings>
     </option>
   </component>
