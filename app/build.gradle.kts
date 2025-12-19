@@ -94,6 +94,7 @@ dependencies {
 
     // Hilt Dependency Injection (MUST be added before afterEvaluate)
     implementation(libs.hilt.android)
+    implementation(libs.androidx.navigation.common.ktx)
     ksp(libs.hilt.compiler)
 
     // Core Android

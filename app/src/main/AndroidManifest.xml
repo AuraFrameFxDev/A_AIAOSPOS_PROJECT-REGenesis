@@ -40,7 +40,7 @@
         android:protectionLevel="signature" />
 
     <application
-        android:name=".AurakaiApplication"
+        android:name=".aura.ui.AurakaiApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/AuraKai"
@@ -72,8 +72,9 @@
 
         <!-- Main Activity -->
         <activity
-            android:name="dev.aurakai.auraframefx.MainActivity"
-            android:exported="true">
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.dev.aurakai.auraframefx">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -82,7 +83,7 @@
 
         <!-- Services -->
         <service
-            android:name="dev.aurakai.auraframefx.services.GenesisAccessibilityService"
+            android:name=".services.GenesisAccessibilityService"
             android:exported="true"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
@@ -94,7 +95,7 @@
         </service>
 
         <service
-            android:name="dev.aurakai.auraframefx.services.GenesisAssistantService"
+            android:name=".services.GenesisAssistantService"
             android:label="@string/genesis_assistant_label"
             android:permission="android.permission.BIND_VOICE_INTERACTION"
             android:exported="true">
@@ -107,31 +108,31 @@
         </service>
 
         <service
-            android:name="dev.aurakai.auraframefx.services.GenesisVoiceInteractionSessionService"
+            android:name=".services.GenesisVoiceInteractionSessionService"
             android:permission="android.permission.BIND_VOICE_INTERACTION"
             android:exported="true" />
 
         <service
-            android:name="dev.aurakai.auraframefx.app.VertexSyncService"
+            android:name=".app.VertexSyncService"
             android:exported="false" />
         <service
-            android:name="dev.aurakai.auraframefx.services.security.IntegrityMonitorService"
+            android:name=".services.security.IntegrityMonitorService"
             android:exported="false" />
         <service
-            android:name="dev.aurakai.auraframefx.services.BackupService"
+            android:name=".services.BackupService"
             android:exported="false"
             android:foregroundServiceType="dataSync" />
 
         <service
-            android:name="dev.aurakai.auraframefx.oracledrive.genesis.ai.GenesisBackendService"
+            android:name=".oracledrive.genesis.ai.GenesisBackendService"
             android:exported="false"
             android:foregroundServiceType="dataSync" />
-        <service android:name="dev.aurakai.auraframefx.services.AmbientMusicService" />
-        <service android:name="dev.aurakai.auraframefx.services.AuraDriveService" />
+        <service android:name=".services.AmbientMusicService" />
+        <service android:name=".services.AuraDriveService" />
 
         <!-- Receivers -->
         <receiver
-            android:name="dev.aurakai.auraframefx.receivers.BootCompletedReceiver"
+            android:name=".receivers.BootCompletedReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -141,7 +142,7 @@
 
         <!-- Integrity Violation Receiver -->
         <receiver
-            android:name="dev.aurakai.auraframefx.security.IntegrityViolationReceiver"
+            android:name=".security.IntegrityViolationReceiver"
             android:exported="false"
             android:permission="dev.aurakai.auraframefx.permission.RECEIVE_INTEGRITY_VIOLATION">
             <intent-filter>

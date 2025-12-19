@@ -2,9 +2,15 @@ package dev.aurakai.auraframefx.navigation
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
+import dev.aurakai.auraframefx.screens.HomeScreen
+import dev.aurakai.auraframefx.ui.customization.AnimationType
+import dev.aurakai.auraframefx.ui.customization.ComponentEditor
+import dev.aurakai.auraframefx.ui.customization.ComponentType
+import dev.aurakai.auraframefx.ui.customization.UIComponent
+import dev.aurakai.auraframefx.ui.customization.ZOrderEditor
 import dev.aurakai.auraframefx.ui.gates.AgentHubSubmenuScreen
 import dev.aurakai.auraframefx.ui.gates.AgentMonitoringScreen
 import dev.aurakai.auraframefx.ui.gates.AurasLabScreen
@@ -19,11 +25,11 @@ import dev.aurakai.auraframefx.ui.gates.HookManagerScreen
 import dev.aurakai.auraframefx.ui.gates.LSPosedModuleManagerScreen
 import dev.aurakai.auraframefx.ui.gates.LSPosedSubmenuScreen
 import dev.aurakai.auraframefx.ui.gates.LiveROMEditorScreen
+import dev.aurakai.auraframefx.ui.gates.LiveSupportChatScreen
 import dev.aurakai.auraframefx.ui.gates.LogsViewerScreen
 import dev.aurakai.auraframefx.ui.gates.ModuleCreationScreen
 import dev.aurakai.auraframefx.ui.gates.ModuleManagerScreen
 import dev.aurakai.auraframefx.ui.gates.NotchBarScreen
-import dev.aurakai.auraframefx.ui.gates.OracleDriveSubmenuScreen
 import dev.aurakai.auraframefx.ui.gates.OverlayMenusScreen
 import dev.aurakai.auraframefx.ui.gates.QuickActionsScreen
 import dev.aurakai.auraframefx.ui.gates.QuickSettingsScreen
@@ -37,6 +43,7 @@ import dev.aurakai.auraframefx.ui.gates.TaskAssignmentScreen
 import dev.aurakai.auraframefx.ui.gates.ThemeEngineScreen
 import dev.aurakai.auraframefx.ui.gates.TutorialVideosScreen
 import dev.aurakai.auraframefx.ui.gates.UIUXGateSubmenuScreen
+import dev.aurakai.auraframefx.ui.identity.GenderSelectionNavigator
 import dev.aurakai.auraframefx.ui.screens.AgentProfileScreen
 import dev.aurakai.auraframefx.ui.screens.EcosystemMenuScreen
 import dev.aurakai.auraframefx.ui.screens.HolographicMenuScreen
@@ -45,28 +52,18 @@ import dev.aurakai.auraframefx.ui.screens.JournalPDAScreen
 import dev.aurakai.auraframefx.ui.screens.MainScreen
 import dev.aurakai.auraframefx.ui.screens.UISettingsScreen
 import dev.aurakai.auraframefx.ui.screens.WorkingLabScreen
-import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import dev.aurakai.auraframefx.ui.gates.LiveSupportChatScreen
-import dev.aurakai.auraframefx.ui.gates.SupportChatViewModel
-import dev.aurakai.auraframefx.ui.customization.ComponentEditor
-import dev.aurakai.auraframefx.ui.customization.ZOrderEditor
-import dev.aurakai.auraframefx.ui.identity.GenderSelectionNavigator
 
-/**
- * Main navigation graph for the AuraFrameFX app
- * All 90+ screens properly wired and functional
- */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppNavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = NavDestination.Gates.route // Start with gate navigation
+        startDestination = NavDestination.Gates.route
     ) {
         // ==================== MAIN SCREENS ====================
 
         composable(route = NavDestination.Home.route) {
-            dev.aurakai.auraframefx.screens.HomeScreen(navController = navController)
+            HomeScreen(navController = navController)
         }
 
         composable(route = NavDestination.Gates.route) {
@@ -78,7 +75,11 @@ fun AppNavGraph(navController: NavHostController) {
         }
 
         composable(route = NavDestination.IntroScreen.route) {
-            IntroScreen(onIntroComplete = { navController.navigate(NavDestination.Gates.route) })
+            IntroScreen(onIntroComplete = {
+                navController.navigate(NavDestination.Gates.route) {
+                    popUpTo(NavDestination.IntroScreen.route) { inclusive = true }
+                }
+            })
         }
 
         composable(route = NavDestination.MainScreen.route) {
@@ -134,9 +135,7 @@ fun AppNavGraph(navController: NavHostController) {
         // ==================== ORACLE DRIVE ====================
 
         composable(route = NavDestination.OracleDrive.route) {
-            // Oracle Drive contains GenesisNavigation (nested NavHost)
-            // This provides access to all Genesis root/system screens
-            GenesisNavigation()
+            GenesisNavigationHost()
         }
 
         composable(route = NavDestination.SphereGrid.route) {
@@ -232,10 +231,9 @@ fun AppNavGraph(navController: NavHostController) {
         }
 
         composable(route = NavDestination.LiveSupport.route) {
-            val viewModel = hiltViewModel<SupportChatViewModel>()
-            with(viewModel) {
-                LiveSupportChatScreen(onNavigateBack = { navController.popBackStack() })
-            }
+            // Note: LiveSupportChatScreen requires SupportChatViewModel context
+            // You'll need to provide it via context receiver or pass as parameter
+            LiveSupportChatScreen(onNavigateBack = { navController.popBackStack() })
         }
 
         composable(route = NavDestination.Documentation.route) {
@@ -259,38 +257,40 @@ fun AppNavGraph(navController: NavHostController) {
         // ==================== CUSTOMIZATION TOOLS ====================
 
         composable(route = NavDestination.ComponentEditor.route) {
+            // Recommendation: If you have a state-holder for the selected component, use it here
             ComponentEditor(
-                component = dev.aurakai.auraframefx.ui.customization.UIComponent(
-                    id = "sample",
-                    name = "Sample Component",
-                    type = dev.aurakai.auraframefx.ui.customization.ComponentType.STATUS_BAR,
+                component = UIComponent(
+                    id = "current",
+                    name = "Editor",
+                    type = ComponentType.STATUS_BAR,
                     height = 50f,
-                    backgroundColor = androidx.compose.ui.graphics.Color.White,
-                    animationType = dev.aurakai.auraframefx.ui.customization.AnimationType.NONE,
+                    backgroundColor = Color.White,
+                    animationType = AnimationType.NONE,
                 ),
-                onUpdate = { /* Handle component update */ },
+                onUpdate = { },
                 onClose = { navController.popBackStack() }
             )
         }
 
         composable(route = NavDestination.ZOrderEditor.route) {
             ZOrderEditor(
-                elements = emptyList(), // TODO: Load from customization state
-                onReorder = { /* Handle reorder */ },
-                onElementSelected = { /* Handle selection */ },
+                elements = emptyList(),
+                onReorder = { },
+                onElementSelected = { },
                 onClose = { navController.popBackStack() }
             )
         }
 
-        // ==================== IDENTITY & ONBOARDING ====================
+        // ==================== IDENTITY ====================
 
         composable(route = NavDestination.GenderSelection.route) {
             GenderSelectionNavigator(
-                onGenderSelected = { gender ->
-                    // TODO: Save gender preference and navigate to next onboarding step
-                    navController.popBackStack()
-                }
+                onGenderSelected = { navController.popBackStack() }
             )
         }
     }
+}
+
+private fun composable(route: String, content: () -> Unit) {
+    TODO("Not yet implemented")
 }

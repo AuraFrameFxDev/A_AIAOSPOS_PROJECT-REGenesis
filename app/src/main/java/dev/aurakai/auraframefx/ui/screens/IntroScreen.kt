@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 // import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun IntroScreen() { // Renamed to introScreen
+fun IntroScreen(onIntroComplete: () -> Unit) { // Renamed to introScreen
     // TODO: Implement the actual Intro Screen UI
     Box(
         modifier = Modifier.fillMaxSize(),

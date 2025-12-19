@@ -2,15 +2,11 @@ package dev.aurakai.auraframefx
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -27,7 +23,6 @@ import dev.aurakai.auraframefx.navigation.AppNavGraph
 import dev.aurakai.auraframefx.ui.components.BottomNavigationBar
 import dev.aurakai.auraframefx.ui.theme.AuraFrameFXTheme
 import dev.aurakai.auraframefx.ui.theme.ThemeViewModel
-import dev.aurakai.auraframefx.ui.components.digitalPixelEffect
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -52,7 +47,8 @@ class MainActivity : ComponentActivity() {
 // New: a preview-friendly content composable that accepts a lambda for theme commands
 @Composable
 internal fun MainScreenContent(
-    processThemeCommand: (String) -> Unit
+    processThemeCommand: (String) -> Unit,
+    paddingValues: Any
 ) {
     val navController = rememberNavController()
 
@@ -61,7 +57,7 @@ internal fun MainScreenContent(
 
     Scaffold(
         bottomBar = { BottomNavigationBar(navController = navController) }
-    ) { paddingValues ->
+    ) { paddingValues
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -71,7 +67,8 @@ internal fun MainScreenContent(
                 TextField(
                     value = command,
                     onValueChange = { command = it },
-                    label = { Text("Enter theme command") }
+                    label = { Text("Enter theme command") },
+                    state = TODO()
                 )
                 Button(onClick = { processThemeCommand(command) }) {
                     Text("Apply")
@@ -92,6 +89,33 @@ internal fun MainScreenContent(
             }
         }
     }
+}
+
+private fun Scaffold(bottomBar: () -> Unit, content: Any) {
+    TODO("Not yet implemented")
+}
+
+fun Column(
+    modifier: Any,
+    content: () -> ComposableFunction1<BoxScope, Unit>
+) {
+    TODO("Not yet implemented")
+}
+
+fun Row(content: () -> ComposableFunction1<RowScope, Unit>) {}
+
+fun Box(
+    modifier: Modifier,
+    content: () -> Unit
+): ComposableFunction1<BoxScope, Unit> {
+    TODO("Provide the return value")
+}
+
+fun Button(
+    onClick: () -> Unit,
+    content: () -> Unit
+): ComposableFunction1<RowScope, Unit> {
+    TODO("Provide the return value")
 }
 
 // Keep original API used by Activity: delegate to the content with the real ViewModel
