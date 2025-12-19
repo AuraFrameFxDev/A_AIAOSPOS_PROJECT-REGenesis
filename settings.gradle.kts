@@ -58,7 +58,7 @@ dependencyResolutionManagement {
 rootProject.name = "aurakai-reactive-intelligence"
 
 fun includeIfExists(path: String) {
-    val dir = path.replace(":", "/")
+    val dir = path.removePrefix(":").replace(":", "/")
     if (file(dir).exists()) {
         include(path)
     } else {
@@ -81,6 +81,7 @@ includeIfExists(":aura:reactivedesign:auraslab")
 includeIfExists(":aura:reactivedesign:collabcanvas")
 includeIfExists(":aura:reactivedesign:chromacore")
 includeIfExists(":aura:reactivedesign:customization")
+includeIfExists(":aura:reactivedesign:sandboxui")
 
 // --- Kai → SentinelsFortress ---
 include(":kai")
