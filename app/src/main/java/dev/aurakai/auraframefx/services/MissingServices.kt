@@ -15,7 +15,6 @@ interface CascadeAIService {
 interface KaiAIService {
     suspend fun processRequest(request: AiRequest, context: String): AgentResponse
     suspend fun analyzeSecurityThreat(threat: String): Map<String, Any>
-    fun AgentResponse(content: String, confidence: Float, p2: Any): AgentResponse
 }
 
 /**
@@ -35,11 +34,11 @@ class DefaultCascadeAIService @Inject constructor() : CascadeAIService {
      * @return An AgentResponse whose content indicates the cascade-processed prompt and whose confidence is 0.85.
      */
     override suspend fun processRequest(request: AiRequest, context: String): AgentResponse {
-        return with(0.85f) {
-            AgentResponse(
-                "Cascade processed: ${request.prompt}",
-            )
-        }
+        return AgentResponse.success(
+            content = "Cascade processed: ${request.prompt}",
+            confidence = 0.85f,
+            agentName = "CascadeAI"
+        )
     }
 }
 
@@ -53,9 +52,10 @@ class DefaultKaiAIService @Inject constructor() : KaiAIService {
      * @return An AgentResponse whose content is the original prompt prefixed with "Kai security analysis: " and with confidence 0.90.
      */
     override suspend fun processRequest(request: AiRequest, context: String): AgentResponse {
-        return AgentResponse(
+        return AgentResponse.success(
             content = "Kai security analysis: ${request.prompt}",
-            confidence = 0.90f, ,
+            confidence = 0.90f,
+            agentName = "KaiAI"
         )
     }
 
@@ -76,11 +76,4 @@ class DefaultKaiAIService @Inject constructor() : KaiAIService {
         )
     }
 
-    override fun AgentResponse(
-        content: String,
-        confidence: Float,
-        p2: Any
-    ): AgentResponse {
-        TODO("Not yet implemented")
-    }
 }
