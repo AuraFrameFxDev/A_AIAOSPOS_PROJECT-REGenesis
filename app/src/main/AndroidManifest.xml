@@ -40,7 +40,7 @@
         android:protectionLevel="signature" />
 
     <application
-        android:name=".aura.ui.AurakaiApplication"
+        android:name="dev.aurakai.auraframefx.aura.ui.AurakaiApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/AuraKai"
