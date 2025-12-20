@@ -291,7 +291,3 @@ fun AppNavGraph(navController: NavHostController) {
         }
     }
 }
-
-private fun NavGraphBuilder.composable(route: String, content: () -> Unit) {
-    TODO("Not yet implemented")
-}
