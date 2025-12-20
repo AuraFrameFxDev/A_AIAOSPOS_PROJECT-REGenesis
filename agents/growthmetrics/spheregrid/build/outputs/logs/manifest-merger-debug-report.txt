@@ -1,16 +1,16 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\GenesisOs-AOSP\agents\growthmetrics\spheregrid\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest2385130558627861283.xml:2:13-83
-INJECTED from C:\GenesisOs-AOSP\agents\growthmetrics\spheregrid\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest2385130558627861283.xml:2:13-83
+ADDED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\agents\growthmetrics\spheregrid\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest13094629297906264704.xml:2:13-83
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\agents\growthmetrics\spheregrid\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest13094629297906264704.xml:2:13-83
 	package
-		INJECTED from C:\GenesisOs-AOSP\agents\growthmetrics\spheregrid\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest2385130558627861283.xml
+		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\agents\growthmetrics\spheregrid\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest13094629297906264704.xml
 	xmlns:android
-		ADDED from C:\GenesisOs-AOSP\agents\growthmetrics\spheregrid\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest2385130558627861283.xml:2:23-81
+		ADDED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\agents\growthmetrics\spheregrid\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest13094629297906264704.xml:2:23-81
 uses-sdk
-INJECTED from C:\GenesisOs-AOSP\agents\growthmetrics\spheregrid\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest2385130558627861283.xml reason: use-sdk injection requested
-INJECTED from C:\GenesisOs-AOSP\agents\growthmetrics\spheregrid\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest2385130558627861283.xml
-INJECTED from C:\GenesisOs-AOSP\agents\growthmetrics\spheregrid\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest2385130558627861283.xml
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\agents\growthmetrics\spheregrid\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest13094629297906264704.xml reason: use-sdk injection requested
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\agents\growthmetrics\spheregrid\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest13094629297906264704.xml
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\agents\growthmetrics\spheregrid\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest13094629297906264704.xml
 	android:targetSdkVersion
-		INJECTED from C:\GenesisOs-AOSP\agents\growthmetrics\spheregrid\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest2385130558627861283.xml
+		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\agents\growthmetrics\spheregrid\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest13094629297906264704.xml
 	android:minSdkVersion
-		INJECTED from C:\GenesisOs-AOSP\agents\growthmetrics\spheregrid\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest2385130558627861283.xml
+		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\agents\growthmetrics\spheregrid\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest13094629297906264704.xml

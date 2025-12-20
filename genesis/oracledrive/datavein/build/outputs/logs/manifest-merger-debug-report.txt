@@ -1,14 +1,14 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\GenesisOs-AOSP\genesis\oracledrive\datavein\src\main\AndroidManifest.xml:2:1-4:12
-INJECTED from C:\GenesisOs-AOSP\genesis\oracledrive\datavein\src\main\AndroidManifest.xml:2:1-4:12
+ADDED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\genesis\oracledrive\datavein\src\main\AndroidManifest.xml:2:1-4:12
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\genesis\oracledrive\datavein\src\main\AndroidManifest.xml:2:1-4:12
 	package
-		INJECTED from C:\GenesisOs-AOSP\genesis\oracledrive\datavein\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\genesis\oracledrive\datavein\src\main\AndroidManifest.xml
 uses-sdk
-INJECTED from C:\GenesisOs-AOSP\genesis\oracledrive\datavein\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from C:\GenesisOs-AOSP\genesis\oracledrive\datavein\src\main\AndroidManifest.xml
-INJECTED from C:\GenesisOs-AOSP\genesis\oracledrive\datavein\src\main\AndroidManifest.xml
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\genesis\oracledrive\datavein\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\genesis\oracledrive\datavein\src\main\AndroidManifest.xml
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\genesis\oracledrive\datavein\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from C:\GenesisOs-AOSP\genesis\oracledrive\datavein\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\genesis\oracledrive\datavein\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\GenesisOs-AOSP\genesis\oracledrive\datavein\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\genesis\oracledrive\datavein\src\main\AndroidManifest.xml
