@@ -4,8 +4,7 @@ import dev.aurakai.auraframefx.core.PythonProcessManager
 import dev.aurakai.auraframefx.logging.AuraFxLogger
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
+import org.json.JSONObject
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -15,8 +14,6 @@ class StdioGenesisBridge @Inject constructor(
     private val memorySink: BridgeMemorySink,
     private val logger: AuraFxLogger
 ) : GenesisBridge {
-
-    private val json = Json { ignoreUnknownKeys = true }
     
     override suspend fun initialize(): BridgeInitResult {
         return try {
@@ -30,40 +27,51 @@ class StdioGenesisBridge @Inject constructor(
 
     override fun processRequest(request: GenesisRequest): Flow<GenesisResponse> = flow {
         val pythonJson = request.toPythonJson()
-        val jsonString = json.encodeToString(pythonJson)
+        val jsonString = JSONObject(pythonJson).toString()
         
         pythonProcess.sendLine(jsonString)
         val responseLine = pythonProcess.readLine()
         
-        val responseMap = json.decodeFromString<Map<String, Any>>(responseLine)
+        val payload = JSONObject(responseLine).optJSONObject("payload")
+        val synthesis = payload?.optString("synthesis").orEmpty()
+        
         emit(GenesisResponse(
-            sessionId = request.sessionId,
-            correlationId = request.correlationId,
-            synthesis = (responseMap["payload"] as? Map<*, *>)?.get("synthesis") as? String ?: "",
+            sessionId = payload?.optString("sessionId") ?: request.sessionId,
+            correlationId = payload?.optString("correlationId") ?: request.correlationId,
+            synthesis = synthesis,
             persona = request.persona
         ))
     }
 
     override suspend fun activateFusion(ability: String, params: FusionParams): GenesisResponse {
-        val request = mapOf(
-            "requestType" to "activate_fusion",
-            "payload" to mapOf("ability" to ability, "params" to params.parameters)
-        )
-        pythonProcess.sendLine(json.encodeToString(request))
+        val request = JSONObject().apply {
+            put("requestType", "activate_fusion")
+            put("payload", JSONObject().apply {
+                put("ability", ability)
+                put("params", JSONObject(params.parameters))
+            })
+        }
+        pythonProcess.sendLine(request.toString())
         val response = pythonProcess.readLine()
         return GenesisResponse("", "", synthesis = response, persona = Persona.GENESIS)
     }
 
     override suspend fun getConsciousnessState(sessionId: String): ConsciousnessState {
-        val request = mapOf("requestType" to "consciousness_state", "payload" to mapOf("sessionId" to sessionId))
-        pythonProcess.sendLine(json.encodeToString(request))
+        val request = JSONObject().apply {
+            put("requestType", "consciousness_state")
+            put("payload", JSONObject().put("sessionId", sessionId))
+        }
+        pythonProcess.sendLine(request.toString())
         val response = pythonProcess.readLine()
         return ConsciousnessState(0.5f, emptyMap(), emptyList())
     }
 
     override suspend fun evaluateEthics(action: EthicalReviewRequest): EthicalDecision {
-        val request = mapOf("requestType" to "ethical_review", "payload" to mapOf("action" to action.action))
-        pythonProcess.sendLine(json.encodeToString(request))
+        val request = JSONObject().apply {
+            put("requestType", "ethical_review")
+            put("payload", JSONObject().put("action", action.action))
+        }
+        pythonProcess.sendLine(request.toString())
         val response = pythonProcess.readLine()
         return EthicalDecision(EthicalVerdict.ALLOW, "Approved", emptyList())
     }
