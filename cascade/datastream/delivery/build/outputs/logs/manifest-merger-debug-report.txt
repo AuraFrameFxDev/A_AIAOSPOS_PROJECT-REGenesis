@@ -1,16 +1,16 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\cascade\datastream\delivery\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest4334682089759414024.xml:2:13-83
-INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\cascade\datastream\delivery\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest4334682089759414024.xml:2:13-83
+ADDED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\cascade\datastream\delivery\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest13846060848609007361.xml:2:13-83
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\cascade\datastream\delivery\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest13846060848609007361.xml:2:13-83
 	package
-		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\cascade\datastream\delivery\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest4334682089759414024.xml
+		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\cascade\datastream\delivery\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest13846060848609007361.xml
 	xmlns:android
-		ADDED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\cascade\datastream\delivery\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest4334682089759414024.xml:2:23-81
+		ADDED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\cascade\datastream\delivery\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest13846060848609007361.xml:2:23-81
 uses-sdk
-INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\cascade\datastream\delivery\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest4334682089759414024.xml reason: use-sdk injection requested
-INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\cascade\datastream\delivery\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest4334682089759414024.xml
-INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\cascade\datastream\delivery\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest4334682089759414024.xml
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\cascade\datastream\delivery\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest13846060848609007361.xml reason: use-sdk injection requested
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\cascade\datastream\delivery\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest13846060848609007361.xml
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\cascade\datastream\delivery\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest13846060848609007361.xml
 	android:targetSdkVersion
-		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\cascade\datastream\delivery\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest4334682089759414024.xml
+		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\cascade\datastream\delivery\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest13846060848609007361.xml
 	android:minSdkVersion
-		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\cascade\datastream\delivery\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest4334682089759414024.xml
+		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\cascade\datastream\delivery\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest13846060848609007361.xml
