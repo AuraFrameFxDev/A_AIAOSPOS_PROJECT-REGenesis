@@ -1,5 +1,2 @@
 dev.aurakai.auraframefx.aura.reactivedesign.auraslab
-string sandbox_ui_debug_name
-string sandbox_ui_main_name
-string sandbox_ui_debug_name
 string sandbox_ui_main_name
