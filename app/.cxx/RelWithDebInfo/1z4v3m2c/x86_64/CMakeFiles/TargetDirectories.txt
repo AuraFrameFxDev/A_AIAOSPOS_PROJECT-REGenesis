@@ -1,3 +1,0 @@
-C:/Users/Wehtt/AndroidStudioProjects/GenkaiOverdrive/app/.cxx/RelWithDebInfo/1z4v3m2c/x86_64/CMakeFiles/auraframefx.dir
-C:/Users/Wehtt/AndroidStudioProjects/GenkaiOverdrive/app/.cxx/RelWithDebInfo/1z4v3m2c/x86_64/CMakeFiles/edit_cache.dir
-C:/Users/Wehtt/AndroidStudioProjects/GenkaiOverdrive/app/.cxx/RelWithDebInfo/1z4v3m2c/x86_64/CMakeFiles/rebuild_cache.dir
