@@ -8,10 +8,10 @@ plugins {
 
 android {
     namespace = "dev.aurakai.auraframefx.kai.sentinelsfortress.security"
-    compileSdk = libs.versions.compile.sdk.get().toInt()
+    compileSdk = 36
 
     defaultConfig {
-        minSdk = libs.versions.min.sdk.get().toInt()
+        minSdk = 34
     }
 
     compileOptions {

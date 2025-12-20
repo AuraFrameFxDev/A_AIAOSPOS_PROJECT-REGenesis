@@ -4,10 +4,10 @@ plugins {
 
 android {
     namespace = "dev.aurakai.auraframefx.aura.reactivedesign.sandboxui"
-    compileSdk = libs.versions.compile.sdk.get().toInt()
+    compileSdk = 36
 
     defaultConfig {
-        minSdk = libs.versions.min.sdk.get().toInt()
+        minSdk = 34
     }
 
     compileOptions {
@@ -15,7 +15,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_24
         isCoreLibraryDesugaringEnabled = true
     }
-    buildConfig = true
+
     buildFeatures {
         compose = true
     }

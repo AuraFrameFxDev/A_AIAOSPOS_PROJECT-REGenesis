@@ -35,6 +35,7 @@
             <option value="$PROJECT_DIR$/aura/reactivedesign/chromacore" />
             <option value="$PROJECT_DIR$/aura/reactivedesign/collabcanvas" />
             <option value="$PROJECT_DIR$/aura/reactivedesign/customization" />
+            <option value="$PROJECT_DIR$/aura/reactivedesign/sandboxui" />
             <option value="$PROJECT_DIR$/build-logic" />
             <option value="$PROJECT_DIR$/cascade" />
             <option value="$PROJECT_DIR$/cascade/datastream" />
