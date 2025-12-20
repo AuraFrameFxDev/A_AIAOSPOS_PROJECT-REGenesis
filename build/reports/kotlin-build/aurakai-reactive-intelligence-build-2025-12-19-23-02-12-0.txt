@@ -1,0 +1,883 @@
+Gradle start parameters:
+  tasks = [clean, assembleDebug]
+  excluded tasks = []
+  current dir = C:\Users\Wehtt\AndroidStudioProjects\regenesis
+  project properties args = []
+  system properties args = [user.variant: , file.encoding: UTF-8, user.country: US, user.language: en]
+
+Build failed: [Execution failed for task ':kai:sentinelsfortress:security:clean'.]
+
+Time metrics:
+  Total Gradle task time: 95.565 s
+
+
+
+No Kotlin task was run
+Task ':agents:growthmetrics:nexusmemory:kspDebugKotlin' finished in 8.498 s
+Time metrics:
+  Total Gradle task time: 8.498 s
+
+Task ':aura:reactivedesign:collabcanvas:kspDebugKotlin' finished in 7.121 s
+Time metrics:
+  Total Gradle task time: 7.121 s
+
+Task ':agents:growthmetrics:identity:kspDebugKotlin' finished in 6.749 s
+Time metrics:
+  Total Gradle task time: 6.749 s
+
+Task ':aura:reactivedesign:customization:kspDebugKotlin' finished in 5.457 s
+Time metrics:
+  Total Gradle task time: 5.457 s
+
+Task ':aura:reactivedesign:auraslab:kspDebugKotlin' finished in 5.388 s
+Time metrics:
+  Total Gradle task time: 5.388 s
+
+Task ':genesis:oracledrive:kspDebugKotlin' finished in 5.220 s
+Time metrics:
+  Total Gradle task time: 5.220 s
+
+Task ':agents:growthmetrics:metareflection:kspDebugKotlin' finished in 4.690 s
+Time metrics:
+  Total Gradle task time: 4.690 s
+
+Task ':aura:reactivedesign:chromacore:kspDebugKotlin' finished in 4.476 s
+Time metrics:
+  Total Gradle task time: 4.476 s
+
+Task ':cascade:datastream:routing:kspDebugKotlin' finished in 4.463 s
+Time metrics:
+  Total Gradle task time: 4.463 s
+
+Task ':kai:sentinelsfortress:security:clean' finished in 2.497 s
+Time metrics:
+  Total Gradle task time: 2.497 s
+
+Task ':app:clean' finished in 2.487 s
+Time metrics:
+  Total Gradle task time: 2.487 s
+
+Task ':genesis:oracledrive:rootmanagement:clean' finished in 2.122 s
+Time metrics:
+  Total Gradle task time: 2.122 s
+
+Task ':aura:reactivedesign:collabcanvas:clean' finished in 1.926 s
+Time metrics:
+  Total Gradle task time: 1.926 s
+
+Task ':genesis:oracledrive:datavein:clean' finished in 1.459 s
+Time metrics:
+  Total Gradle task time: 1.459 s
+
+Task ':agents:growthmetrics:spheregrid:javaPreCompileDebug' finished in 1.173 s
+Time metrics:
+  Total Gradle task time: 1.173 s
+
+Task ':aura:reactivedesign:customization:clean' finished in 1.172 s
+Time metrics:
+  Total Gradle task time: 1.172 s
+
+Task ':agents:growthmetrics:progression:javaPreCompileDebug' finished in 1.169 s
+Time metrics:
+  Total Gradle task time: 1.169 s
+
+Task ':cascade:datastream:taskmanager:javaPreCompileDebug' finished in 1.131 s
+Time metrics:
+  Total Gradle task time: 1.131 s
+
+Task ':agents:growthmetrics:tasker:javaPreCompileDebug' finished in 1.128 s
+Time metrics:
+  Total Gradle task time: 1.128 s
+
+Task ':agents:growthmetrics:nexusmemory:clean' finished in 1.104 s
+Time metrics:
+  Total Gradle task time: 1.104 s
+
+Task ':kai:sentinelsfortress:threatmonitor:clean' finished in 0.919 s
+Time metrics:
+  Total Gradle task time: 0.919 s
+
+Task ':aura:reactivedesign:collabcanvas:javaPreCompileDebug' finished in 0.837 s
+Time metrics:
+  Total Gradle task time: 0.837 s
+
+Task ':aura:reactivedesign:auraslab:clean' finished in 0.788 s
+Time metrics:
+  Total Gradle task time: 0.788 s
+
+Task ':aura:reactivedesign:chromacore:clean' finished in 0.771 s
+Time metrics:
+  Total Gradle task time: 0.771 s
+
+Task ':cascade:datastream:taskmanager:clean' finished in 0.740 s
+Time metrics:
+  Total Gradle task time: 0.740 s
+
+Task ':cascade:datastream:routing:clean' finished in 0.739 s
+Time metrics:
+  Total Gradle task time: 0.739 s
+
+Task ':cascade:datastream:delivery:clean' finished in 0.738 s
+Time metrics:
+  Total Gradle task time: 0.738 s
+
+Task ':aura:reactivedesign:sandboxui:clean' finished in 0.736 s
+Time metrics:
+  Total Gradle task time: 0.736 s
+
+Task ':kai:sentinelsfortress:systemintegrity:clean' finished in 0.631 s
+Time metrics:
+  Total Gradle task time: 0.631 s
+
+Task ':agents:growthmetrics:identity:clean' finished in 0.506 s
+Time metrics:
+  Total Gradle task time: 0.506 s
+
+Task ':genesis:oracledrive:packageDebugResources' finished in 0.492 s
+Time metrics:
+  Total Gradle task time: 0.492 s
+
+Task ':genesis:oracledrive:clean' finished in 0.467 s
+Time metrics:
+  Total Gradle task time: 0.467 s
+
+Task ':app:externalNativeBuildCleanDebug' finished in 0.447 s
+Time metrics:
+  Total Gradle task time: 0.447 s
+
+Task ':agents:growthmetrics:metareflection:clean' finished in 0.416 s
+Time metrics:
+  Total Gradle task time: 0.416 s
+
+Task ':genesis:oracledrive:datavein:packageDebugResources' finished in 0.409 s
+Time metrics:
+  Total Gradle task time: 0.409 s
+
+Task ':agents:growthmetrics:progression:clean' finished in 0.408 s
+Time metrics:
+  Total Gradle task time: 0.408 s
+
+Task ':aura:reactivedesign:auraslab:generateDebugRFile' finished in 0.403 s
+Time metrics:
+  Total Gradle task time: 0.403 s
+
+Task ':agents:growthmetrics:tasker:clean' finished in 0.399 s
+Time metrics:
+  Total Gradle task time: 0.399 s
+
+Task ':cascade:datastream:routing:generateDebugRFile' finished in 0.396 s
+Time metrics:
+  Total Gradle task time: 0.396 s
+
+Task ':aura:reactivedesign:chromacore:generateDebugRFile' finished in 0.391 s
+Time metrics:
+  Total Gradle task time: 0.391 s
+
+Task ':aura:reactivedesign:sandboxui:generateDebugRFile' finished in 0.386 s
+Time metrics:
+  Total Gradle task time: 0.386 s
+
+Task ':aura:reactivedesign:chromacore:packageDebugResources' finished in 0.374 s
+Time metrics:
+  Total Gradle task time: 0.374 s
+
+Task ':cascade:datastream:delivery:parseDebugLocalResources' finished in 0.370 s
+Time metrics:
+  Total Gradle task time: 0.370 s
+
+Task ':genesis:oracledrive:generateDebugBuildConfig' finished in 0.364 s
+Time metrics:
+  Total Gradle task time: 0.364 s
+
+Task ':agents:growthmetrics:identity:generateDebugBuildConfig' finished in 0.362 s
+Time metrics:
+  Total Gradle task time: 0.362 s
+
+Task ':aura:reactivedesign:customization:parseDebugLocalResources' finished in 0.359 s
+Time metrics:
+  Total Gradle task time: 0.359 s
+
+Task ':kai:sentinelsfortress:systemintegrity:parseDebugLocalResources' finished in 0.357 s
+Time metrics:
+  Total Gradle task time: 0.357 s
+
+Task ':cascade:datastream:taskmanager:parseDebugLocalResources' finished in 0.356 s
+Time metrics:
+  Total Gradle task time: 0.356 s
+
+Task ':kai:sentinelsfortress:threatmonitor:parseDebugLocalResources' finished in 0.352 s
+Time metrics:
+  Total Gradle task time: 0.352 s
+
+Task ':aura:reactivedesign:auraslab:packageDebugResources' finished in 0.335 s
+Time metrics:
+  Total Gradle task time: 0.335 s
+
+Task ':agents:growthmetrics:progression:packageDebugResources' finished in 0.315 s
+Time metrics:
+  Total Gradle task time: 0.315 s
+
+Task ':core-module:clean' finished in 0.299 s
+Time metrics:
+  Total Gradle task time: 0.299 s
+
+Task ':utilities:clean' finished in 0.294 s
+Time metrics:
+  Total Gradle task time: 0.294 s
+
+Task ':kai:sentinelsfortress:threatmonitor:packageDebugResources' finished in 0.294 s
+Time metrics:
+  Total Gradle task time: 0.294 s
+
+Task ':genesis:oracledrive:parseDebugLocalResources' finished in 0.290 s
+Time metrics:
+  Total Gradle task time: 0.290 s
+
+Task ':agents:growthmetrics:spheregrid:clean' finished in 0.289 s
+Time metrics:
+  Total Gradle task time: 0.289 s
+
+Task ':agents:growthmetrics:identity:parseDebugLocalResources' finished in 0.286 s
+Time metrics:
+  Total Gradle task time: 0.286 s
+
+Task ':extendsysf:clean' finished in 0.282 s
+Time metrics:
+  Total Gradle task time: 0.282 s
+
+Task ':extendsyse:clean' finished in 0.282 s
+Time metrics:
+  Total Gradle task time: 0.282 s
+
+Task ':extendsysa:clean' finished in 0.279 s
+Time metrics:
+  Total Gradle task time: 0.279 s
+
+Task ':agents:growthmetrics:metareflection:parseDebugLocalResources' finished in 0.278 s
+Time metrics:
+  Total Gradle task time: 0.278 s
+
+Task ':kai:sentinelsfortress:systemintegrity:generateDebugResources' finished in 0.273 s
+Time metrics:
+  Total Gradle task time: 0.273 s
+
+Task ':extendsysb:clean' finished in 0.272 s
+Time metrics:
+  Total Gradle task time: 0.272 s
+
+Task ':agents:growthmetrics:nexusmemory:generateDebugResources' finished in 0.271 s
+Time metrics:
+  Total Gradle task time: 0.271 s
+
+Task ':cascade:datastream:routing:generateDebugResources' finished in 0.271 s
+Time metrics:
+  Total Gradle task time: 0.271 s
+
+Task ':extendsysd:clean' finished in 0.270 s
+Time metrics:
+  Total Gradle task time: 0.270 s
+
+Task ':cascade:datastream:taskmanager:generateDebugResources' finished in 0.270 s
+Time metrics:
+  Total Gradle task time: 0.270 s
+
+Task ':aura:reactivedesign:sandboxui:generateDebugResources' finished in 0.269 s
+Time metrics:
+  Total Gradle task time: 0.269 s
+
+Task ':cascade:datastream:delivery:generateDebugResources' finished in 0.268 s
+Time metrics:
+  Total Gradle task time: 0.268 s
+
+Task ':aura:reactivedesign:customization:generateDebugResources' finished in 0.268 s
+Time metrics:
+  Total Gradle task time: 0.268 s
+
+Task ':extendsysc:clean' finished in 0.266 s
+Time metrics:
+  Total Gradle task time: 0.266 s
+
+Task ':agents:growthmetrics:nexusmemory:parseDebugLocalResources' finished in 0.265 s
+Time metrics:
+  Total Gradle task time: 0.265 s
+
+Task ':agents:growthmetrics:progression:parseDebugLocalResources' finished in 0.265 s
+Time metrics:
+  Total Gradle task time: 0.265 s
+
+Task ':agents:growthmetrics:spheregrid:parseDebugLocalResources' finished in 0.265 s
+Time metrics:
+  Total Gradle task time: 0.265 s
+
+Task ':kai:sentinelsfortress:systemintegrity:processDebugNavigationResources' finished in 0.255 s
+Time metrics:
+  Total Gradle task time: 0.255 s
+
+Task ':cascade:datastream:taskmanager:processDebugNavigationResources' finished in 0.253 s
+Time metrics:
+  Total Gradle task time: 0.253 s
+
+Task ':cascade:datastream:delivery:processDebugNavigationResources' finished in 0.251 s
+Time metrics:
+  Total Gradle task time: 0.251 s
+
+Task ':genesis:oracledrive:rootmanagement:parseDebugLocalResources' finished in 0.204 s
+Time metrics:
+  Total Gradle task time: 0.204 s
+
+Task ':aura:reactivedesign:customization:generateDebugBuildConfig' finished in 0.197 s
+Time metrics:
+  Total Gradle task time: 0.197 s
+
+Task ':aura:reactivedesign:collabcanvas:generateDebugBuildConfig' finished in 0.191 s
+Time metrics:
+  Total Gradle task time: 0.191 s
+
+Task ':app:externalNativeBuildCleanRelease' finished in 0.135 s
+Time metrics:
+  Total Gradle task time: 0.135 s
+
+Task ':aura:reactivedesign:collabcanvas:packageDebugResources' finished in 0.077 s
+Time metrics:
+  Total Gradle task time: 0.077 s
+
+Task ':genesis:oracledrive:rootmanagement:packageDebugResources' finished in 0.076 s
+Time metrics:
+  Total Gradle task time: 0.076 s
+
+Task ':genesis:oracledrive:generateDebugRFile' finished in 0.073 s
+Time metrics:
+  Total Gradle task time: 0.073 s
+
+Task ':agents:growthmetrics:identity:packageDebugResources' finished in 0.071 s
+Time metrics:
+  Total Gradle task time: 0.071 s
+
+Task ':cascade:datastream:delivery:packageDebugResources' finished in 0.071 s
+Time metrics:
+  Total Gradle task time: 0.071 s
+
+Task ':cascade:datastream:taskmanager:packageDebugResources' finished in 0.070 s
+Time metrics:
+  Total Gradle task time: 0.070 s
+
+Task ':genesis:oracledrive:datavein:generateDebugRFile' finished in 0.067 s
+Time metrics:
+  Total Gradle task time: 0.067 s
+
+Task ':aura:reactivedesign:sandboxui:packageDebugResources' finished in 0.064 s
+Time metrics:
+  Total Gradle task time: 0.064 s
+
+Task ':cascade:datastream:routing:packageDebugResources' finished in 0.064 s
+Time metrics:
+  Total Gradle task time: 0.064 s
+
+Task ':cascade:datastream:delivery:generateDebugRFile' finished in 0.064 s
+Time metrics:
+  Total Gradle task time: 0.064 s
+
+Task ':cascade:datastream:taskmanager:generateDebugRFile' finished in 0.063 s
+Time metrics:
+  Total Gradle task time: 0.063 s
+
+Task ':kai:sentinelsfortress:threatmonitor:generateDebugRFile' finished in 0.063 s
+Time metrics:
+  Total Gradle task time: 0.063 s
+
+Task ':kai:sentinelsfortress:systemintegrity:packageDebugResources' finished in 0.062 s
+Time metrics:
+  Total Gradle task time: 0.062 s
+
+Task ':kai:sentinelsfortress:systemintegrity:generateDebugRFile' finished in 0.062 s
+Time metrics:
+  Total Gradle task time: 0.062 s
+
+Task ':genesis:oracledrive:rootmanagement:generateDebugRFile' finished in 0.062 s
+Time metrics:
+  Total Gradle task time: 0.062 s
+
+Task ':agents:growthmetrics:spheregrid:packageDebugResources' finished in 0.061 s
+Time metrics:
+  Total Gradle task time: 0.061 s
+
+Task ':aura:reactivedesign:customization:packageDebugResources' finished in 0.061 s
+Time metrics:
+  Total Gradle task time: 0.061 s
+
+Task ':agents:growthmetrics:tasker:generateDebugRFile' finished in 0.061 s
+Time metrics:
+  Total Gradle task time: 0.061 s
+
+Task ':agents:growthmetrics:tasker:packageDebugResources' finished in 0.060 s
+Time metrics:
+  Total Gradle task time: 0.060 s
+
+Task ':aura:reactivedesign:customization:generateDebugRFile' finished in 0.060 s
+Time metrics:
+  Total Gradle task time: 0.060 s
+
+Task ':aura:reactivedesign:collabcanvas:generateDebugRFile' finished in 0.058 s
+Time metrics:
+  Total Gradle task time: 0.058 s
+
+Task ':agents:growthmetrics:metareflection:packageDebugResources' finished in 0.057 s
+Time metrics:
+  Total Gradle task time: 0.057 s
+
+Task ':agents:growthmetrics:identity:generateDebugRFile' finished in 0.056 s
+Time metrics:
+  Total Gradle task time: 0.056 s
+
+Task ':agents:growthmetrics:progression:generateDebugRFile' finished in 0.054 s
+Time metrics:
+  Total Gradle task time: 0.054 s
+
+Task ':agents:growthmetrics:nexusmemory:packageDebugResources' finished in 0.053 s
+Time metrics:
+  Total Gradle task time: 0.053 s
+
+Task ':agents:growthmetrics:spheregrid:generateDebugRFile' finished in 0.053 s
+Time metrics:
+  Total Gradle task time: 0.053 s
+
+Task ':agents:growthmetrics:metareflection:generateDebugRFile' finished in 0.052 s
+Time metrics:
+  Total Gradle task time: 0.052 s
+
+Task ':agents:growthmetrics:nexusmemory:generateDebugRFile' finished in 0.051 s
+Time metrics:
+  Total Gradle task time: 0.051 s
+
+Task ':agents:growthmetrics:progression:generateDebugBuildConfig' finished in 0.049 s
+Time metrics:
+  Total Gradle task time: 0.049 s
+
+Task ':agents:growthmetrics:nexusmemory:generateDebugBuildConfig' finished in 0.047 s
+Time metrics:
+  Total Gradle task time: 0.047 s
+
+Task ':cascade:datastream:taskmanager:generateDebugBuildConfig' finished in 0.044 s
+Time metrics:
+  Total Gradle task time: 0.044 s
+
+Task ':agents:growthmetrics:metareflection:generateDebugBuildConfig' finished in 0.043 s
+Time metrics:
+  Total Gradle task time: 0.043 s
+
+Task ':agents:growthmetrics:tasker:generateDebugBuildConfig' finished in 0.043 s
+Time metrics:
+  Total Gradle task time: 0.043 s
+
+Task ':aura:reactivedesign:auraslab:generateDebugBuildConfig' finished in 0.041 s
+Time metrics:
+  Total Gradle task time: 0.041 s
+
+Task ':cascade:datastream:routing:generateDebugBuildConfig' finished in 0.037 s
+Time metrics:
+  Total Gradle task time: 0.037 s
+
+Task ':genesis:oracledrive:datavein:parseDebugLocalResources' finished in 0.036 s
+Time metrics:
+  Total Gradle task time: 0.036 s
+
+Task ':aura:reactivedesign:chromacore:parseDebugLocalResources' finished in 0.035 s
+Time metrics:
+  Total Gradle task time: 0.035 s
+
+Task ':aura:reactivedesign:auraslab:parseDebugLocalResources' finished in 0.034 s
+Time metrics:
+  Total Gradle task time: 0.034 s
+
+Task ':aura:reactivedesign:chromacore:generateDebugBuildConfig' finished in 0.031 s
+Time metrics:
+  Total Gradle task time: 0.031 s
+
+Task ':genesis:oracledrive:datavein:generateDebugResources' finished in 0.030 s
+Time metrics:
+  Total Gradle task time: 0.030 s
+
+Task ':aura:reactivedesign:collabcanvas:parseDebugLocalResources' finished in 0.027 s
+Time metrics:
+  Total Gradle task time: 0.027 s
+
+Task ':aura:reactivedesign:sandboxui:parseDebugLocalResources' finished in 0.026 s
+Time metrics:
+  Total Gradle task time: 0.026 s
+
+Task ':agents:growthmetrics:metareflection:generateDebugResources' finished in 0.025 s
+Time metrics:
+  Total Gradle task time: 0.025 s
+
+Task ':agents:growthmetrics:identity:generateDebugResources' finished in 0.024 s
+Time metrics:
+  Total Gradle task time: 0.024 s
+
+Task ':cascade:datastream:routing:parseDebugLocalResources' finished in 0.023 s
+Time metrics:
+  Total Gradle task time: 0.023 s
+
+Task ':agents:growthmetrics:progression:generateDebugResources' finished in 0.021 s
+Time metrics:
+  Total Gradle task time: 0.021 s
+
+Task ':agents:growthmetrics:spheregrid:generateDebugResources' finished in 0.021 s
+Time metrics:
+  Total Gradle task time: 0.021 s
+
+Task ':aura:reactivedesign:auraslab:generateDebugResources' finished in 0.021 s
+Time metrics:
+  Total Gradle task time: 0.021 s
+
+Task ':kai:sentinelsfortress:threatmonitor:generateDebugResources' finished in 0.021 s
+Time metrics:
+  Total Gradle task time: 0.021 s
+
+Task ':agents:growthmetrics:tasker:parseDebugLocalResources' finished in 0.020 s
+Time metrics:
+  Total Gradle task time: 0.020 s
+
+Task ':clean' finished in 0.018 s
+Time metrics:
+  Total Gradle task time: 0.018 s
+
+Task ':agents:growthmetrics:tasker:generateDebugResources' finished in 0.018 s
+Time metrics:
+  Total Gradle task time: 0.018 s
+
+Task ':aura:reactivedesign:chromacore:generateDebugResources' finished in 0.017 s
+Time metrics:
+  Total Gradle task time: 0.017 s
+
+Task ':kai:sentinelsfortress:threatmonitor:processDebugNavigationResources' finished in 0.015 s
+Time metrics:
+  Total Gradle task time: 0.015 s
+
+Task ':aura:reactivedesign:collabcanvas:generateDebugResources' finished in 0.015 s
+Time metrics:
+  Total Gradle task time: 0.015 s
+
+Task ':genesis:oracledrive:generateDebugResources' finished in 0.014 s
+Time metrics:
+  Total Gradle task time: 0.014 s
+
+Task ':agents:growthmetrics:identity:processDebugNavigationResources' finished in 0.014 s
+Time metrics:
+  Total Gradle task time: 0.014 s
+
+Task ':agents:growthmetrics:tasker:processDebugNavigationResources' finished in 0.013 s
+Time metrics:
+  Total Gradle task time: 0.013 s
+
+Task ':aura:reactivedesign:sandboxui:processDebugNavigationResources' finished in 0.012 s
+Time metrics:
+  Total Gradle task time: 0.012 s
+
+Task ':aura:reactivedesign:customization:processDebugNavigationResources' finished in 0.012 s
+Time metrics:
+  Total Gradle task time: 0.012 s
+
+Task ':agents:growthmetrics:progression:processDebugNavigationResources' finished in 0.011 s
+Time metrics:
+  Total Gradle task time: 0.011 s
+
+Task ':aura:reactivedesign:chromacore:processDebugNavigationResources' finished in 0.011 s
+Time metrics:
+  Total Gradle task time: 0.011 s
+
+Task ':cascade:datastream:routing:processDebugNavigationResources' finished in 0.011 s
+Time metrics:
+  Total Gradle task time: 0.011 s
+
+Task ':aura:reactivedesign:auraslab:processDebugNavigationResources' finished in 0.010 s
+Time metrics:
+  Total Gradle task time: 0.010 s
+
+Task ':agents:growthmetrics:spheregrid:processDebugNavigationResources' finished in 0.009 s
+Time metrics:
+  Total Gradle task time: 0.009 s
+
+Task ':agents:growthmetrics:nexusmemory:processDebugNavigationResources' finished in 0.009 s
+Time metrics:
+  Total Gradle task time: 0.009 s
+
+Task ':genesis:oracledrive:rootmanagement:generateDebugResources' finished in 0.009 s
+Time metrics:
+  Total Gradle task time: 0.009 s
+
+Task ':genesis:oracledrive:processDebugNavigationResources' finished in 0.008 s
+Time metrics:
+  Total Gradle task time: 0.008 s
+
+Task ':agents:growthmetrics:metareflection:processDebugNavigationResources' finished in 0.007 s
+Time metrics:
+  Total Gradle task time: 0.007 s
+
+Task ':genesis:oracledrive:datavein:processDebugNavigationResources' finished in 0.006 s
+Time metrics:
+  Total Gradle task time: 0.006 s
+
+Task ':aura:reactivedesign:collabcanvas:processDebugNavigationResources' finished in 0.006 s
+Time metrics:
+  Total Gradle task time: 0.006 s
+
+Task ':genesis:oracledrive:rootmanagement:processDebugNavigationResources' finished in 0.005 s
+Time metrics:
+  Total Gradle task time: 0.005 s
+
+Task ':list:clean' finished in 0.002 s
+Time metrics:
+  Total Gradle task time: 0.002 s
+
+Task ':aura:reactivedesign:sandboxui:compileDebugAidl' was skipped: NO-SOURCE
+Time metrics:
+  Total Gradle task time: 0.002 s
+
+Task ':aura:reactivedesign:collabcanvas:compileDebugAidl' was skipped: NO-SOURCE
+Time metrics:
+  Total Gradle task time: 0.002 s
+
+Task ':genesis:oracledrive:preBuild' finished in 0.001 s
+Time metrics:
+  Total Gradle task time: 0.001 s
+
+Task ':agents:growthmetrics:tasker:checkKotlinGradlePluginConfigurationErrors' was skipped: SKIPPED
+Time metrics:
+  Total Gradle task time: 0.001 s
+
+Task ':core-module:preBuild' finished in 0.001 s
+Time metrics:
+  Total Gradle task time: 0.001 s
+
+Task ':genesis:oracledrive:compileDebugAidl' was skipped: NO-SOURCE
+Time metrics:
+  Total Gradle task time: 0.001 s
+
+Task ':agents:growthmetrics:identity:compileDebugAidl' was skipped: NO-SOURCE
+Time metrics:
+  Total Gradle task time: 0.001 s
+
+Task ':cascade:datastream:routing:compileDebugAidl' was skipped: NO-SOURCE
+Time metrics:
+  Total Gradle task time: 0.001 s
+
+Task ':cascade:datastream:delivery:compileDebugAidl' was skipped: NO-SOURCE
+Time metrics:
+  Total Gradle task time: 0.001 s
+
+Task ':cascade:datastream:taskmanager:compileDebugAidl' was skipped: NO-SOURCE
+Time metrics:
+  Total Gradle task time: 0.001 s
+
+Task ':agents:growthmetrics:tasker:compileDebugAidl' was skipped: NO-SOURCE
+Time metrics:
+  Total Gradle task time: 0.001 s
+
+Task ':aura:reactivedesign:chromacore:compileDebugAidl' was skipped: NO-SOURCE
+Time metrics:
+  Total Gradle task time: 0.001 s
+
+Task ':kai:sentinelsfortress:systemintegrity:compileDebugAidl' was skipped: NO-SOURCE
+Time metrics:
+  Total Gradle task time: 0.001 s
+
+Task ':aura:reactivedesign:auraslab:preDebugBuild' finished in 0.001 s
+Time metrics:
+  Total Gradle task time: 0.001 s
+
+Task ':agents:growthmetrics:nexusmemory:preBuild' finished in 0.001 s
+Time metrics:
+  Total Gradle task time: 0.001 s
+
+Task ':aura:reactivedesign:customization:compileDebugAidl' was skipped: NO-SOURCE
+Time metrics:
+  Total Gradle task time: 0.001 s
+
+Task ':genesis:oracledrive:datavein:compileDebugAidl' was skipped: NO-SOURCE
+Time metrics:
+  Total Gradle task time: 0.001 s
+
+Task ':aura:reactivedesign:collabcanvas:preBuild' finished in 0.001 s
+Time metrics:
+  Total Gradle task time: 0.001 s
+
+Task ':aura:reactivedesign:auraslab:checkKotlinGradlePluginConfigurationErrors' was skipped: SKIPPED
+Time metrics:
+  Total Gradle task time: 0.001 s
+
+Task ':aura:reactivedesign:chromacore:checkKotlinGradlePluginConfigurationErrors' was skipped: SKIPPED
+Time metrics:
+  Total Gradle task time: 0.001 s
+
+Task ':genesis:oracledrive:rootmanagement:compileDebugAidl' was skipped: NO-SOURCE
+Time metrics:
+  Total Gradle task time: 0.001 s
+
+Task ':genesis:oracledrive:preDebugBuild' finished in 0.000 s
+
+Task ':agents:growthmetrics:identity:preBuild' finished in 0.000 s
+
+Task ':agents:growthmetrics:identity:preDebugBuild' finished in 0.000 s
+
+Task ':agents:growthmetrics:metareflection:preBuild' finished in 0.000 s
+
+Task ':agents:growthmetrics:metareflection:preDebugBuild' finished in 0.000 s
+
+Task ':agents:growthmetrics:progression:preBuild' finished in 0.000 s
+
+Task ':agents:growthmetrics:progression:preDebugBuild' finished in 0.000 s
+
+Task ':agents:growthmetrics:tasker:preBuild' finished in 0.000 s
+
+Task ':agents:growthmetrics:tasker:preDebugBuild' finished in 0.000 s
+
+Task ':agents:growthmetrics:spheregrid:preBuild' finished in 0.000 s
+
+Task ':agents:growthmetrics:spheregrid:preDebugBuild' finished in 0.000 s
+
+Task ':genesis:oracledrive:checkKotlinGradlePluginConfigurationErrors' was skipped: SKIPPED
+
+Task ':agents:growthmetrics:identity:checkKotlinGradlePluginConfigurationErrors' was skipped: SKIPPED
+
+Task ':agents:growthmetrics:metareflection:checkKotlinGradlePluginConfigurationErrors' was skipped: SKIPPED
+
+Task ':agents:growthmetrics:progression:checkKotlinGradlePluginConfigurationErrors' was skipped: SKIPPED
+
+Task ':genesis:oracledrive:generateDebugAssets' finished in 0.000 s
+
+Task ':agents:growthmetrics:identity:generateDebugAssets' finished in 0.000 s
+
+Task ':agents:growthmetrics:metareflection:generateDebugAssets' finished in 0.000 s
+
+Task ':agents:growthmetrics:progression:generateDebugAssets' finished in 0.000 s
+
+Task ':agents:growthmetrics:spheregrid:generateDebugAssets' finished in 0.000 s
+
+Task ':agents:growthmetrics:tasker:generateDebugAssets' finished in 0.000 s
+
+Task ':core-module:preDebugBuild' finished in 0.000 s
+
+Task ':core-module:checkKotlinGradlePluginConfigurationErrors' was skipped: SKIPPED
+
+Task ':core-module:generateDebugAssets' finished in 0.000 s
+
+Task ':extendsysa:preBuild' finished in 0.000 s
+
+Task ':extendsysa:preDebugBuild' finished in 0.000 s
+
+Task ':extendsysa:checkKotlinGradlePluginConfigurationErrors' was skipped: SKIPPED
+
+Task ':extendsysa:generateDebugAssets' finished in 0.000 s
+
+Task ':extendsysb:preBuild' finished in 0.000 s
+
+Task ':extendsysb:preDebugBuild' finished in 0.000 s
+
+Task ':extendsysb:checkKotlinGradlePluginConfigurationErrors' was skipped: SKIPPED
+
+Task ':extendsysb:generateDebugAssets' finished in 0.000 s
+
+Task ':extendsysc:preBuild' finished in 0.000 s
+
+Task ':extendsysc:preDebugBuild' finished in 0.000 s
+
+Task ':extendsysc:checkKotlinGradlePluginConfigurationErrors' was skipped: SKIPPED
+
+Task ':extendsysc:generateDebugAssets' finished in 0.000 s
+
+Task ':extendsysd:preBuild' finished in 0.000 s
+
+Task ':extendsysd:preDebugBuild' finished in 0.000 s
+
+Task ':extendsysd:checkKotlinGradlePluginConfigurationErrors' was skipped: SKIPPED
+
+Task ':extendsysd:generateDebugAssets' finished in 0.000 s
+
+Task ':extendsyse:preBuild' finished in 0.000 s
+
+Task ':extendsyse:preDebugBuild' finished in 0.000 s
+
+Task ':extendsyse:checkKotlinGradlePluginConfigurationErrors' was skipped: SKIPPED
+
+Task ':extendsyse:generateDebugAssets' finished in 0.000 s
+
+Task ':extendsysf:preBuild' finished in 0.000 s
+
+Task ':extendsysf:preDebugBuild' finished in 0.000 s
+
+Task ':extendsysf:checkKotlinGradlePluginConfigurationErrors' was skipped: SKIPPED
+
+Task ':extendsysf:generateDebugAssets' finished in 0.000 s
+
+Task ':utilities:preBuild' finished in 0.000 s
+
+Task ':utilities:preDebugBuild' finished in 0.000 s
+
+Task ':utilities:checkKotlinGradlePluginConfigurationErrors' was skipped: SKIPPED
+
+Task ':utilities:generateDebugAssets' finished in 0.000 s
+
+Task ':agents:growthmetrics:metareflection:compileDebugAidl' was skipped: NO-SOURCE
+
+Task ':agents:growthmetrics:progression:compileDebugAidl' was skipped: NO-SOURCE
+
+Task ':aura:reactivedesign:sandboxui:preBuild' finished in 0.000 s
+
+Task ':aura:reactivedesign:sandboxui:preDebugBuild' finished in 0.000 s
+
+Task ':cascade:datastream:delivery:preBuild' finished in 0.000 s
+
+Task ':cascade:datastream:delivery:preDebugBuild' finished in 0.000 s
+
+Task ':cascade:datastream:routing:preBuild' finished in 0.000 s
+
+Task ':cascade:datastream:routing:preDebugBuild' finished in 0.000 s
+
+Task ':cascade:datastream:taskmanager:preBuild' finished in 0.000 s
+
+Task ':cascade:datastream:taskmanager:preDebugBuild' finished in 0.000 s
+
+Task ':aura:reactivedesign:chromacore:preBuild' finished in 0.000 s
+
+Task ':aura:reactivedesign:chromacore:preDebugBuild' finished in 0.000 s
+
+Task ':kai:sentinelsfortress:systemintegrity:preBuild' finished in 0.000 s
+
+Task ':kai:sentinelsfortress:systemintegrity:preDebugBuild' finished in 0.000 s
+
+Task ':aura:reactivedesign:auraslab:preBuild' finished in 0.000 s
+
+Task ':aura:reactivedesign:auraslab:compileDebugAidl' was skipped: NO-SOURCE
+
+Task ':agents:growthmetrics:nexusmemory:preDebugBuild' finished in 0.000 s
+
+Task ':agents:growthmetrics:nexusmemory:compileDebugAidl' was skipped: NO-SOURCE
+
+Task ':kai:sentinelsfortress:threatmonitor:preBuild' finished in 0.000 s
+
+Task ':kai:sentinelsfortress:threatmonitor:preDebugBuild' finished in 0.000 s
+
+Task ':aura:reactivedesign:customization:preBuild' finished in 0.000 s
+
+Task ':aura:reactivedesign:customization:preDebugBuild' finished in 0.000 s
+
+Task ':genesis:oracledrive:datavein:preBuild' finished in 0.000 s
+
+Task ':genesis:oracledrive:datavein:preDebugBuild' finished in 0.000 s
+
+Task ':agents:growthmetrics:nexusmemory:checkKotlinGradlePluginConfigurationErrors' was skipped: SKIPPED
+
+Task ':cascade:datastream:routing:checkKotlinGradlePluginConfigurationErrors' was skipped: SKIPPED
+
+Task ':cascade:datastream:taskmanager:checkKotlinGradlePluginConfigurationErrors' was skipped: SKIPPED
+
+Task ':aura:reactivedesign:collabcanvas:preDebugBuild' finished in 0.000 s
+
+Task ':aura:reactivedesign:collabcanvas:checkKotlinGradlePluginConfigurationErrors' was skipped: SKIPPED
+
+Task ':aura:reactivedesign:customization:checkKotlinGradlePluginConfigurationErrors' was skipped: SKIPPED
+
+Task ':genesis:oracledrive:rootmanagement:preBuild' finished in 0.000 s
+
+Task ':genesis:oracledrive:rootmanagement:preDebugBuild' finished in 0.000 s
+
