@@ -1,60 +1,31 @@
+// Ensure this matches your directory structure
+
 import com.android.build.api.dsl.LibraryExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.configure
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 
 /**
  * ===================================================================
- * GENESIS LIBRARY CONVENTION PLUGIN WITH HILT
+ * GENESIS LIBRARY CONVENTION PLUGIN (2025 EDITION)
  * ===================================================================
- *
- * Convention plugin for Android library modules that REQUIRE Hilt dependency injection.
- *
- * This plugin configures everything from GenesisLibraryPlugin PLUS:
- * - Hilt dependency injection
- * - KSP annotation processing for Hilt
- *
- * Plugin Application Order:
- * 1. org.jetbrains.kotlin.android (Required for Hilt even with built-in Kotlin)
- * 2. com.android.library
- * 3. org.jetbrains.kotlin.plugin.compose
- * 4. com.google.dagger.hilt.android (HILT - only in this variant)
- * 5. com.google.devtools.ksp (KSP - only in this variant)
- * 6. org.jetbrains.kotlin.plugin.serialization
- *
- * Usage:
- * plugins {
- *     id("genesis.android.library.hilt")  // Use this variant for modules needing Hilt
- * }
- *
- * @since Genesis Protocol 2.0 (AGP 9.0.0-alpha14 Compatible)
+ * Configured for AGP 9.0+ and Kotlin 2.x "Built-in" Support.
  */
 class GenesisLibraryHiltPlugin : Plugin<Project> {
-    /**
-     * Configures the given Gradle project as an Android library module with Hilt, KSP, Jetpack Compose, and Kotlin serialization support.
-     *
-     * Configures the Android Library extension (SDK/NDK, build types, compile options, build features, packaging exclusions, and lint),
-     * delegates Kotlin/JVM toolchain and compiler settings to GenesisJvmConfig, and adds convention-managed dependencies including Hilt and its KSP compiler.
-     *
-     * @param project The Gradle project to configure.
-     */
     override fun apply(project: Project) {
         with(project) {
-            // Apply plugins in correct order
-            // Note: Kotlin is built into AGP 9.0.0-alpha14+
+            // 1. Apply Essential Plugins
+            // Note: 'org.jetbrains.kotlin.android' is REMOVED as it's now built-in to AGP 9.0
             pluginManager.apply("com.android.library")
-            pluginManager.apply("org.jetbrains.kotlin.android")
             pluginManager.apply("org.jetbrains.kotlin.plugin.compose")
             pluginManager.apply("org.jetbrains.kotlin.plugin.serialization")
+            pluginManager.apply("com.google.devtools.ksp")
+            pluginManager.apply("com.google.dagger.hilt.android")
 
-            // CRITICAL: Apply Hilt AFTER Android plugin is fully configured
-            pluginManager.withPlugin("com.android.library") {
-                pluginManager.apply("com.google.dagger.hilt.android")
-                pluginManager.apply("com.google.devtools.ksp")
-            }
-
-            extensions.configure<LibraryExtension> {
+            // 2. Configure Android Library Extension using the NEW DSL interface
+            extensions.configure(LibraryExtension::class.java) {
                 compileSdk = 36
                 ndkVersion = "29.0.14206865"
 
@@ -77,7 +48,6 @@ class GenesisLibraryHiltPlugin : Plugin<Project> {
                     }
                 }
 
-                // Java 24 bytecode (Firebase + AGP 9.0 compatible)
                 compileOptions {
                     sourceCompatibility = JavaVersion.VERSION_21
                     targetCompatibility = JavaVersion.VERSION_21
@@ -103,58 +73,40 @@ class GenesisLibraryHiltPlugin : Plugin<Project> {
                 lint {
                     baseline = file("lint-baseline.xml")
                     abortOnError = false
-                    checkReleaseBuilds = false
                 }
             }
 
-            // Configure Kotlin JVM toolchain and compilation options
-            GenesisJvmConfig.configureKotlinJvm(project)
+            // 3. Replace deprecated 'kotlinOptions' with new Kotlin DSL
+            extensions.configure(KotlinAndroidProjectExtension::class.java) {
+                compilerOptions {
+                    jvmTarget.set(JvmTarget.JVM_21)
+                    // Enable K2 features for 2025 performance
+                    freeCompilerArgs.add("-Xjdk-release=21")
+                }
+            }
 
-            // ═══════════════════════════════════════════════════════════════════════════
-            // Auto-configured dependencies (provided by convention plugin)
-            // ═══════════════════════════════════════════════════════════════════════════
+            // 4. Dependencies
+            dependencies.apply {
+                // Hilt
+                add("implementation", "com.google.dagger:hilt-android:2.57.2")
+                add("ksp", "com.google.dagger:hilt-android-compiler:2.57.2")
 
-            // ✅ Hilt Dependency Injection (ONLY in Hilt variant)
-            dependencies.add("implementation", "com.google.dagger:hilt-android:2.57.2")
-            dependencies.add("ksp", "com.google.dagger:hilt-android-compiler:2.57.2")
+                // Compose (Using Version Catalog references is better, but hardcoded here for logic)
+                add("api", platform("androidx.compose:compose-bom:2025.12.01"))
+                add("api", "androidx.compose.runtime:runtime")
+                add("api", "androidx.compose.ui:ui")
+                add("api", "androidx.compose.material3:material3")
 
-            // Compose UI stack (Total Coverage for Genesis modules)
-            dependencies.add("api", dependencies.platform("androidx.compose:compose-bom:2024.11.00"))
-            dependencies.add("api", "androidx.compose.runtime:runtime")
-            dependencies.add("api", "androidx.compose.ui:ui")
-            dependencies.add("api", "androidx.compose.ui:ui-graphics")
-            dependencies.add("api", "androidx.compose.ui:ui-tooling-preview")
-            dependencies.add("api", "androidx.compose.foundation:foundation")
-            dependencies.add("api", "androidx.compose.foundation:foundation-layout")
-            dependencies.add("api", "androidx.compose.material3:material3")
-            dependencies.add("api", "androidx.compose.material:material-icons-core")
-            dependencies.add("api", "androidx.compose.material:material-icons-extended")
-            dependencies.add("debugImplementation", "androidx.compose.ui:ui-tooling")
+                // YukiHook & Xposed
+                add("implementation", "com.highcapable.yukihookapi:api:1.3.1")
+                add("ksp", "com.highcapable.yukihookapi:ksp-xposed:1.3.1")
+                add("compileOnly", "de.robv.android.xposed:api:82")
 
-            // YukiHookAPI KSP processor (for modules using YukiHook)
-            dependencies.add("implementation", "com.highcapable.yukihookapi:api:1.3.1")
-            dependencies.add("ksp", "com.highcapable.yukihookapi:ksp-xposed:1.3.1")
-
-            // Core Android libraries
-            dependencies.add("implementation", "androidx.core:core-ktx:1.17.0")
-            dependencies.add("implementation", "androidx.appcompat:appcompat:1.7.1")
-
-            // Kotlin Coroutines
-            dependencies.add("implementation", "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
-            dependencies.add("implementation", "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
-
-            // Kotlin Serialization
-            dependencies.add("implementation", "org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
-
-            // Timber Logging
-            dependencies.add("implementation", "com.jakewharton.timber:timber:5.0.1")
-
-            // Core Library Desugaring (for Java 24 APIs on older Android)
-            dependencies.add("coreLibraryDesugaring", "com.android.tools:desugar_jdk_libs:2.1.5")
-
-            // Universal Xposed/LSPosed API access for all library modules
-            dependencies.add("compileOnly", "de.robv.android.xposed:api:82")
-            dependencies.add("implementation", "com.github.kyuubiran:EzXHelper:2.2.0")
+                // Core
+                add("implementation", "androidx.core:core-ktx:1.17.0")
+                add("coreLibraryDesugaring", "com.android.tools:desugar_jdk_libs:2.1.5")
+                add("implementation", "com.jakewharton.timber:timber:5.0.1")
+            }
         }
     }
 }

@@ -1,5 +1,7 @@
-// settings.gradle.kts
+import org.gradle.api.initialization.resolve.RepositoriesMode.PREFER_SETTINGS
 
+// settings.gradle.kts
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 pluginManagement {
     includeBuild("build-logic")
 
@@ -18,7 +20,7 @@ plugins {
 }
 
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositoriesMode.set(PREFER_SETTINGS)
     repositories {
         google()
         mavenCentral()
@@ -35,7 +37,7 @@ dependencyResolutionManagement {
             url = uri("https://api.xposed.info/")
             metadataSources { artifact(); mavenPom() }
         }
-        
+
         // Dynamically add libs directories as repositories
         rootDir.walkTopDown()
             .filter { it.isDirectory && File(it, "libs").exists() }
@@ -47,7 +49,7 @@ dependencyResolutionManagement {
                     metadataSources { artifact() }
                 }
             }
-        
+
         val rootLibs = File(rootDir, "libs")
         if (rootLibs.exists()) {
             maven { url = uri(rootLibs.toURI()); metadataSources { artifact() } }

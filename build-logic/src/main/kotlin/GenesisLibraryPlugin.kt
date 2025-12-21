@@ -19,7 +19,6 @@ import org.gradle.kotlin.dsl.configure
  * - Consistent build configuration across library modules
  *
  * Plugin Application Order:
- * 1. org.jetbrains.kotlin.android (Explicit for consistency and Kotlin hooks)
  * 2. com.android.library
  * 3. org.jetbrains.kotlin.plugin.compose
  * 4. org.jetbrains.kotlin.plugin.serialization
@@ -48,7 +47,6 @@ class GenesisLibraryPlugin : Plugin<Project> {
             // Apply plugins in correct order
             // Note: Kotlin is built into AGP 9.0.0-alpha14+
             pluginManager.apply("com.android.library")
-            pluginManager.apply("org.jetbrains.kotlin.android")
             pluginManager.apply("org.jetbrains.kotlin.plugin.compose")
             pluginManager.apply("org.jetbrains.kotlin.plugin.serialization")
 
