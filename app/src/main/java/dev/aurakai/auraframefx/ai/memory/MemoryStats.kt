@@ -1,6 +1,7 @@
 package dev.aurakai.auraframefx.ai.memory
 
 import java.util.concurrent.ConcurrentHashMap
+import dev.aurakai.auraframefx.oracledrive.genesis.ai.memory.MemoryEntry
 import dev.aurakai.auraframefx.oracledrive.genesis.ai.memory.MemoryStats as GenesisMemoryStats
 
 /**

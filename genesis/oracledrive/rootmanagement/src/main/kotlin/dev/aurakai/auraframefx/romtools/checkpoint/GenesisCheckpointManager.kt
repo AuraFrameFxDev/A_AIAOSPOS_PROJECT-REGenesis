@@ -4,7 +4,6 @@ package dev.aurakai.auraframefx.romtools.checkpoint
 import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import timber.log.Timber
 import java.io.File
@@ -166,7 +165,7 @@ class GenesisCheckpointManager @Inject constructor(
      * @param checkpointId The checkpoint to restore to
      * @return Result indicating success or failure
      */
-    suspend fun restoreCheckpoint(checkpointId: String): Result<Unit> {
+    fun restoreCheckpoint(checkpointId: String): Result<Unit> {
         return try {
             Timber.i("🔄 Restoring checkpoint: $checkpointId")
 
@@ -338,7 +337,7 @@ class GenesisCheckpointManager @Inject constructor(
     private fun snapshotInstalledApps(dir: File) {
         // Create list of installed apps for reference
         val appsFile = File(dir, "installed_apps.json")
-        val installedApps = context.packageManager.getInstalledApplications(0)
+        val installedApps = context.packageManager.getInstalledApplications(/* flags = */ 0)
             .map { it.packageName to it.sourceDir }
         appsFile.writeText(json.encodeToString(installedApps))
     }

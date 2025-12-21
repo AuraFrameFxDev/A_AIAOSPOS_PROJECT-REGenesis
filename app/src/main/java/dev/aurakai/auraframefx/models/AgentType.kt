@@ -9,7 +9,12 @@ enum class AgentType {
     Claude,
     NeuralWhisper,
     AuraShield,
-    Kaiagent;
+    Kaiagent,
+    // Uppercase versions for consistent naming across codebase
+    GENESIS,
+    AURA,
+    KAI,
+    CASCADE;
 
     companion object {
         @JvmStatic

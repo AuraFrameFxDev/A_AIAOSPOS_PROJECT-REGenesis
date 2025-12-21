@@ -22,6 +22,7 @@ class ContextManager @Inject constructor(
 ) {
     annotation class enableCreativeMode
 
+    private val _activeContexts = MutableStateFlow<Map<String, ContextChain>>(emptyMap())
     val activeContexts: StateFlow<Map<String, ContextChain>> = _activeContexts
 
     private val _contextStats = MutableStateFlow(ContextStats())
@@ -62,8 +63,8 @@ class ContextManager @Inject constructor(
             lastUpdated = Clock.System.now()
         )
 
-        _activeContexts.update {
-            return@update current(chain.id to chain)
+        _activeContexts.update { current ->
+            current + (chain.id to chain)
         }
         updateStats()
         return chain.id
@@ -99,8 +100,8 @@ class ContextManager @Inject constructor(
             lastUpdated = Clock.System.now()
         )
 
-        _activeContexts.update {
-            (chainId to updatedChain)
+        _activeContexts.update { current ->
+            current + (chainId to updatedChain)
         }
         updateStats()
         return updatedChain

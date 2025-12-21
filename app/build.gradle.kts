@@ -211,12 +211,19 @@ dependencies {
     implementation(platform(libs.firebase.bom))
 
 
-    // Networking
+    // Networking - OkHttp + Retrofit
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging.interceptor)
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.kotlinx.serialization)
     implementation(libs.retrofit.converter.moshi)
+
+    // Networking - Ktor Client
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.okhttp)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.serialization.kotlinx.json)
+    implementation(libs.ktor.client.logging)
 
     // Kotlin Serialization
     implementation(libs.kotlinx.serialization.json)

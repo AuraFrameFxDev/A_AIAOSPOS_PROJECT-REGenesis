@@ -4,8 +4,8 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import dev.aurakai.auraframefx.ai.memory.DefaultMemoryManager
-import dev.aurakai.auraframefx.ai.memory.MemoryManager
+import dev.aurakai.auraframefx.oracledrive.genesis.ai.memory.DefaultMemoryManager
+import dev.aurakai.auraframefx.oracledrive.genesis.ai.memory.MemoryManager
 import javax.inject.Singleton
 
 @Module
@@ -16,3 +16,4 @@ abstract class MemoryModule {
     @Singleton
     abstract fun bindMemoryManager(impl: DefaultMemoryManager): MemoryManager
 }
+
