@@ -1,12 +1,14 @@
 // ═══════════════════════════════════════════════════════════════════════════
 // Secure Communication Module - Encrypted communication layer
+// AGP 9.0 Compatible - Uses com.android.build.api.dsl.LibraryExtension
 // ═══════════════════════════════════════════════════════════════════════════
+import com.android.build.api.dsl.LibraryExtension
+
 plugins {
     id("genesis.android.library.hilt")  // Use Hilt-enabled variant for dependency injection
-
 }
 
-android {
+extensions.configure<LibraryExtension> {
     namespace = "dev.aurakai.auraframefx.kai.sentinelsfortress.security"
     compileSdk = 36
 
@@ -15,15 +17,14 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_25
-        targetCompatibility = JavaVersion.VERSION_25
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
         isCoreLibraryDesugaringEnabled = true
     }
 
     buildFeatures {
         compose = true
     }
-    // Java 24 compileOptions are set by genesis.android.base
 }
 
 dependencies {
@@ -37,7 +38,7 @@ dependencies {
     // - Hilt (android + compiler via KSP)  ✅ Provided by .hilt variant
     // - Coroutines (core + android)
     // - Compose enabled by default
-    // - Java 24 bytecode target
+    // - Java 21 bytecode target
     // ═══════════════════════════════════════════════════════════════════════
 
     // Expose core KTX as API
@@ -62,7 +63,7 @@ dependencies {
     // Xposed API (compile-only, not bundled in APK)
     compileOnly(files("$projectDir/libs/api-82.jar"))
 
-    // Core Library Desugaring (Java 24 APIs)
+    // Core Library Desugaring (Java 21 APIs)
     coreLibraryDesugaring(libs.desugar.jdk.libs)
 
     // Testing dependencies
@@ -77,8 +78,6 @@ dependencies {
 
 // ---------------------------------------------------------------------------
 // TEMPORARY: Disable tests in this module for quick launches to testers
-// - This block is intentionally minimal and safe to remove when you want
-//   tests back (delete these lines or set `enabled = true`).
 // ---------------------------------------------------------------------------
 
 // Disable regular JVM unit tests

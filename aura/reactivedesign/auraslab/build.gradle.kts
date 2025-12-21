@@ -1,8 +1,10 @@
+import com.android.build.api.dsl.LibraryExtension
+
 plugins {
     id("genesis.android.library.hilt")
 }
 
-android {
+extensions.configure<LibraryExtension> {
     namespace = "dev.aurakai.auraframefx.aura.reactivedesign.auraslab"
     compileSdk = libs.versions.compile.sdk.get().toInt()
 
@@ -15,7 +17,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_21
         isCoreLibraryDesugaringEnabled = true
     }
-    
+
     buildFeatures {
         compose = true
         buildConfig = true

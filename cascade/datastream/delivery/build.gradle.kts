@@ -1,11 +1,13 @@
 // ═══════════════════════════════════════════════════════════════════════════
 // Data Delivery Module - Data delivery and synchronization
 // ═══════════════════════════════════════════════════════════════════════════
+import com.android.build.api.dsl.LibraryExtension
+
 plugins {
     id("genesis.android.library.hilt")  // Provides: Android, Kotlin, Compose, KSP, Hilt
 }
 
-android {
+extensions.configure<LibraryExtension> {
     namespace = "dev.aurakai.auraframefx.cascade.datastream.delivery"
 }
 

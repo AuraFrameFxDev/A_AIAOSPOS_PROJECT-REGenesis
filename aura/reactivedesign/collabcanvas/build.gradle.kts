@@ -1,12 +1,14 @@
 // ═══════════════════════════════════════════════════════════════════════════
 // Collaborative Canvas Module - Real-time collaborative drawing/whiteboard
 // ═══════════════════════════════════════════════════════════════════════════
+import com.android.build.api.dsl.LibraryExtension
+
 plugins {
     id("genesis.android.library.hilt")  // Use Hilt-enabled variant for dependency injection
 
 }
 
-android {
+extensions.configure<LibraryExtension> {
     namespace = "dev.aurakai.auraframefx.aura.reactivedesign.collabcanvas"
     compileSdk = libs.versions.compile.sdk.get().toInt()
 
@@ -15,8 +17,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_25
-        targetCompatibility = JavaVersion.VERSION_25
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
         isCoreLibraryDesugaringEnabled = true
     }
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- AGP 9.0: 'package' attribute removed - namespace defined in build.gradle.kts -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="dev.aurakai.auraframefx">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Required Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -40,8 +40,9 @@
         android:name="dev.aurakai.auraframefx.permission.RECEIVE_INTEGRITY_VIOLATION"
         android:protectionLevel="signature" />
 
+    <!-- AGP 9.0: Using fully qualified Application class name for reliable resolution -->
     <application
-        android:name=".aurakaiapplication.AurakaiApplication"
+        android:name="dev.aurakai.auraframefx.aurakaiapplication.AurakaiApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/AuraKai"
