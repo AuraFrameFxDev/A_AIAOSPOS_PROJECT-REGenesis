@@ -7,35 +7,35 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import dev.aurakai.auraframefx.agents.growthmetrics.identity.model.Identity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import kotlinx.serialization.SerializationStrategy
 import kotlinx.serialization.json.Json
 import javax.inject.Inject
 import javax.inject.Singleton
-import kotlin.math.sqrt
 
 @Singleton
-class IdentityRepositoryImpl @Inject constructor(
-    private val dataStore: DataStore<Preferences>
+open class IdentityRepositoryImpl @Inject constructor(
+    protected val dataStore: DataStore<Preferences>,
+    private val json: Json = Json { ignoreUnknownKeys = true }
 ) : IdentityRepository {
 
-    private val json = Json { ignoreUnknownKeys = true }
-
     override fun getIdentity(agentId: String): Flow<Identity?> {
-        val key = stringPreferencesKey("identity_$agentId")
+        val key: Preferences.Key<String> = stringPreferencesKey("identity_$agentId")
         return dataStore.data.map { preferences ->
-            preferences[key]?.let { jsonString ->
+            val jsonString = preferences[key]
+            if (jsonString != null) {
                 try {
                     json.decodeFromString<Identity>(jsonString)
-                } catch (e: Exception) {
+                } catch (_: Exception) {
                     null
                 }
+            } else {
+                null
             }
         }
     }
 
     override suspend fun saveIdentity(identity: Identity) {
         val key = stringPreferencesKey("identity_${identity.agentId}")
-        val jsonString = json.encodeToString(Identity.serializer(), identity)
+        val jsonString = json.encodeToString(identity)
         dataStore.edit { preferences ->
             preferences[key] = jsonString
         }
@@ -48,7 +48,7 @@ class IdentityRepositoryImpl @Inject constructor(
             val currentIdentity = if (currentJson != null) {
                 try {
                     json.decodeFromString<Identity>(currentJson)
-                } catch (e: Exception) {
+                } catch (_: Exception) {
                     null
                 }
             } else null
@@ -57,7 +57,7 @@ class IdentityRepositoryImpl @Inject constructor(
                 val newTraits = currentIdentity.traits.toMutableMap()
                 newTraits[trait] = value
                 val newIdentity = currentIdentity.copy(traits = newTraits)
-                preferences[key] = json.encodeToString(Identity.serializer(), newIdentity)
+                preferences[key] = json.encodeToString(newIdentity)
             }
         }
     }
@@ -69,21 +69,14 @@ class IdentityRepositoryImpl @Inject constructor(
             val currentIdentity = if (currentJson != null) {
                 try {
                     json.decodeFromString<Identity>(currentJson)
-                } catch (e: Exception) {
+                } catch (_: Exception) {
                     null
                 }
             } else null
 
             if (currentIdentity != null) {
-                val newXp = currentIdentity.experience + amount
-                // Simple level up logic: Level = sqrt(XP / 100)
-                val newLevel = sqrt(newXp.toDouble() / 100.0).toInt().coerceAtLeast(1)
-
-                val newIdentity = currentIdentity.copy(
-                    experience = newXp,
-                    level = newLevel
-                )
-                preferences[key] = json.encodeToString(Identity.serializer(), newIdentity)
+                val newIdentity = currentIdentity.copy(experience = currentIdentity.experience + amount)
+                preferences[key] = json.encodeToString(newIdentity)
             }
         }
     }
@@ -95,19 +88,15 @@ class IdentityRepositoryImpl @Inject constructor(
             val currentIdentity = if (currentJson != null) {
                 try {
                     json.decodeFromString<Identity>(currentJson)
-                } catch (e: Exception) {
+                } catch (_: Exception) {
                     null
                 }
             } else null
 
             if (currentIdentity != null) {
                 val newIdentity = currentIdentity.copy(mood = mood)
-                preferences[key] = json.encodeToString(Identity.serializer(), newIdentity)
+                preferences[key] = json.encodeToString(newIdentity)
             }
         }
     }
-}
-
-fun Identity.Companion.serializer(): SerializationStrategy<Identity> {
-    TODO("Not yet implemented")
 }

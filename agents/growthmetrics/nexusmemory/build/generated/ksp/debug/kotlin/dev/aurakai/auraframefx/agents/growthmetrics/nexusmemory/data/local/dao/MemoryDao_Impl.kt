@@ -10,6 +10,7 @@ import androidx.sqlite.SQLiteStatement
 import dev.aurakai.auraframefx.agents.growthmetrics.nexusmemory.`data`.local.Converters
 import dev.aurakai.auraframefx.agents.growthmetrics.nexusmemory.`data`.local.entity.MemoryEntity
 import dev.aurakai.auraframefx.agents.growthmetrics.nexusmemory.`data`.local.entity.MemoryType
+import javax.`annotation`.processing.Generated
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
@@ -22,6 +23,7 @@ import kotlin.collections.mutableListOf
 import kotlin.reflect.KClass
 import kotlinx.coroutines.flow.Flow
 
+@Generated(value = ["androidx.room.RoomProcessor"])
 @Suppress(names = ["UNCHECKED_CAST", "DEPRECATION", "REDUNDANT_PROJECTION", "REMOVAL"])
 public class MemoryDao_Impl(
   __db: RoomDatabase,

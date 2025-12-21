@@ -8,6 +8,7 @@ import dagger.internal.Provider;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 import javax.annotation.processing.Generated;
+import kotlinx.serialization.json.Json;
 
 @ScopeMetadata("javax.inject.Singleton")
 @QualifierMetadata
@@ -28,21 +29,25 @@ import javax.annotation.processing.Generated;
 public final class IdentityRepositoryImpl_Factory implements Factory<IdentityRepositoryImpl> {
   private final Provider<DataStore<Preferences>> dataStoreProvider;
 
-  private IdentityRepositoryImpl_Factory(Provider<DataStore<Preferences>> dataStoreProvider) {
+  private final Provider<Json> jsonProvider;
+
+  private IdentityRepositoryImpl_Factory(Provider<DataStore<Preferences>> dataStoreProvider,
+      Provider<Json> jsonProvider) {
     this.dataStoreProvider = dataStoreProvider;
+    this.jsonProvider = jsonProvider;
   }
 
   @Override
   public IdentityRepositoryImpl get() {
-    return newInstance(dataStoreProvider.get());
+    return newInstance(dataStoreProvider.get(), jsonProvider.get());
   }
 
   public static IdentityRepositoryImpl_Factory create(
-      Provider<DataStore<Preferences>> dataStoreProvider) {
-    return new IdentityRepositoryImpl_Factory(dataStoreProvider);
+      Provider<DataStore<Preferences>> dataStoreProvider, Provider<Json> jsonProvider) {
+    return new IdentityRepositoryImpl_Factory(dataStoreProvider, jsonProvider);
   }
 
-  public static IdentityRepositoryImpl newInstance(DataStore<Preferences> dataStore) {
-    return new IdentityRepositoryImpl(dataStore);
+  public static IdentityRepositoryImpl newInstance(DataStore<Preferences> dataStore, Json json) {
+    return new IdentityRepositoryImpl(dataStore, json);
   }
 }

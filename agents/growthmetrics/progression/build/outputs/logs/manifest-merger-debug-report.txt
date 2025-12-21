@@ -1,16 +1,16 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\agents\growthmetrics\progression\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest5438771694415507532.xml:2:13-83
-INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\agents\growthmetrics\progression\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest5438771694415507532.xml:2:13-83
+ADDED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\agents\growthmetrics\progression\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest17250134508165692742.xml:2:13-83
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\agents\growthmetrics\progression\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest17250134508165692742.xml:2:13-83
 	package
-		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\agents\growthmetrics\progression\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest5438771694415507532.xml
+		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\agents\growthmetrics\progression\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest17250134508165692742.xml
 	xmlns:android
-		ADDED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\agents\growthmetrics\progression\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest5438771694415507532.xml:2:23-81
+		ADDED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\agents\growthmetrics\progression\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest17250134508165692742.xml:2:23-81
 uses-sdk
-INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\agents\growthmetrics\progression\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest5438771694415507532.xml reason: use-sdk injection requested
-INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\agents\growthmetrics\progression\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest5438771694415507532.xml
-INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\agents\growthmetrics\progression\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest5438771694415507532.xml
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\agents\growthmetrics\progression\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest17250134508165692742.xml reason: use-sdk injection requested
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\agents\growthmetrics\progression\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest17250134508165692742.xml
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\agents\growthmetrics\progression\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest17250134508165692742.xml
 	android:targetSdkVersion
-		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\agents\growthmetrics\progression\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest5438771694415507532.xml
+		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\agents\growthmetrics\progression\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest17250134508165692742.xml
 	android:minSdkVersion
-		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\agents\growthmetrics\progression\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest5438771694415507532.xml
+		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\agents\growthmetrics\progression\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest17250134508165692742.xml

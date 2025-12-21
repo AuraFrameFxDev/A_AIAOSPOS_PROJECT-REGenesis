@@ -109,7 +109,7 @@ fun withSelected(targetElement: CanvasElement, selected: Boolean): CanvasElement
     return targetElement.copy(isSelected = selected)
 }
 
-context(targetElement: CanvasElement) fun withZIndex(index: Int): CanvasElement {
+fun withZIndex(targetElement: CanvasElement, index: Int): CanvasElement {
     return targetElement.copy(zIndex = index, updatedAt = System.currentTimeMillis())
 }
 

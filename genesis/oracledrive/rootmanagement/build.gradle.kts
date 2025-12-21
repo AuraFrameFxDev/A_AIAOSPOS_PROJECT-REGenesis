@@ -2,6 +2,7 @@ import com.android.build.api.dsl.LibraryExtension
 
 plugins {
     id("genesis.android.library.hilt")
+    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 extensions.configure<LibraryExtension> {
@@ -16,9 +17,19 @@ dependencies {
     // Core Android - Expose as API
     api(libs.androidx.core.ktx)
 
+    // Compose BOM and UI
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.compose.ui)
+    implementation(libs.compose.material3)
+    implementation(libs.compose.material.icons.extended)
+    implementation(libs.compose.ui.tooling.preview)
+    debugImplementation(libs.compose.ui.tooling)
+
     // Compose / Lifecycle / Navigation / Hilt integrations (Extension modules)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.activity.compose)
 
     // WorkManager
     implementation(libs.androidx.work.runtime.ktx)
@@ -31,6 +42,9 @@ dependencies {
     // YukiHook API 1.3.0+ stack
     implementation(libs.yukihookapi.api)
     ksp(libs.yukihookapi.ksp)
+
+    // Serialization
+    implementation(libs.kotlinx.serialization.json)
 }
 
 ksp {

@@ -11,6 +11,7 @@ import androidx.sqlite.SQLiteConnection
 import androidx.sqlite.execSQL
 import dev.aurakai.auraframefx.agents.growthmetrics.nexusmemory.`data`.local.dao.MemoryDao
 import dev.aurakai.auraframefx.agents.growthmetrics.nexusmemory.`data`.local.dao.MemoryDao_Impl
+import javax.`annotation`.processing.Generated
 import kotlin.Lazy
 import kotlin.String
 import kotlin.Suppress
@@ -25,6 +26,7 @@ import kotlin.collections.mutableMapOf
 import kotlin.collections.mutableSetOf
 import kotlin.reflect.KClass
 
+@Generated(value = ["androidx.room.RoomProcessor"])
 @Suppress(names = ["UNCHECKED_CAST", "DEPRECATION", "REDUNDANT_PROJECTION", "REMOVAL"])
 public class NexusMemoryDatabase_Impl : NexusMemoryDatabase() {
   private val _memoryDao: Lazy<MemoryDao> = lazy {
