@@ -88,3 +88,9 @@ interface AuraFxLogger {
 enum class LogLevel {
     DEBUG, INFO, WARN, ERROR, SECURITY
 }
+
+// Top-level convenience functions for simpler imports
+fun i(tag: String, message: String) = AuraFxLogger.info(tag, message)
+fun e(tag: String, message: String, throwable: Throwable? = null) = AuraFxLogger.error(tag, message, throwable)
+fun w(tag: String, message: String, throwable: Throwable? = null) = AuraFxLogger.warn(tag, message, throwable)
+fun d(tag: String, message: String) = AuraFxLogger.debug(tag, message)
