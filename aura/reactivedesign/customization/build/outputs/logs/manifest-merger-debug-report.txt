@@ -1,16 +1,16 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\aura\reactivedesign\customization\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest16609435956565920643.xml:2:13-83
-INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\aura\reactivedesign\customization\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest16609435956565920643.xml:2:13-83
+ADDED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\aura\reactivedesign\customization\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest2214395277986990972.xml:2:13-83
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\aura\reactivedesign\customization\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest2214395277986990972.xml:2:13-83
 	package
-		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\aura\reactivedesign\customization\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest16609435956565920643.xml
+		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\aura\reactivedesign\customization\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest2214395277986990972.xml
 	xmlns:android
-		ADDED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\aura\reactivedesign\customization\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest16609435956565920643.xml:2:23-81
+		ADDED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\aura\reactivedesign\customization\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest2214395277986990972.xml:2:23-81
 uses-sdk
-INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\aura\reactivedesign\customization\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest16609435956565920643.xml reason: use-sdk injection requested
-INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\aura\reactivedesign\customization\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest16609435956565920643.xml
-INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\aura\reactivedesign\customization\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest16609435956565920643.xml
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\aura\reactivedesign\customization\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest2214395277986990972.xml reason: use-sdk injection requested
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\aura\reactivedesign\customization\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest2214395277986990972.xml
+INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\aura\reactivedesign\customization\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest2214395277986990972.xml
 	android:targetSdkVersion
-		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\aura\reactivedesign\customization\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest16609435956565920643.xml
+		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\aura\reactivedesign\customization\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest2214395277986990972.xml
 	android:minSdkVersion
-		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\aura\reactivedesign\customization\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest16609435956565920643.xml
+		INJECTED from C:\Users\Wehtt\AndroidStudioProjects\regenesis\aura\reactivedesign\customization\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest2214395277986990972.xml
