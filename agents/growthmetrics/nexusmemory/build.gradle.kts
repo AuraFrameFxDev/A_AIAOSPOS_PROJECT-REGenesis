@@ -1,11 +1,13 @@
 // ═══════════════════════════════════════════════════════════════════════════
 // Nexus Memory Module - Agent memory and knowledge management
 // ═══════════════════════════════════════════════════════════════════════════
+import com.android.build.api.dsl.LibraryExtension
+
 plugins {
     id("genesis.android.library.hilt")
 }
 
-android {
+extensions.configure<LibraryExtension> {
     namespace = "dev.aurakai.auraframefx.agents.growthmetrics.nexusmemory"
     compileSdk = libs.versions.compile.sdk.get().toInt()
 
@@ -14,8 +16,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_25
-        targetCompatibility = JavaVersion.VERSION_25
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
         isCoreLibraryDesugaringEnabled = true
     }
 

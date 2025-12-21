@@ -1,12 +1,14 @@
 // ═══════════════════════════════════════════════════════════════════════════
 // Core UI Module - Shared UI components and Compose utilities
 // ═══════════════════════════════════════════════════════════════════════════
+import com.android.build.api.dsl.LibraryExtension
+
 plugins {
     id("genesis.android.library")
 
 }
 
-android {
+extensions.configure<LibraryExtension> {
     namespace = "dev.aurakai.auraframefx.core.ui"
 }
 

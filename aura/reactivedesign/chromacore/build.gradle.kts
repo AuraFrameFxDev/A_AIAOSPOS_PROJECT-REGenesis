@@ -1,11 +1,13 @@
 // ═══════════════════════════════════════════════════════════════════════════
 // Color Blendr Module - Color blending and theming utilities
 // ═══════════════════════════════════════════════════════════════════════════
+import com.android.build.api.dsl.LibraryExtension
+
 plugins {
     id("genesis.android.library.hilt")  // KSP already included in Hilt plugin
 }
 
-android {
+extensions.configure<LibraryExtension> {
     namespace = "dev.aurakai.auraframefx.aura.reactivedesign.chromacore"
     compileSdk = libs.versions.compile.sdk.get().toInt()
 
@@ -14,8 +16,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_25
-        targetCompatibility = JavaVersion.VERSION_25
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
         isCoreLibraryDesugaringEnabled = true
     }
 

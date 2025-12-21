@@ -1,4 +1,13 @@
-// Apply YukiHook conventions to all modules
+// ═══════════════════════════════════════════════════════════════════════════
+// YukiHook Conventions - AGP 9.0 Compatible (2025 Edition)
+// ═══════════════════════════════════════════════════════════════════════════
+// Uses com.android.build.api.dsl.LibraryExtension (modern DSL)
+// kotlinOptions replaced with KotlinAndroidProjectExtension.compilerOptions
+
+import com.android.build.api.dsl.LibraryExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 subprojects { subproject ->
     // Skip build-logic and other non-Android modules
     if (subproject.name == "build-logic" || subproject.name == "buildSrc") {
@@ -20,8 +29,8 @@ subprojects { subproject ->
             pluginManager.apply("com.google.devtools.ksp")
             pluginManager.apply("org.lsposed.lsparanoid")
 
-            // Configure Android settings
-            extensions.configure<com.android.build.gradle.LibraryExtension> {
+            // Configure Android settings using AGP 9.0 Public DSL
+            extensions.configure(LibraryExtension::class.java) {
                 compileSdk = 36
 
                 defaultConfig {
@@ -43,18 +52,20 @@ subprojects { subproject ->
                 }
 
                 compileOptions {
-                    sourceCompatibility = JavaVersion.VERSION_24
-                    targetCompatibility = JavaVersion.VERSION_24
+                    sourceCompatibility = JavaVersion.VERSION_21
+                    targetCompatibility = JavaVersion.VERSION_21
                     isCoreLibraryDesugaringEnabled = true
                 }
+            }
 
-                kotlinOptions {
-                    jvmTarget = "24"
-                    freeCompilerArgs = freeCompilerArgs +
-                            listOf(
-                                "-Xjvm-default=all",
-                                "-opt-in=kotlin.RequiresOptIn",
-                            )
+            // Configure Kotlin compiler options (AGP 9.0 replacement for kotlinOptions)
+            extensions.configure(KotlinAndroidProjectExtension::class.java) {
+                compilerOptions {
+                    jvmTarget.set(JvmTarget.JVM_21)
+                    freeCompilerArgs.addAll(
+                        "-Xjvm-default=all",
+                        "-opt-in=kotlin.RequiresOptIn",
+                    )
                 }
             }
 

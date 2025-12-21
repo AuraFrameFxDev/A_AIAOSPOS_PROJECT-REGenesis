@@ -1,10 +1,15 @@
+// ═══════════════════════════════════════════════════════════════════════════
+// Utilities Module - AGP 9.0 Compatible
+// ═══════════════════════════════════════════════════════════════════════════
+import com.android.build.api.dsl.LibraryExtension
+
 plugins {
     id("genesis.android.library.hilt")
     id("org.jetbrains.kotlin.plugin.compose")
     id("com.google.devtools.ksp")
 }
 
-android {
+extensions.configure<LibraryExtension> {
     namespace = "dev.aurakai.auraframefx.utilities"
     compileSdk = 36
     defaultConfig {
@@ -18,36 +23,36 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_24
-        targetCompatibility = JavaVersion.VERSION_24
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
     buildFeatures {
         compose = true
     }
+}
 
-    dependencies {
-        implementation(libs.androidx.core.ktx)
-        implementation(libs.androidx.appcompat)
-        implementation(libs.androidx.activity.compose)
-        implementation(libs.androidx.lifecycle.runtime.ktx)
-        implementation(libs.androidx.lifecycle.viewmodel.compose)
-        implementation(libs.kotlinx.coroutines.core)
-        implementation(libs.kotlinx.coroutines.android)
-        implementation(libs.kotlinx.serialization.json)
-        implementation(libs.timber)
-        implementation(libs.junit.jupiter.api)
-        implementation(libs.junit.jupiter.params)
-        androidTestImplementation(libs.espresso.core)
-        androidTestImplementation(libs.androidx.junit)
-        implementation(libs.compose.ui)
-        implementation(libs.compose.ui.graphics)
-        implementation(libs.compose.ui.tooling.preview)
-        implementation(libs.compose.material3)
-        implementation(libs.compose.ui.tooling)
-        implementation(libs.androidx.compose.material3)
+dependencies {
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.timber)
+    implementation(libs.junit.jupiter.api)
+    implementation(libs.junit.jupiter.params)
+    androidTestImplementation(libs.espresso.core)
+    androidTestImplementation(libs.androidx.junit)
+    implementation(libs.compose.ui)
+    implementation(libs.compose.ui.graphics)
+    implementation(libs.compose.ui.tooling.preview)
+    implementation(libs.compose.material3)
+    implementation(libs.compose.ui.tooling)
+    implementation(libs.androidx.compose.material3)
 
-        // Hilt
-        implementation(libs.hilt.android)
-        ksp(libs.hilt.compiler)
-    }
+    // Hilt
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
 }

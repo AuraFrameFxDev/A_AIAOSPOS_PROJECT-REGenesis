@@ -1,13 +1,15 @@
 // ═══════════════════════════════════════════════════════════════════════════
 // Sphere Grid Module - Agent capability grid and evolution tracking
 // ═══════════════════════════════════════════════════════════════════════════
+import com.android.build.api.dsl.LibraryExtension
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.plugin.compose")
     id("com.google.devtools.ksp")
 }
 
-android {
+extensions.configure<LibraryExtension> {
     namespace = "dev.aurakai.auraframefx.agents.growthmetrics.spheregrid"
     compileSdk = libs.versions.compile.sdk.get().toInt()
 
@@ -16,8 +18,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_25
-        targetCompatibility = JavaVersion.VERSION_25
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
         isCoreLibraryDesugaringEnabled = true
     }
 

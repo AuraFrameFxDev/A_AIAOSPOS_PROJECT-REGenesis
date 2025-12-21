@@ -1,11 +1,13 @@
 // ═══════════════════════════════════════════════════════════════════════════
 // Core Common Module - Foundation utilities and shared code
 // ═══════════════════════════════════════════════════════════════════════════
+import com.android.build.api.dsl.LibraryExtension
+
 plugins {
     id("genesis.android.library")
 }
 
-android {
+extensions.configure<LibraryExtension> {
     namespace = "dev.aurakai.auraframefx.core.common"
 }
 

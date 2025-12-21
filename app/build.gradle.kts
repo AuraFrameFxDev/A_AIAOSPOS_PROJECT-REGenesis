@@ -1,9 +1,11 @@
+// ═══════════════════════════════════════════════════════════════════════════
+// PRIMARY APPLICATION MODULE - AGP 9.0 Compatible (2025 Edition)
+// ═══════════════════════════════════════════════════════════════════════════
+// Uses com.android.build.api.dsl.ApplicationExtension (modern DSL)
+// Plugins are versioned in the root build.gradle.kts
 
-// ═══════════════════════════════════════════════════════════════════════════
-// PRIMARY CONVENTION PLUGIN - All-in-one Application Configuration
-// ═══════════════════════════════════════════════════════════════════════════
-// Plugins are now versioned in the root build.gradle.kts
-// All plugin versions are managed centrally in the root project
+import com.android.build.api.dsl.ApplicationExtension
+
 plugins {
     // Core Android and Kotlin plugins
     id("com.android.application")
@@ -21,8 +23,8 @@ plugins {
     id("com.google.firebase.crashlytics")
 }
 
-
-android {
+// AGP 9.0: Using extensions.configure for modern DSL compatibility
+extensions.configure<ApplicationExtension> {
     namespace = "dev.aurakai.auraframefx"
     compileSdk = 36
 

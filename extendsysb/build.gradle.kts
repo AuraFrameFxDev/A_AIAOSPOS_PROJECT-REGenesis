@@ -1,11 +1,14 @@
 // ═══════════════════════════════════════════════════════════════════════════
 // Extend System B Module - System extension module B
+// AGP 9.0 Compatible - Uses com.android.build.api.dsl.LibraryExtension
 // ═══════════════════════════════════════════════════════════════════════════
+import com.android.build.api.dsl.LibraryExtension
+
 plugins {
     id("genesis.android.library")
 }
 
-android {
+extensions.configure<LibraryExtension> {
     namespace = "dev.aurakai.auraframefx.extendsysb"
 }
 
