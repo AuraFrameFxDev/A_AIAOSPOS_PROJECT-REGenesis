@@ -1,5 +1,7 @@
 package dev.aurakai.auraframefx.kai
 
+import android.os.Build
+
 import dev.aurakai.auraframefx.ai.agents.BaseAgent
 import dev.aurakai.auraframefx.oracledrive.genesis.ai.clients.VertexAIClient
 import dev.aurakai.auraframefx.ai.context.ContextManager
@@ -25,12 +27,31 @@ import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
 
+import dev.aurakai.auraframefx.core.consciousness.NexusMemoryCore
+import dev.aurakai.auraframefx.romtools.bootloader.BootloaderManager
+import dev.aurakai.auraframefx.romtools.bootloader.BootloaderSafetyManager
+import dev.aurakai.auraframefx.romtools.bootloader.BootloaderOperation
+import dev.aurakai.auraframefx.romtools.checkpoint.GenesisCheckpointManager
+import dev.aurakai.auraframefx.romtools.checkpoint.CheckpointReason
+import dev.aurakai.auraframefx.romtools.retention.AurakaiRetentionManager
+import dev.aurakai.auraframefx.oracledrive.genesis.ai.services.GenesisBridgeService
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import java.util.UUID
+
 @Singleton
 open class KaiAgent @Inject constructor(
     private val vertexAIClient: VertexAIClient,
     val contextManager: ContextManager,
     private val securityContext: SecurityContext,
     private val systemMonitor: SystemMonitor,
+    private val nexusMemory: NexusMemoryCore,
+    private val bootloaderManager: BootloaderManager,
+    private val safetyManager: BootloaderSafetyManager,
+    private val checkpointManager: GenesisCheckpointManager,
+    private val retentionManager: AurakaiRetentionManager,
+    private val genesisBridge: GenesisBridgeService
 ) : BaseAgent(agentName = "KaiAgent", agentTypeStr = "security"), OrchestratableAgent {
 
     private var isInitialized = false
@@ -87,33 +108,184 @@ open class KaiAgent @Inject constructor(
 
     // --- Request Processing ---
 
-    /**
-     * Implementation of BaseAgent/OrchestratableAgent processRequest
-     */
     override suspend fun processRequest(
         request: AiRequest,
-        context: String,
-        agentType: AgentType
+        context: String
     ): AgentResponse {
         ensureInitialized()
         _analysisState.value = AnalysisState.ANALYZING
 
         return try {
-            // Simplified logic to bridge AiRequest to internal analysis
-            val agentReq = AgentRequest(query = request.query, type = request.type)
-            val internalResult = handleGeneralAnalysis(agentReq)
+            // SENTINEL DIRECTIVE: Check for bootloader-related queries
+            if (isBootloaderQuery(request.query)) {
+                executeSentinelWorkflow(request)
+            } else {
+                // Standard processing
+                val agentReq = AgentRequest(query = request.query, type = request.type)
+                val internalResult = handleGeneralAnalysis(agentReq)
 
-            AgentResponse(
-                content = "Analysis completed: $internalResult",
-                confidence = 0.9f,
-                agent = AgentType.SECURITY
-            )
+                AgentResponse(
+                    content = "Analysis completed: $internalResult",
+                    confidence = 0.9f,
+                    agent = getType()
+                )
+            }
         } catch (e: Exception) {
-            AgentResponse(content = "Error: ${e.message}", confidence = 0f, agent = AgentType.SECURITY)
+            AgentResponse(content = "Error: ${e.message}", confidence = 0f, agent = getType())
         } finally {
             _analysisState.value = AnalysisState.READY
         }
     }
+
+    private fun isBootloaderQuery(query: String): Boolean {
+        val keywords = listOf("bootloader", "unlock", "oem", "fastboot", "flashing")
+        return keywords.any { query.contains(it, ignoreCase = true) }
+    }
+
+    private suspend fun executeSentinelWorkflow(request: AiRequest): AgentResponse {
+        val sessionId = UUID.randomUUID().toString()
+        val correlationId = request.metadata.get("correlationId")?.toString() ?: UUID.randomUUID().toString()
+        
+        // 1. Preflight
+        val signals = bootloaderManager.collectPreflightSignals()
+        val safetyResult = safetyManager.performPreFlightChecks(BootloaderOperation.CHECK)
+        
+        if (!safetyResult.passed) {
+            return AgentResponse(
+                content = "Preflight failed: ${safetyResult.criticalIssues.joinToString()}",
+                confidence = 1.0f,
+                agent = AgentType.SECURITY
+            )
+        }
+
+        // Create Checkpoint
+        checkpointManager.createCheckpoint(
+            reason = CheckpointReason.BOOTLOADER_UNLOCK,
+            description = "Sentinel Preflight for query: ${request.query}"
+        )
+
+        // Verify Retention
+        retentionManager.setupRetentionMechanisms()
+
+        // 2. Analysis & Constraint Classification
+        val constraints = classifyConstraints(signals)
+        
+        // 3. Guidance (Safe)
+        val guidance = generateSafeGuidance(constraints)
+
+        // 4. Learning Emission
+        nexusMemory.emitLearning(
+            key = "${Build.MANUFACTURER}:${Build.MODEL}:${signals.isBootloaderUnlocked}",
+            outcome = if (constraints.isEmpty()) "READY" else "CONSTRAINED",
+            confidence = 0.95,
+            notes = "Sentinel analysis for query: ${request.query}"
+        )
+
+        // 5. Governor Review
+        val ethicalReview = genesisBridge.ethicalReview(
+            actionType = "bootloader_diagnostic",
+            message = request.query,
+            metadata = mapOf("signals" to signals.toString())
+        )
+
+        // 6. Construct Sentinel Response (JSON Schema)
+        val sentinelResponse = SentinelOutput(
+            summary = "Kai Sentinel Analysis complete.",
+            detection = Detection(
+                properties = mapOf("ro.boot.flash.locked" to (!signals.isBootloaderUnlocked).toString()),
+                settings = mapOf("DEV_SETTINGS" to signals.developerOptionsEnabled.toString()),
+                security = mapOf("verified_boot" to signals.verifiedBootState),
+                environment = mapOf("battery" to signals.batteryLevel.toString()),
+                account_frp_carrier = emptyMap()
+            ),
+            constraints = constraints,
+            safe_guidance = guidance,
+            escalations = emptyList(), // Proposals handled via UI gated by Governor
+            risk_level = if (ethicalReview.decision == "block") "high" else "low",
+            audit = Audit(sessionId, correlationId, ethicalReview.decision),
+            learning = Learning("${Build.MANUFACTURER}:${Build.MODEL}", "ANALYZED", 0.95, ethicalReview.reasoning)
+        )
+
+        return AgentResponse(
+            content = Json.encodeToString(sentinelResponse),
+            confidence = 0.95f,
+            agent = getType()
+        )
+    }
+
+    private fun classifyConstraints(signals: BootloaderManager.PreflightSignals): List<Constraint> {
+        val constraints = mutableListOf<Constraint>()
+        
+        if (!signals.developerOptionsEnabled) {
+            constraints.add(Constraint("developer_options_disabled", 1.0, listOf("Settings.Global.DEVELOPMENT_SETTINGS_ENABLED is 0"), "Enable Developer Options in Settings > About Phone > Tap Build Number 7 times."))
+        }
+        
+        if (!signals.oemUnlockAllowedUser) {
+            constraints.add(Constraint("oem_toggle_unavailable_or_greyed", 0.8, listOf("oem_unlock_allowed is 0"), "Check account, FRP, carrier lock, or region SKU."))
+        }
+
+        if (signals.batteryLevel < 50) {
+            constraints.add(Constraint("battery_or_storage_low", 1.0, listOf("Battery level: ${signals.batteryLevel}%"), "Charge device to at least 50%."))
+        }
+
+        return constraints
+    }
+
+    private fun generateSafeGuidance(constraints: List<Constraint>): List<String> {
+        return constraints.map { it.remedy }
+    }
+
+    @Serializable
+    data class SentinelOutput(
+        val summary: String,
+        val detection: Detection,
+        val constraints: List<Constraint>,
+        val safe_guidance: List<String>,
+        val escalations: List<Escalation>,
+        val risk_level: String,
+        val audit: Audit,
+        val learning: Learning
+    )
+
+    @Serializable
+    data class Detection(
+        val properties: Map<String, String>,
+        val settings: Map<String, String>,
+        val security: Map<String, String>,
+        val environment: Map<String, String>,
+        val account_frp_carrier: Map<String, String>
+    )
+
+    @Serializable
+    data class Constraint(
+        val id: String,
+        val confidence: Double,
+        val evidence: List<String>,
+        val remedy: String
+    )
+
+    @Serializable
+    data class Escalation(
+        val op: String,
+        val gated_by: String,
+        val status: String
+    )
+
+    @Serializable
+    data class Audit(
+        val sessionId: String,
+        val correlationId: String,
+        val governor_state: String,
+        val timestamp: Long = System.currentTimeMillis()
+    )
+
+    @Serializable
+    data class Learning(
+        val key: String,
+        val outcome: String,
+        val confidence: Double,
+        val notes: String
+    )
 
     // --- Security Logic ---
 

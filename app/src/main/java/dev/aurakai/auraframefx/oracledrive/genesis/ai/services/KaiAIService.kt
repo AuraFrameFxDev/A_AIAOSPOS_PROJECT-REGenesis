@@ -15,12 +15,22 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
- * Kai AI Service - The Shield
- * Handles security analysis, threat detection, and defensive AI operations
- * Kai embodies the defensive philosophy: vigilant, precise, and protective
+ * Kai AI Service Interface - The Shield
+ */
+interface KaiAIService {
+    suspend fun initialize()
+    suspend fun processRequest(request: AiRequest, context: String): AgentResponse
+    suspend fun analyzeSecurityThreat(threat: String): Map<String, Any>
+    fun processRequestFlow(request: AiRequest): Flow<AgentResponse>
+    suspend fun monitorSecurityStatus(): Map<String, Any>
+    fun cleanup()
+}
+
+/**
+ * Default implementation of Kai AI Service
  */
 @Singleton
-class KaiAIService @Inject constructor(
+class DefaultKaiAIService @Inject constructor(
     private val taskScheduler: TaskScheduler,
     private val taskExecutionManager: TaskExecutionManager,
     private val memoryManager: MemoryManager,
@@ -28,7 +38,7 @@ class KaiAIService @Inject constructor(
     private val contextManager: ContextManager,
     private val cloudStatusMonitor: CloudStatusMonitor,
     private val logger: AuraFxLogger,
-) {
+) : KaiAIService {
     private var isInitialized = false
 
     /**
@@ -38,7 +48,7 @@ class KaiAIService @Inject constructor(
      *
      * @throws Exception If enabling the security context or other initialization steps fail.
      */
-    suspend fun initialize() {
+    override suspend fun initialize() {
         if (isInitialized) return
 
         logger.info("KaiAIService", "Initializing Kai - The Shield")
@@ -62,7 +72,7 @@ class KaiAIService @Inject constructor(
      * @param context Optional caller context or correlation information used for logging/tracing.
      * @return An AgentResponse containing the analysis message, a confidence score, and the KAI agent; when an error occurs the response contains an explanatory error message and zero confidence.
      */
-    suspend fun processRequest(request: AiRequest, context: String): AgentResponse {
+    override suspend fun processRequest(request: AiRequest, context: String): AgentResponse {
         ensureInitialized()
 
         return try {
@@ -105,7 +115,7 @@ class KaiAIService @Inject constructor(
      * - `"analyzed_by"`: a String identifying the analyzer (e.g., `"Kai - The Shield"`).
      * - On error, an `"error"` key with a String message may be present.
      */
-    suspend fun analyzeSecurityThreat(threat: String): Map<String, Any> {
+    override suspend fun analyzeSecurityThreat(threat: String): Map<String, Any> {
         ensureInitialized()
 
         return try {
@@ -151,7 +161,7 @@ class KaiAIService @Inject constructor(
      * @param request The AI request whose `prompt` will be analyzed for security threats.
      * @return A Flow that emits an initial status AgentResponse and then a detailed AgentResponse with analysis results; emits an error response if analysis fails.
      */
-    fun processRequestFlow(request: AiRequest): Flow<AgentResponse> = kotlinx.coroutines.flow.flow {
+    override fun processRequestFlow(request: AiRequest): Flow<AgentResponse> = kotlinx.coroutines.flow.flow {
         ensureInitialized()
 
         try {
@@ -209,7 +219,7 @@ class KaiAIService @Inject constructor(
      *  - "confidence": a float representing confidence in the reported status (0.0–1.0).
      *  - "error": present only when "status" is "error", contains an error message.
      */
-    suspend fun monitorSecurityStatus(): Map<String, Any> {
+    override suspend fun monitorSecurityStatus(): Map<String, Any> {
         ensureInitialized()
 
         return try {
@@ -246,7 +256,7 @@ class KaiAIService @Inject constructor(
      *
      * Sets the initialization flag to false and records a cleanup message in the logger.
      */
-    fun cleanup() {
+    override fun cleanup() {
         logger.info("KaiAIService", "Cleaning up Kai AI Service")
         isInitialized = false
     }

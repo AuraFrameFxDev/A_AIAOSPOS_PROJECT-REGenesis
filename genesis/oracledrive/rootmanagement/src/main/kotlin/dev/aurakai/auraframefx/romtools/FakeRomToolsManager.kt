@@ -48,6 +48,18 @@ class FakeBootloaderManager : BootloaderManager {
     override fun checkBootloaderAccess(): Boolean = true
     override fun isBootloaderUnlocked(): Boolean = true
     override suspend fun unlockBootloader(): Result<Unit> = Result.success(Unit)
+    
+    override fun collectPreflightSignals(): BootloaderManager.PreflightSignals {
+        return BootloaderManager.PreflightSignals(
+            isBootloaderUnlocked = true,
+            oemUnlockSupported = true,
+            verifiedBootState = "green",
+            batteryLevel = 85,
+            developerOptionsEnabled = true,
+            oemUnlockAllowedUser = true,
+            deviceFingerprint = "google/cheetah/cheetah:14/UP1A.231105.003/11010452:user/release-keys"
+        )
+    }
 }
 
 class FakeRecoveryManager : RecoveryManager {

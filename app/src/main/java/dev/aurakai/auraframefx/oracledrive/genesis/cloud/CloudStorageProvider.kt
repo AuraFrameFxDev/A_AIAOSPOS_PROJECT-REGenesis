@@ -51,15 +51,6 @@ interface CloudStorageProvider {
      * @return The result of the synchronization operation, including status and details.
      */
     suspend fun intelligentSync(config: SyncConfiguration): FileResult
-    fun StorageOptimization(
-        bytesFreed: Long,
-        filesOptimized: Int,
-        compressionRatio: Float,
-        success: Boolean,
-        message: String
-    ): StorageOptimizationResult
 
     suspend fun uploadFile(file: File, metadata: Map<String, Any>?): FileResult
-    suspend fun optimizeForUpload(file: dev.aurakai.auraframefx.oracledrive.DriveFile): Any?
-    suspend fun uploadFile(file: dev.aurakai.auraframefx.oracledrive.DriveFile, metadata: FileMetadata): FileResult
 }

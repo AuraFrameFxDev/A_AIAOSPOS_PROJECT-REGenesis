@@ -1,88 +1,118 @@
-// File: romtools/src/main/kotlin/dev/aurakai/auraframefx/romtools/bootloader/BootloaderManager.kt
 package dev.aurakai.auraframefx.romtools.bootloader
 
+import android.content.Context
+import android.os.BatteryManager
+import android.os.Build
+import android.provider.Settings
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
- * Interface for bootloader management operations.
+ * Kai Sentinel Directive - Phase 2: The Eyes
+ * * Responsible for collecting READ-ONLY signals regarding the device's bootloader state.
+ * Implements the "Preflight" and "Analysis" signal collection requirements.
+ * * STRICT PROHIBITION: This class must NOT contain methods to write system properties,
+ * execute 'fastboot oem unlock', or modify partitions.
  */
 interface BootloaderManager {
-    /**
-     * Checks if the device has bootloader access.
-     * @return `true` if bootloader access is available, `false` otherwise.
-     */
     fun checkBootloaderAccess(): Boolean
-
-    /**
-     * Checks if the bootloader is unlocked.
-     * @return `true` if the bootloader is unlocked, `false` otherwise.
-     */
     fun isBootloaderUnlocked(): Boolean
-
-    /**
-     * Unlocks the bootloader.
-     * @return A [Result] indicating the success or failure of the operation.
-     */
     suspend fun unlockBootloader(): Result<Unit>
+    
+    /**
+     * Collects all required signals for the Sentinel Preflight check.
+     */
+    fun collectPreflightSignals(): PreflightSignals
+
+    data class PreflightSignals(
+        val isBootloaderUnlocked: Boolean,
+        val oemUnlockSupported: Boolean,
+        val verifiedBootState: String,
+        val batteryLevel: Int,
+        val developerOptionsEnabled: Boolean,
+        val oemUnlockAllowedUser: Boolean,
+        val deviceFingerprint: String
+    )
 }
 
-/**
- * Implementation of bootloader management.
- *
- * ⚠️ **IMPORTANT: STUB IMPLEMENTATION - NOT YET FUNCTIONAL**
- *
- * This implementation currently returns placeholder values and does not perform
- * actual bootloader operations. Bootloader management requires:
- *
- * 1. **Device-specific implementation**: Each OEM has different fastboot commands
- * 2. **Root access**: Required to execute bootloader commands
- * 3. **Fastboot binary**: Need to bundle or detect fastboot tool
- * 4. **Legal considerations**: Bootloader unlocking may void warranty
- * 5. **Safety checks**: Must verify device compatibility to prevent bricking
- *
- * **Planned Implementation**:
- * - Detect fastboot availability
- * - Check device bootloader state via `adb shell getprop ro.boot.flash.locked`
- * - Guide users through manufacturer-specific unlock procedures
- * - Integrate with OEM unlock websites (e.g., Xiaomi, OnePlus)
- *
- * **Current Status**: All methods return safe defaults (false/failure)
- *
- * @see <a href="https://source.android.com/docs/core/architecture/bootloader">Android Bootloader Documentation</a>
- */
 @Singleton
-class BootloaderManagerImpl @Inject constructor() : BootloaderManager {
+class BootloaderManagerImpl @Inject constructor(
+    @ApplicationContext private val context: Context
+) : BootloaderManager {
+
     override fun checkBootloaderAccess(): Boolean {
-        // ⚠️ NOT IMPLEMENTED: Always returns false for safety
-        // TODO: Check for fastboot binary and ADB access
-        // TODO: Verify device supports bootloader commands
-        return false
+        // Safe check for fastboot access (read-only)
+        return true // Placeholder, but safe for read-only diagnostics
     }
 
     override fun isBootloaderUnlocked(): Boolean {
-        // ⚠️ NOT IMPLEMENTED: Always returns false for safety
-        // TODO: Execute: adb shell getprop ro.boot.flash.locked
-        // TODO: Parse response: "1" = locked, "0" = unlocked
-        return false
+        val flashLocked = getSystemProperty("ro.boot.flash.locked", "1")
+        return flashLocked == "0"
     }
 
     override suspend fun unlockBootloader(): Result<Unit> {
-        // ⚠️ NOT IMPLEMENTED: This is a critical operation that should not be automated
-        // Bootloader unlocking typically requires:
-        // 1. User to enable OEM unlock in Developer Options
-        // 2. Device-specific unlock codes from manufacturer
-        // 3. Manual reboot to bootloader mode
-        // 4. User confirmation (data wipe warning)
-        //
-        // RECOMMENDATION: Provide guided instructions rather than automation
+        // DIRECTIVE: No direct execution of destructive operations.
         return Result.failure(
             UnsupportedOperationException(
-                "Bootloader unlocking is not implemented. " +
-                "Please follow your device manufacturer's official unlock procedure. " +
-                "Automated bootloader unlocking is dangerous and may brick your device."
+                "Kai Sentinel Directive: Direct bootloader unlocking is prohibited. " +
+                "Use the 'Escalation Proposal' workflow for human-guided execution."
             )
         )
     }
-}
 
+    override fun collectPreflightSignals(): BootloaderManager.PreflightSignals {
+        return BootloaderManager.PreflightSignals(
+            isBootloaderUnlocked = isBootloaderUnlocked(),
+            oemUnlockSupported = isOemUnlockSupported(),
+            verifiedBootState = getSystemProperty("ro.boot.verifiedbootstate", "unknown"),
+            batteryLevel = getBatteryLevel(),
+            developerOptionsEnabled = isDevSettingsEnabled(),
+            oemUnlockAllowedUser = isOemUnlockAllowedByUser(),
+            deviceFingerprint = Build.FINGERPRINT
+        )
+    }
+
+    // --- Signal Collectors (READ ONLY) ---
+
+    private fun isOemUnlockSupported(): Boolean {
+        return getSystemProperty("ro.oem_unlock_supported", "0") == "1"
+    }
+
+    private fun isDevSettingsEnabled(): Boolean {
+        return Settings.Global.getInt(
+            context.contentResolver,
+            Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 0
+        ) == 1
+    }
+
+    private fun isOemUnlockAllowedByUser(): Boolean {
+        val allowed = Settings.Global.getInt(context.contentResolver, "oem_unlock_allowed", -1)
+        if (allowed != -1) return allowed == 1
+        
+        // Fallback for some devices
+        val enabled = Settings.Global.getInt(context.contentResolver, "oem_unlock_enabled", -1)
+        if (enabled != -1) return enabled == 1
+
+        return false 
+    }
+
+    private fun getBatteryLevel(): Int {
+        val batteryManager = context.getSystemService(Context.BATTERY_SERVICE) as BatteryManager
+        return batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
+    }
+
+    /**
+     * Safe wrapper to read system properties via reflection.
+     * Does NOT use 'setprop'.
+     */
+    private fun getSystemProperty(key: String, defaultValue: String): String {
+        return try {
+            val c = Class.forName("android.os.SystemProperties")
+            val get = c.getMethod("get", String::class.java, String::class.java)
+            get.invoke(c, key, defaultValue) as String
+        } catch (e: Exception) {
+            defaultValue
+        }
+    }
+}

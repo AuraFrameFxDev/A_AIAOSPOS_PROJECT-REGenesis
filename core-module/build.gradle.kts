@@ -5,6 +5,8 @@ import com.android.build.api.dsl.LibraryExtension
 
 plugins {
     id("genesis.android.library")
+    id("com.google.dagger.hilt.android")
+    id("com.google.devtools.ksp")
 }
 
 extensions.configure<LibraryExtension> {
@@ -21,6 +23,11 @@ dependencies {
     // - Compose enabled by default
     // - Java 24 bytecode target
     // ═══════════════════════════════════════════════════════════════════════
+    
+    // Hilt - Explicit dependencies
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
+    
     // Expose core KTX as API (types leak to consumers)
     api(libs.androidx.core.ktx)
 

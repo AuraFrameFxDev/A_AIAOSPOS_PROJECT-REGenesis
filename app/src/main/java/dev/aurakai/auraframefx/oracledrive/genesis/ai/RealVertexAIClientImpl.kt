@@ -77,8 +77,8 @@ class RealVertexAIClientImpl(
      */
     override suspend fun generateText(
         prompt: String,
-        maxTokens: Int,
-        temperature: Float
+        temperature: Float,
+        maxTokens: Int
     ): String = withContext(Dispatchers.IO) {
         try {
             validatePrompt(prompt)

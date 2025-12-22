@@ -2,7 +2,7 @@
 
 import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext
-import dev.aurakai.auraframefx.AgentInvokeRequest
+import dev.aurakai.auraframefx.models.AgentInvokeRequest
 import dev.aurakai.auraframefx.models.AgentType
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -178,19 +178,24 @@ class CascadeAIService @Inject constructor(
     ): CascadeResponse {
 
         return when (agentType) {
-            AgentType.Genesis -> processWithGenesis(request, cascadeContext)
-            AgentType.Kai -> processWithKai(request, cascadeContext)
-            AgentType.Aura -> processWithAura(request, cascadeContext)
-            AgentType.Kai -> processWithKai(request, cascadeContext)
-            AgentType.Cascade -> processWithCascade(request, cascadeContext)
-            AgentType.NeuralWhisper -> processWithNeuralWhisper(request, cascadeContext)
-            AgentType.AuraShield -> processWithAuraShield(request, cascadeContext)
-            AgentType.GenKitMaster -> processWithGenKitMaster(request, cascadeContext)
-            AgentType.DataveinConstructor -> processWithDataveinConstructor(request, cascadeContext)
+            AgentType.GENESIS, AgentType.Genesis -> processWithGenesis(request, cascadeContext)
+            AgentType.KAI, AgentType.Kai, AgentType.Kaiagent -> processWithKai(request, cascadeContext)
+            AgentType.AURA, AgentType.Aura -> processWithAura(request, cascadeContext)
+            AgentType.CASCADE, AgentType.Cascade -> processWithCascade(request, cascadeContext)
+            AgentType.NEURAL_WHISPER, AgentType.NeuralWhisper -> processWithNeuralWhisper(request, cascadeContext)
+            AgentType.AURA_SHIELD, AgentType.AuraShield -> processWithAuraShield(request, cascadeContext)
+            AgentType.GEN_KIT_MASTER -> processWithGenKitMaster(request, cascadeContext)
+            AgentType.DATAVEIN_CONSTRUCTOR -> processWithDataveinConstructor(request, cascadeContext)
             AgentType.USER -> CascadeResponse(
                 agent = AgentType.USER.name,
                 response = "User agent does not process requests.",
                 confidence = 1.0f,
+                timestamp = getCurrentTimestamp()
+            )
+            AgentType.SYSTEM, AgentType.CLAUDE, AgentType.Claude -> CascadeResponse(
+                agent = agentType.name,
+                response = "Agent $agentType is not yet integrated into cascade.",
+                confidence = 0.5f,
                 timestamp = getCurrentTimestamp()
             )
         }

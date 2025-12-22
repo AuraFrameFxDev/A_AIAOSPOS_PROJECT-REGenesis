@@ -246,6 +246,27 @@ class VertexAIClientImpl @Inject constructor(
         return generateText(codePrompt, 0.2f, config.defaultMaxTokens)
     }
 
+    override suspend fun initializeCreativeModels() {
+        Timber.i("VertexAI: Initializing creative models")
+    }
+
+    override suspend fun analyzeImage(imageData: ByteArray, prompt: String): String {
+        return "VertexAI image analysis not yet implemented in REST client. Size: ${imageData.size} bytes. Prompt: $prompt"
+    }
+
+    override suspend fun validateConnection(): Boolean {
+        return try {
+            val probe = generateText("ping", 0.0f, 1)
+            probe != null
+        } catch (e: Exception) {
+            false
+        }
+    }
+
+    override suspend fun generateContent(prompt: String): String? {
+        return generateText(prompt)
+    }
+
     /**
      * Execute HTTP request to Vertex AI endpoint.
      */

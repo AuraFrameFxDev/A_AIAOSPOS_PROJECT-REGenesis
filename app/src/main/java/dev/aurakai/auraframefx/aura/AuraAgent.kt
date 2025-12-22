@@ -10,13 +10,8 @@ import dev.aurakai.auraframefx.core.OrchestratableAgent
 import dev.aurakai.auraframefx.models.AgentResponse
 import dev.aurakai.auraframefx.models.AgentType
 import dev.aurakai.auraframefx.models.AiRequest
-import dev.aurakai.auraframefx.models.EnhancedInteractionData
-import dev.aurakai.auraframefx.models.InteractionResponse
 import dev.aurakai.auraframefx.models.ThemeConfiguration
 import dev.aurakai.auraframefx.models.ThemePreferences
-import dev.aurakai.auraframefx.models.agent_states.ActiveThreat
-import dev.aurakai.auraframefx.models.agent_states.ProcessingState
-import dev.aurakai.auraframefx.models.agent_states.VisionState
 import dev.aurakai.auraframefx.oracledrive.genesis.ai.services.KaiAIService
 import dev.aurakai.auraframefx.security.SecurityContext
 import dev.aurakai.auraframefx.utils.AuraFxLogger
@@ -183,7 +178,7 @@ open class AuraAgent @Inject constructor(
     /**
      * Required implementation of BaseAgent's abstract processRequest method
      */
-    override suspend fun processRequest(request: AiRequest, context: String, agentType: AgentType): AgentResponse {
+    override suspend fun processRequest(request: AiRequest, context: String): AgentResponse {
         ensureInitialized()
 
         AuraFxLogger.info("AuraAgent", "Processing creative request: ${request.type}")
@@ -208,7 +203,7 @@ open class AuraAgent @Inject constructor(
             AuraFxLogger.info("AuraAgent", "Creative request completed in ${executionTime}ms")
 
             AgentResponse(
-                agent = agentType,
+                agent = getType(),
                 content = response.toString(),
                 confidence = 1.0f
             )
@@ -231,7 +226,7 @@ open class AuraAgent @Inject constructor(
      *
      * This is an overload of the base agent's method, without the context parameter.
      */
-    suspend fun processRequest(request: AiRequest, agentType: AgentType): AgentResponse {
+    suspend fun processRequest(request: AiRequest): AgentResponse {
         ensureInitialized()
 
         AuraFxLogger.info("AuraAgent", "Processing creative request: ${request.type}")
@@ -256,7 +251,7 @@ open class AuraAgent @Inject constructor(
             AuraFxLogger.info("AuraAgent", "Creative request completed in ${executionTime}ms")
 
             AgentResponse(
-                agent = agentType,
+                agent = getType(),
                 content = response.toString(),
                 confidence = 1.0f
             )

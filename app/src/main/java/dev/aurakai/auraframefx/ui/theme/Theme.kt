@@ -1,4 +1,4 @@
-﻿package dev.aurakai.auraframefx.ui.theme
+package dev.aurakai.auraframefx.ui.theme
 
 import android.app.Activity
 import android.os.Build
@@ -21,7 +21,100 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import dev.aurakai.auraframefx.models.Emotion
-import dev.aurakai.auraframefx.viewmodel.AuraMoodViewModel
+import dev.aurakai.auraframefx.ui.DarkBackground
+import dev.aurakai.auraframefx.ui.ErrorColor
+import dev.aurakai.auraframefx.ui.LightBackground
+import dev.aurakai.auraframefx.ui.LightOnBackground
+import dev.aurakai.auraframefx.ui.LightOnError
+import dev.aurakai.auraframefx.ui.LightOnPrimary
+import dev.aurakai.auraframefx.ui.LightOnSecondary
+import dev.aurakai.auraframefx.ui.LightOnSurface
+import dev.aurakai.auraframefx.ui.LightOnSurfaceVariant
+import dev.aurakai.auraframefx.ui.LightOnTertiary
+import dev.aurakai.auraframefx.ui.LightPrimary
+import dev.aurakai.auraframefx.ui.LightSecondary
+import dev.aurakai.auraframefx.ui.LightSurface
+import dev.aurakai.auraframefx.ui.LightSurfaceVariant
+import dev.aurakai.auraframefx.ui.LightTertiary
+import dev.aurakai.auraframefx.ui.NeonBlue
+import dev.aurakai.auraframefx.ui.NeonGreen
+import dev.aurakai.auraframefx.ui.NeonPurple
+import dev.aurakai.auraframefx.ui.NeonRed
+import dev.aurakai.auraframefx.ui.NeonTeal
+import dev.aurakai.auraframefx.ui.OnPrimary
+import dev.aurakai.auraframefx.ui.OnSecondary
+import dev.aurakai.auraframefx.ui.OnSurface
+import dev.aurakai.auraframefx.ui.OnSurfaceVariant
+import dev.aurakai.auraframefx.ui.OnTertiary
+import dev.aurakai.auraframefx.ui.Surface
+import dev.aurakai.auraframefx.ui.SurfaceVariant
+import dev.aurakai.auraframefx.ui.theme.service.Theme
+import dev.aurakai.auraframefx.ui.theme.service.Color as ThemeColor
+
+// Type alias for Typography
+val AppTypography = Typography
+
+// Cyberpunk color scheme
+val CyberpunkColorScheme = darkColorScheme(
+    primary = NeonTeal,
+    onPrimary = OnPrimary,
+    primaryContainer = NeonTeal.copy(alpha = 0.2f),
+    onPrimaryContainer = OnPrimary,
+    secondary = NeonPurple,
+    onSecondary = OnSecondary,
+    secondaryContainer = NeonPurple.copy(alpha = 0.2f),
+    onSecondaryContainer = OnSecondary,
+    tertiary = NeonBlue,
+    onTertiary = OnTertiary,
+    tertiaryContainer = NeonBlue.copy(alpha = 0.2f),
+    onTertiaryContainer = OnTertiary,
+    background = DarkBackground,
+    onBackground = OnSurface,
+    surface = Surface,
+    onSurface = OnSurface,
+    surfaceVariant = SurfaceVariant,
+    onSurfaceVariant = OnSurfaceVariant,
+    error = ErrorColor,
+    onError = OnPrimary,
+    errorContainer = ErrorColor.copy(alpha = 0.2f),
+    onErrorContainer = OnPrimary,
+    outline = OnSurfaceVariant,
+    outlineVariant = SurfaceVariant
+)
+
+// Solarized color scheme
+val SolarizedColorScheme = lightColorScheme(
+    primary = Color(0xFF268BD2),
+    onPrimary = Color(0xFFFDF6E3),
+    primaryContainer = Color(0xFF268BD2).copy(alpha = 0.2f),
+    onPrimaryContainer = Color(0xFF002B36),
+    secondary = Color(0xFF2AA198),
+    onSecondary = Color(0xFFFDF6E3),
+    secondaryContainer = Color(0xFF2AA198).copy(alpha = 0.2f),
+    onSecondaryContainer = Color(0xFF002B36),
+    tertiary = Color(0xFFD33682),
+    onTertiary = Color(0xFFFDF6E3),
+    tertiaryContainer = Color(0xFFD33682).copy(alpha = 0.2f),
+    onTertiaryContainer = Color(0xFF002B36),
+    background = Color(0xFFFDF6E3),
+    onBackground = Color(0xFF002B36),
+    surface = Color(0xFFEEE8D5),
+    onSurface = Color(0xFF002B36),
+    surfaceVariant = Color(0xFFEEE8D5),
+    onSurfaceVariant = Color(0xFF657B83),
+    error = Color(0xFFDC322F),
+    onError = Color(0xFFFDF6E3),
+    errorContainer = Color(0xFFDC322F).copy(alpha = 0.2f),
+    onErrorContainer = Color(0xFF002B36),
+    outline = Color(0xFF93A1A1),
+    outlineVariant = Color(0xFFEEE8D5)
+)
+
+// Stub AuraMoodViewModel for now - this should be properly implemented
+class AuraMoodViewModel : androidx.lifecycle.ViewModel() {
+    data class MoodState(val emotion: Emotion = Emotion.NEUTRAL, val intensity: Float = 0.5f)
+    val moodState = kotlinx.coroutines.flow.MutableStateFlow(MoodState())
+}
 
 private val DarkColorScheme = darkColorScheme(
     primary = NeonTeal,
@@ -140,9 +233,9 @@ fun AuraFrameFXTheme(
 
     val finalColorScheme = baseColorScheme.copy(
         primary = when (color) {
-            Color.RED -> NeonRed
-            Color.GREEN -> NeonGreen
-            Color.BLUE -> NeonBlue
+            ThemeColor.RED -> NeonRed
+            ThemeColor.GREEN -> NeonGreen
+            ThemeColor.BLUE -> NeonBlue
         }
     )
 

@@ -99,7 +99,18 @@ extensions.configure<ApplicationExtension> {
         targetCompatibility = JavaVersion.VERSION_24
         isCoreLibraryDesugaringEnabled = true
     }
+}
 
+// Enable experimental context-parameters feature (Kotlin 2.2+)
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    compilerOptions {
+        freeCompilerArgs.addAll(
+            "-Xcontext-parameters"
+        )
+    }
+}
+
+extensions.configure<ApplicationExtension> {
     lint {
         baseline = file("lint-baseline.xml")
         abortOnError = false
@@ -217,6 +228,8 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.kotlinx.serialization)
     implementation(libs.retrofit.converter.moshi)
+    implementation(libs.retrofit.converter.gson)
+    implementation(libs.retrofit.converter.scalars)
 
     // Networking - Ktor Client
     implementation(libs.ktor.client.core)
@@ -314,6 +327,9 @@ dependencies {
     implementation(project(":agents:growthmetrics:identity"))
     implementation(project(":agents:growthmetrics:progression"))
     implementation(project(":agents:growthmetrics:tasker"))
+
+    // Central Core Module
+    implementation(project(":core-module"))
 }
 
 // Force a single annotations artifact to avoid duplicate-class errors

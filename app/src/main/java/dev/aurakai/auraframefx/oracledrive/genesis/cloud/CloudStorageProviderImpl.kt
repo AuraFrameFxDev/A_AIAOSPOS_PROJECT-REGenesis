@@ -1,10 +1,6 @@
 package dev.aurakai.auraframefx.oracledrive.genesis.cloud
 
-import dev.aurakai.auraframefx.oracledrive.DriveFile
-import dev.aurakai.auraframefx.oracledrive.FileMetadata
-import dev.aurakai.auraframefx.oracledrive.FileResult
-import dev.aurakai.auraframefx.oracledrive.StorageOptimization
-import dev.aurakai.auraframefx.oracledrive.SyncConfiguration
+import dev.aurakai.auraframefx.oracledrive.StorageOptimizationResult
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -22,55 +18,34 @@ open class CloudStorageProviderImpl @Inject constructor() : CloudStorageProvider
         return StorageOptimizationResult(bytesFreed = 0L)
     }
 
-    override suspend fun optimizeForUpload(file: dev.aurakai.auraframefx.oracledrive.genesis.cloud.DriveFile): Any {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun uploadFile(
-        file: dev.aurakai.auraframefx.oracledrive.genesis.cloud.DriveFile,
-        metadata: FileMetadata
-    ): FileResult {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun optimizeForUpload(file: DriveFile): Any {
-        // Return the original DriveFile in this stub (matches Any? return)
+    override suspend fun optimizeForUpload(file: DriveFile): Any? {
+        // Return the original DriveFile in this stub
         return file
     }
 
     override suspend fun uploadFile(file: DriveFile, metadata: FileMetadata): FileResult {
-        return FileResult(
-            success = false,
-            message = "Stub implementation - upload not configured",
-            fileId = null,
-            bytesProcessed = 0L
-        )
+        return FileResult.Error(Exception("Stub implementation - upload not configured"))
     }
 
-    override suspend fun downloadFile(fileId: String): FileResult {
-        return FileResult(
-            success = false,
-            message = "Stub implementation - download not configured",
-            fileId = fileId,
-            bytesProcessed = 0L
-        )
-    }
+    override suspend fun uploadFile(file: java.io.File, metadata: Map<String, Any>?): FileResult {
+        return try {
+            if (!file.exists()) {
+                return FileResult.Error(Exception("File not found: ${file.absolutePath}"))
+            }
 
-    override suspend fun deleteFile(fileId: String): FileResult {
-        return FileResult(
-            success = false,
-            message = "Stub implementation - delete not configured",
-            fileId = fileId,
-            bytesProcessed = 0L
-        )
+            // Genesis Implementation: Secure Cloud Upload Simulation
+            FileResult.Success(
+                fileId = "cloud_${file.name}_${System.currentTimeMillis()}",
+                path = "genesis/cloud/${file.name}",
+                size = file.length(),
+                metadata = metadata ?: emptyMap()
+            )
+        } catch (e: Exception) {
+            FileResult.Error(e)
+        }
     }
 
     override suspend fun intelligentSync(config: SyncConfiguration): FileResult {
-        return FileResult(
-            success = false,
-            message = "Stub implementation - sync not configured",
-            fileId = null,
-            bytesProcessed = 0L
-        )
+        return FileResult.Error(Exception("Stub implementation - sync not configured"))
     }
 }

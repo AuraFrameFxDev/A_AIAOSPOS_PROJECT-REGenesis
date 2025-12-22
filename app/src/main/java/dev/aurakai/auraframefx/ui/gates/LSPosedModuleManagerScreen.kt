@@ -45,7 +45,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import dev.aurakai.auraframefx.ui.gates.XposedModule
+/**
+ * Data class for XposedModule information in LSPosed Module Manager
+ */
+private data class XposedModuleInfo(
+    val name: String,
+    val description: String,
+    val version: String,
+    var enabled: Boolean,
+    val category: String
+)
 
 /**
  * LSPosed Module Manager Screen
@@ -449,14 +458,3 @@ private fun ModuleCard(
         }
     }
 }
-
-/**
- * Data class for Xposed modules
- */
-data class XposedModule(
-    val name: String,
-    val description: String,
-    val version: String,
-    var enabled: Boolean,
-    val category: String
-)

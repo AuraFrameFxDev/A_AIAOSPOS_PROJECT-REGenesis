@@ -280,12 +280,12 @@ open class CascadeAgent @Inject constructor(
             val agentReq = AgentRequest(type = "general", query = prompt)
 
             val auraResp: AgentResponse = try {
-                auraAgent.processRequest(aiReq, AgentType.AURA)
+                auraAgent.processRequest(aiReq, prompt)
             } catch (e: Exception) {
                 AuraFxLogger.w("CascadeAgent", "aura failed", e); AgentResponse.error("Aura failed", "Aura")
             }
             val kaiResp: AgentResponse = try {
-                kaiAgent.processRequest(agentReq, AgentType.KAI)
+                kaiAgent.processRequest(aiReq, prompt)
             } catch (e: Exception) {
                 AuraFxLogger.w("CascadeAgent", "kai failed", e); AgentResponse.error("Kai failed", "Kai")
             }
@@ -305,9 +305,9 @@ open class CascadeAgent @Inject constructor(
 
     private suspend fun routeToKai(prompt: String, context: RequestContext): String {
         updateProcessingState(ProcessingState(currentTask = "kai"))
-        val agentReq = AgentRequest(type = "general", query = prompt)
+        val aiReq = AiRequest(prompt = prompt)
         val resp = try {
-            kaiAgent.processRequest(agentReq, AgentType.KAI)
+            kaiAgent.processRequest(aiReq, prompt)
         } catch (e: Exception) {
             AuraFxLogger.e("CascadeAgent", "kai route failed", e); AgentResponse.error("Kai route failed", "Kai")
         }
@@ -323,7 +323,7 @@ open class CascadeAgent @Inject constructor(
         updateProcessingState(ProcessingState(currentTask = "aura"))
         val aiReq = AiRequest(prompt = prompt)
         val resp = try {
-            auraAgent.processRequest(aiReq, AgentType.AURA)
+            auraAgent.processRequest(aiReq, prompt)
         } catch (e: Exception) {
             AuraFxLogger.e("CascadeAgent", "aura route failed", e); AgentResponse.error("Aura route failed", "Aura")
         }
@@ -670,7 +670,7 @@ open class CascadeAgent @Inject constructor(
         "processingState" to _processingState.value
     )
 
-    override fun getCapabilities(): Map<String, Set<String>> = agentCapabilities.toMap()
+    fun getCapabilities(): Map<String, Set<String>> = agentCapabilities.toMap()
 
     fun setCollaborationMode(mode: CollaborationMode) {
         _collaborationMode.value = mode

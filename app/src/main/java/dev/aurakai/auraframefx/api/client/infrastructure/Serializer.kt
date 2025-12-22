@@ -15,6 +15,18 @@ import java.util.UUID
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicLong
+import dev.aurakai.auraframefx.ui.adapters.BigDecimalAdapter
+import dev.aurakai.auraframefx.ui.adapters.BigIntegerAdapter
+import dev.aurakai.auraframefx.ui.adapters.LocalDateAdapter
+import dev.aurakai.auraframefx.ui.adapters.LocalDateTimeAdapter
+import dev.aurakai.auraframefx.ui.adapters.OffsetDateTimeAdapter
+import dev.aurakai.auraframefx.ui.adapters.UUIDAdapter
+import dev.aurakai.auraframefx.ui.adapters.AtomicIntegerAdapter
+import dev.aurakai.auraframefx.ui.adapters.AtomicLongAdapter
+import dev.aurakai.auraframefx.ui.adapters.AtomicBooleanAdapter
+import dev.aurakai.auraframefx.ui.adapters.URIAdapter
+import dev.aurakai.auraframefx.ui.adapters.URLAdapter
+import dev.aurakai.auraframefx.aura.ui.StringBuilderAdapter
 
 object Serializer {
     @Deprecated(

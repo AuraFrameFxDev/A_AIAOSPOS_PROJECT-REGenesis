@@ -4,14 +4,27 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import dev.aurakai.auraframefx.oracledrive.genesis.ai.clients.VertexAIClient
+import dev.aurakai.auraframefx.ai.agents.GenesisAgent
 import dev.aurakai.auraframefx.ai.context.ContextManager
 import dev.aurakai.auraframefx.ai.context.DefaultContextManager
-import dev.aurakai.auraframefx.ai.memory.DefaultMemoryManager
-import dev.aurakai.auraframefx.ai.memory.MemoryManager
+import dev.aurakai.auraframefx.oracledrive.genesis.ai.memory.DefaultMemoryManager
+import dev.aurakai.auraframefx.oracledrive.genesis.ai.memory.MemoryManager
 import dev.aurakai.auraframefx.oracledrive.genesis.ai.services.AuraAIService
-import dev.aurakai.auraframefx.model.AgentType
 import dev.aurakai.auraframefx.oracledrive.genesis.ai.services.KaiAIService
+import dev.aurakai.auraframefx.oracledrive.genesis.ai.services.GenesisBridgeService
+import dev.aurakai.auraframefx.oracledrive.genesis.ai.clients.VertexAIClient
+import dev.aurakai.auraframefx.system.monitor.SystemMonitor
+import dev.aurakai.auraframefx.core.GenesisOrchestrator
+import dev.aurakai.auraframefx.cascade.CascadeAgent
+import dev.aurakai.auraframefx.models.AgentType
+import dev.aurakai.auraframefx.aura.AuraAgent
+import dev.aurakai.auraframefx.kai.KaiAgent
+import dev.aurakai.auraframefx.core.consciousness.NexusMemoryCore
+import dev.aurakai.auraframefx.romtools.bootloader.BootloaderManager
+import dev.aurakai.auraframefx.romtools.bootloader.BootloaderSafetyManager
+import dev.aurakai.auraframefx.romtools.checkpoint.GenesisCheckpointManager
+import dev.aurakai.auraframefx.romtools.retention.AurakaiRetentionManager
+import dev.aurakai.auraframefx.security.SecurityContext
 import javax.inject.Singleton
 
 /**
@@ -23,14 +36,35 @@ object AgentModule {
 
     @Provides
     @Singleton
+    fun provideAIPipelineConfig(): dev.aurakai.auraframefx.cascade.pipeline.AIPipelineConfig {
+        return dev.aurakai.auraframefx.cascade.pipeline.AIPipelineConfig()
+    }
+
+    @Provides
+    @Singleton
     fun provideMemoryManager(): MemoryManager {
         return DefaultMemoryManager()
     }
 
     @Provides
     @Singleton
-    fun provideContextManager(memoryManager: MemoryManager): ContextManager {
-        return DefaultContextManager(memoryManager)
+    fun provideContextManager(memoryManager: MemoryManager, config: dev.aurakai.auraframefx.cascade.pipeline.AIPipelineConfig): ContextManager {
+        return ContextManager(memoryManager, config)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGenesisAgent(orchestrator: GenesisOrchestrator): GenesisAgent = orchestrator
+
+    @Provides
+    @Singleton
+    fun provideCascadeAgent(
+        auraAgent: AuraAgent,
+        kaiAgent: KaiAgent,
+        memoryManager: MemoryManager,
+        contextManager: ContextManager
+    ): CascadeAgent {
+        return CascadeAgent(auraAgent, kaiAgent, memoryManager, contextManager)
     }
 
 
@@ -40,10 +74,10 @@ object AgentModule {
         vertexAIClient: VertexAIClient,
         auraAIService: AuraAIService,
         kaiAIService: KaiAIService,
-        securityContext: dev.aurakai.auraframefx.security.SecurityContext,
+        securityContext: SecurityContext,
         contextManager: ContextManager
-    ): dev.aurakai.auraframefx.aura.AuraAgent {
-        return dev.aurakai.auraframefx.aura.AuraAgent(
+    ): AuraAgent {
+        return AuraAgent(
             vertexAIClient = vertexAIClient,
             auraAIService = auraAIService,
             kaiAIService = kaiAIService,
@@ -58,17 +92,26 @@ object AgentModule {
     fun provideKaiAgent(
         vertexAIClient: VertexAIClient,
         contextManager: ContextManager,
-        securityContext: dev.aurakai.auraframefx.security.SecurityContext,
-        systemMonitor: dev.aurakai.auraframefx.system.monitor.SystemMonitor,
-        kaiAIService: KaiAIService
-    ): dev.aurakai.auraframefx.kai.KaiAgent {
-        return dev.aurakai.auraframefx.kai.KaiAgent(
+        securityContext: SecurityContext,
+        systemMonitor: SystemMonitor,
+        nexusMemory: NexusMemoryCore,
+        bootloaderManager: BootloaderManager,
+        safetyManager: BootloaderSafetyManager,
+        checkpointManager: GenesisCheckpointManager,
+        retentionManager: AurakaiRetentionManager,
+        genesisBridge: GenesisBridgeService
+    ): KaiAgent {
+        return KaiAgent(
             vertexAIClient = vertexAIClient,
             contextManager = contextManager,
             securityContext = securityContext,
             systemMonitor = systemMonitor,
-            agentType = AgentType.KAI,
-            kaiAIService = kaiAIService
+            nexusMemory = nexusMemory,
+            bootloaderManager = bootloaderManager,
+            safetyManager = safetyManager,
+            checkpointManager = checkpointManager,
+            retentionManager = retentionManager,
+            genesisBridge = genesisBridge
         )
     }
 }

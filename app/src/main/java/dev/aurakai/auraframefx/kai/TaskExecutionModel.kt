@@ -1,8 +1,8 @@
 package dev.aurakai.auraframefx.kai
 
 import dev.aurakai.auraframefx.ai.task.TaskPriority
-import dev.aurakai.auraframefx.models.AgentCapabilityCategory
-import dev.aurakai.auraframefx.models.InstantSerializer // Added import
+import dev.aurakai.auraframefx.models.AgentType
+import dev.aurakai.auraframefx.models.InstantSerializer
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
@@ -11,7 +11,7 @@ import kotlinx.serialization.Serializable
 data class TaskExecution(
     val id: String = "exec_${Clock.System.now().toEpochMilliseconds()}",
     val taskId: String,
-    val agent: AgentCapabilityCategory,
+    val agent: AgentType,
     val type: String,
     val data: Map<String, String> = emptyMap(),
     val priority: TaskPriority = TaskPriority.NORMAL,
@@ -61,7 +61,7 @@ data class Checkpoint(
     val metadata: Map<String, String> = emptyMap(),
 )
 
-@Serializable // Added annotation
+@Serializable
 enum class ExecutionStatus {
     PENDING,
     INITIALIZING,
@@ -73,7 +73,7 @@ enum class ExecutionStatus {
     TIMEOUT
 }
 
-@Serializable // Added annotation
+@Serializable
 enum class ExecutionResult {
     SUCCESS,
     PARTIAL_SUCCESS,
@@ -83,7 +83,7 @@ enum class ExecutionResult {
     UNKNOWN
 }
 
-@Serializable // Added annotation
+@Serializable
 enum class StepType {
     COMPUTATION,
     COMMUNICATION,
@@ -95,7 +95,7 @@ enum class StepType {
     REPORTING
 }
 
-@Serializable // Added annotation
+@Serializable
 enum class CheckpointStatus {
     PENDING,
     STARTED,
@@ -103,5 +103,3 @@ enum class CheckpointStatus {
     FAILED,
     SKIPPED
 }
-
-// TaskPriority is imported from dev.aurakai.auraframefx.ai.task.TaskPriority (data class with value, reason, metadata)

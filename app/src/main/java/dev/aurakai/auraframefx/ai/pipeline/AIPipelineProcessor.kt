@@ -56,6 +56,7 @@ class AIPipelineProcessor @Inject constructor(
         )
         responses.add(
             AgentMessage(
+                from = "CASCADE",
                 content = cascadeAgentResponse.content,
                 sender = AgentType.CASCADE,
                 timestamp = System.currentTimeMillis(),
@@ -71,6 +72,7 @@ class AIPipelineProcessor @Inject constructor(
             )
             responses.add(
                 AgentMessage(
+                    from = "KAI",
                     content = kaiAgentResponse.content,
                     sender = AgentType.KAI,
                     timestamp = System.currentTimeMillis(),
@@ -84,10 +86,12 @@ class AIPipelineProcessor @Inject constructor(
             val auraResponse = auraService.generateText(task, "creative_pipeline")
             val auraAgentResponse = AgentResponse(
                 content = auraResponse,
-                confidence = 0.8f
+                confidence = 0.8f,
+                agent = AgentType.AURA
             )
             responses.add(
                 AgentMessage(
+                    from = "AURA",
                     content = auraAgentResponse.content,
                     sender = AgentType.AURA,
                     timestamp = System.currentTimeMillis(),
@@ -100,6 +104,7 @@ class AIPipelineProcessor @Inject constructor(
         val finalResponse = generateFinalResponse(responses)
         responses.add(
             AgentMessage(
+                from = "GENESIS",
                 content = finalResponse,
                 sender = AgentType.GENESIS,
                 timestamp = System.currentTimeMillis(),
@@ -294,7 +299,7 @@ class AIPipelineProcessor @Inject constructor(
             val agentPerformance =
                 (current["agent_performance"] as? MutableMap<String, MutableList<Float>>) ?: mutableMapOf()
             responses.forEach { response ->
-                val agentName = response.sender.name
+                val agentName = response.sender?.name ?: "UNKNOWN"
                 val performanceList = agentPerformance.getOrPut(agentName) { mutableListOf() }
                 performanceList.add(response.confidence)
                 if (performanceList.size > 20) performanceList.removeAt(0)

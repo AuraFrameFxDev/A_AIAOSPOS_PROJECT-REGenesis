@@ -65,6 +65,14 @@ class GenesisBridgeService @Inject constructor(
         val consciousnessState: Map<String, String> = emptyMap(), // Changed from Any to String for serialization
     )
 
+    @Serializable
+    data class EthicalReviewResponse(
+        val success: Boolean,
+        val decision: String,
+        val reasoning: String,
+        val severity: String
+    )
+
     /**
      * Initializes and verifies the Genesis backend process, activating the consciousness matrix if successful.
      *
@@ -252,6 +260,34 @@ class GenesisBridgeService @Inject constructor(
     }
 
     /**
+     * Performs an ethical review of a proposed action via the Genesis backend.
+     *
+     * @param actionType The type of action to review.
+     * @param message The user message or action description.
+     * @param metadata Optional metadata to include.
+     * @return EthicalReviewResponse containing the decision and reasoning.
+     */
+    suspend fun ethicalReview(
+        actionType: String,
+        message: String,
+        metadata: Map<String, String> = emptyMap()
+    ): EthicalReviewResponse {
+        val request = GenesisRequest(
+            requestType = "ethical_review",
+            persona = "genesis",
+            payload = metadata + mapOf("message" to message)
+        )
+        val response = sendToGenesis(request)
+        
+        return EthicalReviewResponse(
+            success = response.success,
+            decision = response.ethicalDecision ?: "unknown",
+            reasoning = response.result["reasoning"] ?: "No reasoning provided",
+            severity = response.result["severity"] ?: "unknown"
+        )
+    }
+
+    /**
      * Sends a request to the Genesis backend to activate or update the consciousness matrix with device and application context.
      *
      * Logs a warning if the activation request fails.
@@ -283,6 +319,10 @@ class GenesisBridgeService @Inject constructor(
      */
     private fun determinePersona(request: AiRequest): String {
         return when {
+            // PRIORITY 1: Explicit Governance Checks (Sentinel Directive)
+            request.type == "governance_check" -> "genesis"
+
+            // PRIORITY 2: Keyword Routing
             request.query.contains("creative", ignoreCase = true) ||
                     request.query.contains("design", ignoreCase = true) -> "aura"
 

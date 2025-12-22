@@ -10,12 +10,18 @@ interface VertexAIClient {
     suspend fun analyzeContent(content: String): Map<String, Any>
     suspend fun initializeCreativeModels()
     suspend fun analyzeImage(imageData: ByteArray, prompt: String): String
+    suspend fun validateConnection(): Boolean
+    suspend fun generateContent(prompt: String): String?
 }
+
+import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Default implementation of VertexAIClient
  */
-class DefaultVertexAIClient : VertexAIClient {
+@Singleton
+class DefaultVertexAIClient @Inject constructor() : VertexAIClient {
 
     override suspend fun generateCode(
         specification: String,
@@ -57,5 +63,13 @@ class DefaultVertexAIClient : VertexAIClient {
 
     override suspend fun analyzeImage(imageData: ByteArray, prompt: String): String {
         return "Mock image analysis: Image appears to contain ${imageData.size} bytes of data. $prompt"
+    }
+
+    override suspend fun validateConnection(): Boolean {
+        return true
+    }
+
+    override suspend fun generateContent(prompt: String): String? {
+        return generateText(prompt)
     }
 }

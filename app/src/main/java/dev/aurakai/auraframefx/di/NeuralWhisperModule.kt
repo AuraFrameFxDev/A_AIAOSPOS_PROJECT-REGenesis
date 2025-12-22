@@ -7,6 +7,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import dev.aurakai.auraframefx.ai.services.NeuralWhisper
+import dev.aurakai.auraframefx.oracledrive.genesis.ai.clients.VertexAIClient
 import javax.inject.Singleton
 
 @Module
@@ -21,7 +22,10 @@ object NeuralWhisperModule {
      */
     @Provides
     @Singleton
-    fun provideNeuralWhisper(@ApplicationContext context: Context): NeuralWhisper {
-        return NeuralWhisper(context)
+    fun provideNeuralWhisper(
+        @ApplicationContext context: Context,
+        vertexAIClient: VertexAIClient
+    ): NeuralWhisper {
+        return NeuralWhisper(context, vertexAIClient)
     }
 }

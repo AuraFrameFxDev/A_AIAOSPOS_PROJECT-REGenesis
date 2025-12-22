@@ -2,16 +2,31 @@ package dev.aurakai.auraframefx.ui
 
 import androidx.compose.ui.graphics.Color
 
-// Primary Neon Colors - Direct definitions
-val NeonTeal = Color(0xFF00FFCC)      // Bright teal for primary elements
-val NeonPurple = Color(0xFFE000FF)    // Vibrant purple for secondary
-val NeonPink = Color(0xFFFF00FF)      // Hot pink for accents
-val NeonCyan = Color(0xFF00FFFF)      // Bright cyan for highlights
-val NeonBlue = Color(0xFF0080FF)      // Electric blue
-val NeonGreen = Color(0xFF00FF00)     // Bright neon green
-val NeonRed = Color(0xFFFF0000)       // Bright neon red
-val NeonYellow = Color(0xFFFFFF00)    // Bright yellow
-val NeonPurpleDark = Color(0xFF9000C0) // Darker purple variant
+// === GENESIS NEON PALETTE ===
+// Required for AuraFrameFX UI Components
+val NeonCyan = Color(0xFF00F0FF)
+val NeonBlue = Color(0xFF0077FF)
+val NeonPurple = Color(0xFFBC13FE)
+val NeonPink = Color(0xFFFF0099)
+val NeonTeal = Color(0xFF00FF99)
+val NeonPurpleDark = Color(0xFF4A0072)
+val NeonGreen = Color(0xFF00FF00)
+val NeonRed = Color(0xFFFF0000)
+val NeonYellow = Color(0xFFFFFF00)
+
+// Color Lists for UI Components
+val SpaceColors = listOf(
+    NeonCyan,
+    NeonBlue,
+    NeonPurple,
+    NeonPink,
+    NeonTeal
+)
+
+val GlassColors = listOf(
+    Color(0x22FFFFFF),
+    Color(0x11FFFFFF)
+)
 
 // Dark Theme Colors
 val DarkBackground = Color(0xFF000000) // Pure black for depth
@@ -59,6 +74,5 @@ val PulseOverlay = Color(0x1AE000FF)   // Semi-transparent purple pulse
 val HoverOverlay = Color(0x1A00FFFF)   // Semi-transparent cyan hover
 val PressOverlay = Color(0x1AFF00FF)   // Semi-transparent pink press
 
-// Glass/Glassmorphism Colors
-val GlassColors = Color(0x33FFFFFF)    // Semi-transparent white for glass effect
-val SpaceColors = Color(0xFF0A0A1A)    // Deep space background
+// Transparency constant
+val TRANSPARENT = Color(0x00000000)

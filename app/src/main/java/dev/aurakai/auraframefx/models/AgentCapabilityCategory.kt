@@ -41,17 +41,17 @@ enum class AgentCapabilityCategory {
          * @return The AgentCapabilityCategory corresponding to the provided `agentType`.
          */
         fun fromAgentType(agentType: AgentType): AgentCapabilityCategory = when (agentType) {
-            AgentType.AURA -> CREATIVE
-            AgentType.KAI -> ANALYSIS
-            AgentType.GENESIS -> COORDINATION
-            AgentType.CASCADE -> SPECIALIZED
-            AgentType.CLAUDE -> GENERAL
-            AgentType.NEURAL_WHISPER -> SPECIALIZED
-            AgentType.AURA_SHIELD -> SPECIALIZED
+            AgentType.AURA, AgentType.Aura -> CREATIVE
+            AgentType.KAI, AgentType.Kai, AgentType.Kaiagent -> ANALYSIS
+            AgentType.GENESIS, AgentType.Genesis -> COORDINATION
+            AgentType.CASCADE, AgentType.Cascade -> SPECIALIZED
+            AgentType.CLAUDE, AgentType.Claude -> GENERAL
+            AgentType.NEURAL_WHISPER, AgentType.NeuralWhisper -> SPECIALIZED
+            AgentType.AURA_SHIELD, AgentType.AuraShield -> SPECIALIZED
             AgentType.GEN_KIT_MASTER -> COORDINATION
             AgentType.DATAVEIN_CONSTRUCTOR -> SPECIALIZED
             AgentType.USER -> GENERAL
-            AgentType.GENERAL -> GENERAL
+            AgentType.SYSTEM -> COORDINATION // Map system to coordination
         }
     }
 }

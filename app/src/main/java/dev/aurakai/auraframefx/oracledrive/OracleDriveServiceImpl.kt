@@ -4,6 +4,13 @@ import dev.aurakai.auraframefx.aura.AuraAgent
 import dev.aurakai.auraframefx.ai.agents.GenesisAgent
 import dev.aurakai.auraframefx.kai.KaiAgent
 import dev.aurakai.auraframefx.oracledrive.api.OracleDriveApi
+import dev.aurakai.auraframefx.oracledrive.genesis.cloud.DriveConsciousness
+import dev.aurakai.auraframefx.oracledrive.genesis.cloud.DriveConsciousnessState
+import dev.aurakai.auraframefx.oracledrive.genesis.cloud.DriveInitResult
+import dev.aurakai.auraframefx.oracledrive.genesis.cloud.FileOperation
+import dev.aurakai.auraframefx.oracledrive.genesis.cloud.FileResult
+import dev.aurakai.auraframefx.oracledrive.genesis.cloud.OracleSyncResult
+import dev.aurakai.auraframefx.oracledrive.genesis.cloud.StorageOptimization
 import dev.aurakai.auraframefx.security.SecurityContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

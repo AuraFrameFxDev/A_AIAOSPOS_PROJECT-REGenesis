@@ -168,11 +168,4 @@ class PersistentMemoryManager @Inject constructor() : MemoryManager(Configuratio
     }
 }
 
-/**
- * Data class representing a single interaction (prompt/response pair).
- */
-data class InteractionEntry(
-    val prompt: String,
-    val response: String,
-    val timestamp: Long
-)
+// InteractionEntry is defined in MemoryStats.kt in this package

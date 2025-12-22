@@ -12,27 +12,17 @@ interface AuraAIService {
     suspend fun generateTheme(preferences: ThemePreferences, context: String = ""): ThemeConfiguration
 }
 
-@Serializable
-data class ThemePreferences(
-    val primaryColor: String = "#6200EA",
-    val style: String = "modern",
-    val mood: String = "balanced",
-    val animationLevel: String = "medium"
-)
+import dev.aurakai.auraframefx.models.ThemePreferences
+import dev.aurakai.auraframefx.models.ThemeConfiguration
 
-@Serializable
-data class ThemeConfiguration(
-    val primaryColor: String,
-    val secondaryColor: String,
-    val backgroundColor: String,
-    val textColor: String,
-    val style: String
-)
+import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Default implementation of AuraAIService
  */
-class DefaultAuraAIService : AuraAIService {
+@Singleton
+class DefaultAuraAIService @Inject constructor() : AuraAIService {
 
     override suspend fun initialize() {}
 
