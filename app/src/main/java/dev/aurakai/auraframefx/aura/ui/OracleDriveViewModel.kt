@@ -25,9 +25,8 @@ open class OracleDriveViewModel @Inject constructor(
     private val oracleDriveService: OracleDriveService,
 ) : ViewModel() {
 
-    val _uiState = MutableStateFlow(OracleDriveUiState())
-    val uiState: Flow<OracleDriveUiState>
-        get() = _uiState.asStateFlow()
+    private val _uiState = MutableStateFlow(OracleDriveUiState())
+    val uiState: StateFlow<OracleDriveUiState> = _uiState.asStateFlow()
 
     private var initializationJob: Job? = null
     private var consciousnessJob: Job? = null
@@ -137,9 +136,11 @@ open class OracleDriveViewModel @Inject constructor(
      * Continuously updates the UI state with the latest consciousness state from the Oracle Drive service.
      */
     private fun monitorConsciousness() = viewModelScope.launch {
-        oracleDriveService.getDriveConsciousnessState().collect()
-}
+        oracleDriveService.consciousnessState.collect { state ->
+            _uiState.update { it.copy(consciousnessState = state) }
+        }
     }
+
 
     /**
      * Formats a timestamp in milliseconds into a localizied date and time string.

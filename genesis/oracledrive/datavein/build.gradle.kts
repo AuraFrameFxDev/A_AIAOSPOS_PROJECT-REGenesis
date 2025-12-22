@@ -66,6 +66,12 @@ dependencies {
 
     // Core Library Desugaring (Java 24 APIs)
     coreLibraryDesugaring(libs.desugar.jdk.libs)
+
+    // Test Dependencies
+    testImplementation(libs.junit.jupiter.api)
+    testRuntimeOnly(libs.jupiter.junit.jupiter.engine)
+    testImplementation(libs.kotlin.test)
+    testImplementation(libs.kotlinx.coroutines.test)
 }
 
 ksp {

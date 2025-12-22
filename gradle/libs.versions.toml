@@ -137,6 +137,8 @@ jetbrains-kotlin-serialization = { group = "org.jetbrains.kotlin", name = "kotli
 gms-google-services = { group = "com.google.gms", name = "google-services", version.ref = "googleServices" }
 junit-jupiter-params = { group = "org.junit.jupiter", name = "junit-jupiter-params", version.ref = "junitJupiterParams" }
 jupiter-junit-jupiter-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junitJupiterEngine" }
+kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
 
 # Network & Serialization Libraries
 # Network Clients
