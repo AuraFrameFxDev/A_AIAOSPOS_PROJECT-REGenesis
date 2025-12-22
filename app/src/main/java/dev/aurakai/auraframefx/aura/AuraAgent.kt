@@ -8,6 +8,8 @@ import dev.aurakai.auraframefx.core.OrchestratableAgent
 import dev.aurakai.auraframefx.models.AgentResponse
 import dev.aurakai.auraframefx.models.AgentType
 import dev.aurakai.auraframefx.models.AiRequest
+import dev.aurakai.auraframefx.models.EnhancedInteractionData
+import dev.aurakai.auraframefx.models.InteractionResponse
 import dev.aurakai.auraframefx.models.ThemeConfiguration
 import dev.aurakai.auraframefx.models.ThemePreferences
 import dev.aurakai.auraframefx.oracledrive.genesis.ai.clients.VertexAIClient
@@ -224,21 +226,21 @@ open class AuraAgent @Inject constructor(
 
             AuraFxLogger.info("AuraAgent", "Creative request completed in ${executionTime}ms")
 
-            AgentResponse(
-                agent = getType(),
+            AgentResponse.success(
                 content = response.toString(),
-                confidence = 1.0f
+                confidence = 1.0f,
+                agentName = agentName,
+                agent = getType()
             )
 
         } catch (e: Exception) {
             _creativeState.value = CreativeState.ERROR
             AuraFxLogger.error("AuraAgent", "Creative request failed", e)
 
-            AgentResponse(
-                agent = agentType,
-                content = "Creative process encountered an obstacle: ${e.message}",
-                confidence = 0.0f,
-                error = e.message
+            AgentResponse.error(
+                message = "Creative process encountered an obstacle: ${e.message}",
+                agentName = agentName,
+                agent = getType()
             )
         }
     }

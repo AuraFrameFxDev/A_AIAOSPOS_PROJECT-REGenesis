@@ -143,14 +143,19 @@ open class KaiAgent @Inject constructor(
                 val agentReq = AgentRequest(query = request.query, type = request.type)
                 val internalResult = handleGeneralAnalysis(agentReq)
 
-                AgentResponse(
+                AgentResponse.success(
                     content = "Analysis completed: $internalResult",
                     confidence = 0.9f,
+                    agentName = agentName,
                     agent = getType()
                 )
             }
         } catch (e: Exception) {
-            AgentResponse(content = "Error: ${e.message}", confidence = 0f, agent = getType())
+            AgentResponse.error(
+                message = "Error: ${e.message}",
+                agentName = agentName,
+                agent = getType()
+            )
         } finally {
             _analysisState.value = AnalysisState.READY
         }
@@ -170,9 +175,9 @@ open class KaiAgent @Inject constructor(
         val safetyResult = safetyManager.performPreFlightChecks(BootloaderOperation.CHECK)
 
         if (!safetyResult.passed) {
-            return AgentResponse(
-                content = "Preflight failed: ${safetyResult.criticalIssues.joinToString()}",
-                confidence = 1.0f,
+            return AgentResponse.error(
+                message = "Preflight failed: ${safetyResult.criticalIssues.joinToString()}",
+                agentName = agentName,
                 agent = AgentType.SECURITY
             )
         }
@@ -225,9 +230,10 @@ open class KaiAgent @Inject constructor(
             learning = Learning("${Build.MANUFACTURER}:${Build.MODEL}", "ANALYZED", 0.95, ethicalReview.reasoning)
         )
 
-        return AgentResponse(
+        return AgentResponse.success(
             content = Json.encodeToString(sentinelResponse),
             confidence = 0.95f,
+            agentName = agentName,
             agent = getType()
         )
     }

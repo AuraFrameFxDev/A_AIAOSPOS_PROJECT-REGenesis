@@ -151,8 +151,16 @@ abstract class BaseAgent(
         )
     }
 
-    open fun AgentResponse(content: String, confidence: Float, p2: Any) {
-        // Default implementation
+    /**
+     * Process a simple AI request with just a prompt string.
+     * Subclasses should override this to provide their specific AI processing logic.
+     *
+     * @param prompt The prompt/query string to process
+     * @return The AI-generated response as a string
+     */
+    open suspend fun processAiRequest(prompt: String): String {
+        Timber.d("%s processing AI request: %s", agentName, prompt)
+        return "Processed: $prompt"
     }
 }
 

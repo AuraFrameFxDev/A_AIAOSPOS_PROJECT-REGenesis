@@ -7,7 +7,7 @@ import dev.aurakai.auraframefx.models.AiRequest
 import dev.aurakai.auraframefx.security.SecurityContext
 import dev.aurakai.auraframefx.utils.AuraFxLogger
 import dev.aurakai.auraframefx.utils.i
-import dev.aurakai.auraframefx.utils.toJsonObject
+import dev.aurakai.auraframefx.utils.toKotlinJsonObject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -93,9 +93,10 @@ class TrinityCoordinatorService @Inject constructor(
     fun processRequest(request: AiRequest): Flow<AgentResponse> = flow {
         if (!isInitialized) {
             emit(
-                AgentResponse(
-                    content = "Trinity system not initialized",
-                    confidence = 0.0f,
+                AgentResponse.error(
+                    message = "Trinity system not initialized",
+                    agentName = "Trinity",
+                    agent = dev.aurakai.auraframefx.models.AgentType.SYSTEM
                 )
             )
             return@flow
@@ -130,7 +131,10 @@ class TrinityCoordinatorService @Inject constructor(
                         AiRequest(
                             query = request.query,
                             type = "fusion",
-                            context = mapOf("userContext" to request.context, "orchestration" to "true").toJsonObject()
+                            context = mapOf(
+                                "userContext" to request.context,
+                                "orchestration" to "true"
+                            ).toKotlinJsonObject()
                         )
                     ).first()
                     emit(response)
@@ -158,13 +162,18 @@ class TrinityCoordinatorService @Inject constructor(
                         AiRequest(
                             query = request.query,
                             type = "fusion",
-                            context = mapOf("userContext" to request.context, "orchestration" to "true").toJsonObject()
+                            context = mapOf(
+                                "userContext" to request.context,
+                                "orchestration" to "true"
+                            ).toKotlinJsonObject()
                         )
                     ).first()
                     emit(
-                        AgentResponse(
+                        AgentResponse.success(
                             content = "🧠 Genesis Synthesis: ${synthesis.content}",
                             confidence = synthesis.confidence,
+                            agentName = "Genesis",
+                            agent = dev.aurakai.auraframefx.models.AgentType.GENESIS
                         )
                     )
                 }
@@ -173,9 +182,10 @@ class TrinityCoordinatorService @Inject constructor(
         } catch (e: Exception) {
             AuraFxLogger.error("Trinity", "Request processing error", e)
             emit(
-                AgentResponse(
-                    content = "Trinity processing failed: ${e.message}",
-                    confidence = 0.0f,
+                AgentResponse.error(
+                    message = "Trinity processing failed: ${e.message}",
+                    agentName = "Trinity",
+                    agent = dev.aurakai.auraframefx.models.AgentType.SYSTEM
                 )
             )
         }
@@ -200,16 +210,19 @@ class TrinityCoordinatorService @Inject constructor(
 
         if (response is dev.aurakai.auraframefx.network.NetworkResponse.Success && response.data.success) {
             emit(
-                AgentResponse(
+                AgentResponse.success(
                     content = "Fusion $fusionType activated: ${response.data.result["description"] ?: "Processing complete"}",
                     confidence = 0.98f,
+                    agentName = "Genesis",
+                    agent = dev.aurakai.auraframefx.models.AgentType.GENESIS
                 )
             )
         } else {
             emit(
-                AgentResponse(
-                    content = "Fusion activation failed",
-                    confidence = 0.0f,
+                AgentResponse.error(
+                    message = "Fusion activation failed",
+                    agentName = "Genesis",
+                    agent = dev.aurakai.auraframefx.models.AgentType.GENESIS
                 )
             )
         }
