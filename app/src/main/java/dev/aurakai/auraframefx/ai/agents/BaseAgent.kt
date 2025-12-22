@@ -76,8 +76,9 @@ abstract class BaseAgent(
     ): InteractionResponse {
         return InteractionResponse(
             content = content,
-            metadata = metadata.toKotlinJsonObject(),
-            timestamp = timestamp
+            success = success,
+            timestamp = timestamp,
+            metadata = metadata.toKotlinJsonObject()
         )
     }
 
