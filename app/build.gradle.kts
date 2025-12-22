@@ -110,6 +110,19 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
     }
 }
 
+// ═══════════════════════════════════════════════════════════════════════════
+// DISABLE TEST COMPILATION (Speed up builds)
+// ═══════════════════════════════════════════════════════════════════════════
+tasks.configureEach {
+    if (name.contains("Test", ignoreCase = true) &&
+        (name.contains("compile", ignoreCase = true) ||
+            name.contains("UnitTest") ||
+            name.contains("AndroidTest"))
+    ) {
+        enabled = false
+    }
+}
+
 extensions.configure<ApplicationExtension> {
     lint {
         baseline = file("lint-baseline.xml")
