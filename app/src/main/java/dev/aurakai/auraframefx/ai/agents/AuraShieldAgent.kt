@@ -1,4 +1,4 @@
-﻿package dev.aurakai.auraframefx.ai.agents
+package dev.aurakai.auraframefx.ai.agents
 
 import android.content.Context
 import dev.aurakai.auraframefx.models.agent_states.ActiveThreat
@@ -18,7 +18,7 @@ class AuraShieldAgent(
      * Holds the current security context or configuration.
      * TODO: Reported as unused. Define proper type and implement usage.
      */
-    val securityContext: SecurityContextState? =
+    val securityContext: SecurityContextState =
         SecurityContextState() // Changed type and initialized
 
     /**

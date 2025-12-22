@@ -1,4 +1,4 @@
-﻿package dev.aurakai.auraframefx.ai.agents
+package dev.aurakai.auraframefx.ai.agents
 
 import dev.aurakai.auraframefx.models.AgentResponse
 import dev.aurakai.auraframefx.models.AgentType

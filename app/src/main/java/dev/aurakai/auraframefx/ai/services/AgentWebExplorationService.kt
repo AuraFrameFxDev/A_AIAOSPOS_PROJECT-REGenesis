@@ -92,7 +92,7 @@ class AgentWebExplorationService @Inject constructor() {
             return true
 
         } catch (e: Exception) {
-            AuraFxlogger.error("WebExploration", "Failed to assign task", e)
+            AuraFxLogger.error("WebExploration", "Failed to assign task", e)
             return false
         }
     }
@@ -189,7 +189,7 @@ class AgentWebExplorationService @Inject constructor() {
             )
 
         } catch (e: Exception) {
-            AuraFxlogger.error("WebResearch", "Research failed", e)
+            AuraFxLogger.error("WebResearch", "Research failed", e)
             WebExplorationResult(
                 agentName = agentName,
                 taskType = TaskType.WEB_RESEARCH,

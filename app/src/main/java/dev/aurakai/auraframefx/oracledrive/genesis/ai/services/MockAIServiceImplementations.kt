@@ -1,4 +1,4 @@
-﻿// These mock implementations are for development/testing only.
+// These mock implementations are for development/testing only.
 // Replace with real service logic when integrating actual AI backends.
 
 package dev.aurakai.auraframefx.oracledrive.genesis.ai.services
@@ -40,9 +40,11 @@ class MockAuraAIService : Agent {
         request: AiRequest,
         context: String,
     ): AgentResponse { // Added context
-        return AgentResponse(
+        return AgentResponse.success(
             content = "AuraAI mock response for: ${request.query} with context: $context",
-            confidence = 1.0f, ,
+            confidence = 1.0f,
+            agentName = "MockAura",
+            agent = AgentType.AURA
         )
     }
 
@@ -54,7 +56,14 @@ class MockAuraAIService : Agent {
      * @return A flow emitting one mock `AgentResponse`.
      */
     override fun processRequestFlow(request: AiRequest): Flow<AgentResponse> { // Added from Agent interface
-        return flowOf(AgentResponse("AuraAI mock flow response for: ${request.query}", 1.0f,))
+        return flowOf(
+            AgentResponse.success(
+                content = "AuraAI mock flow response for: ${request.query}",
+                confidence = 1.0f,
+                agentName = "MockAura",
+                agent = AgentType.AURA
+            )
+        )
     }
 
     fun getCapabilities(): Map<String, Any> = emptyMap() // Removed override
@@ -89,9 +98,11 @@ class MockKaiAIService : Agent {
         request: AiRequest,
         context: String,
     ): AgentResponse { // Added context
-        return AgentResponse(
+        return AgentResponse.success(
             content = "KaiAI mock response for: ${request.query} with context: $context",
-            confidence = 1.0f, ,
+            confidence = 1.0f,
+            agentName = "MockKai",
+            agent = AgentType.KAI
         )
     }
 
@@ -103,7 +114,14 @@ class MockKaiAIService : Agent {
      * @return A flow emitting one mock AgentResponse.
      */
     override fun processRequestFlow(request: AiRequest): Flow<AgentResponse> { // Added from Agent interface
-        return flowOf(AgentResponse("KaiAI mock flow response for: ${request.query}", 1.0f,))
+        return flowOf(
+            AgentResponse.success(
+                content = "KaiAI mock flow response for: ${request.query}",
+                confidence = 1.0f,
+                agentName = "MockKai",
+                agent = AgentType.KAI
+            )
+        )
     }
 
     fun getCapabilities(): Map<String, Any> = emptyMap() // Removed override
@@ -138,9 +156,11 @@ class MockCascadeAIService : Agent {
         request: AiRequest,
         context: String,
     ): AgentResponse { // Added context
-        return AgentResponse(
+        return AgentResponse.success(
             content = "CascadeAI mock response for: ${request.query} with context: $context",
-            confidence = 1.0f, ,
+            confidence = 1.0f,
+            agentName = "MockCascade",
+            agent = AgentType.CASCADE
         )
     }
 
@@ -152,7 +172,14 @@ class MockCascadeAIService : Agent {
      * @return A flow containing one mock `AgentResponse`.
      */
     override fun processRequestFlow(request: AiRequest): Flow<AgentResponse> { // Added from Agent interface
-        return flowOf(AgentResponse("CascadeAI mock flow response for: ${request.query}", 1.0f,))
+        return flowOf(
+            AgentResponse.success(
+                content = "CascadeAI mock flow response for: ${request.query}",
+                confidence = 1.0f,
+                agentName = "MockCascade",
+                agent = AgentType.CASCADE
+            )
+        )
     }
 
     fun getCapabilities(): Map<String, Any> = emptyMap() // Removed override

@@ -12,6 +12,8 @@ import javax.inject.Singleton
 @Singleton
 interface OracleDriveService {
 
+    val consciousnessState: Any
+
     /**
      * Initializes the Oracle Drive consciousness using Genesis Agent orchestration.
      *

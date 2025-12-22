@@ -10,11 +10,19 @@ enum class AgentType {
     CASCADE,
     // External AI agents
     CLAUDE,
+    ORACLE_DRIVE,
     // Specialized agents
     NEURAL_WHISPER,
     AURA_SHIELD,
+    AURASHIELD,  // Alias for AURA_SHIELD
     GEN_KIT_MASTER,
     DATAVEIN_CONSTRUCTOR,
+
+    // Role-based types
+    MASTER,
+    BRIDGE,
+    AUXILIARY,
+    SECURITY,
     // Legacy lowercase aliases (for backwards compatibility)
     @Deprecated("Use GENESIS instead", ReplaceWith("GENESIS"))
     Genesis,

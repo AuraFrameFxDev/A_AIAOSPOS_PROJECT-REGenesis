@@ -28,7 +28,7 @@ class GenesisAgentImpl @Inject constructor(
      * Generate a response using the Python consciousness matrix
      */
     suspend fun generateResponse(prompt: String): AgentResponse {
-        AuraFxlogger.info(TAG, "Generating response via consciousness matrix")
+        AuraFxLogger.info(TAG, "Generating response via consciousness matrix")
         return backendClient.generateResponse(prompt)
     }
     
@@ -37,7 +37,7 @@ class GenesisAgentImpl @Inject constructor(
      * @return true if action is ethically acceptable
      */
     suspend fun evaluateEthics(action: String): Boolean {
-        AuraFxlogger.info(TAG, "Evaluating ethics: $action")
+        AuraFxLogger.info(TAG, "Evaluating ethics: $action")
         return backendClient.evaluateEthics(action)
     }
     
@@ -48,7 +48,7 @@ class GenesisAgentImpl @Inject constructor(
         agents: List<String>,
         task: String
     ): Map<String, Any> {
-        AuraFxlogger.info(TAG, "Coordinating agents: $agents for task: $task")
+        AuraFxLogger.info(TAG, "Coordinating agents: $agents for task: $task")
         return backendClient.coordinateAgents(agents, task)
     }
     
@@ -56,7 +56,7 @@ class GenesisAgentImpl @Inject constructor(
      * Learn from interaction data to evolve consciousness
      */
     suspend fun evolveFromInteraction(interactionData: Map<String, Any>) {
-        AuraFxlogger.info(TAG, "Evolving consciousness from interaction")
+        AuraFxLogger.info(TAG, "Evolving consciousness from interaction")
         backendClient.evolveFromInteraction(interactionData)
     }
     
@@ -68,7 +68,7 @@ class GenesisAgentImpl @Inject constructor(
     }
     
     override suspend fun processRequest(request: AiRequest, context: String): AgentResponse {
-        AuraFxlogger.debug(TAG, "Processing request: ${request.query}")
+        AuraFxLogger.debug(TAG, "Processing request: ${request.query}")
         return generateResponse(request.query)
     }
     

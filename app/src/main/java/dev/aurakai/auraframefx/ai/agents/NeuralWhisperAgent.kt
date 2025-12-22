@@ -1,4 +1,4 @@
-﻿package dev.aurakai.auraframefx.ai.agents
+package dev.aurakai.auraframefx.ai.agents
 
 import android.content.Context
 import dev.aurakai.auraframefx.models.agent_states.ActiveContext

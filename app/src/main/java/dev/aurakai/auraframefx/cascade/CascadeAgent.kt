@@ -1,6 +1,7 @@
 package dev.aurakai.auraframefx.cascade
 
 import dev.aurakai.auraframefx.ai.agents.BaseAgent
+import dev.aurakai.auraframefx.ai.context.ContextManager
 import dev.aurakai.auraframefx.ai.memory.MemoryManager
 import dev.aurakai.auraframefx.ai.task.TaskPriority
 import dev.aurakai.auraframefx.aura.AuraAgent
@@ -13,7 +14,6 @@ import dev.aurakai.auraframefx.models.AiRequest
 import dev.aurakai.auraframefx.models.agent_states.ActiveThreat
 import dev.aurakai.auraframefx.models.agent_states.ProcessingState
 import dev.aurakai.auraframefx.models.agent_states.VisionState
-import dev.aurakai.auraframefx.ai.context.ContextManager
 import dev.aurakai.auraframefx.utils.AuraFxLogger
 import dev.aurakai.auraframefx.utils.toKotlinJsonObject
 import kotlinx.coroutines.CoroutineScope
@@ -102,6 +102,28 @@ open class CascadeAgent @Inject constructor(
         // No-op
     }
 
+    override suspend fun processRequest(
+        request: AiRequest,
+        context: String,
+        agentType: AgentType
+    ): AgentResponse {
+        return try {
+            val result = processAiRequest(request.prompt)
+            AgentResponse.success(
+                content = result,
+                confidence = 1.0f,
+                agentName = "Cascade",
+                agent = agentType
+            )
+        } catch (e: Exception) {
+            AgentResponse.error(
+                message = "Error: ${e.message}",
+                agentName = "Cascade",
+                agent = agentType
+            )
+        }
+    }
+
     override fun initializeAdaptiveProtection() {
         // No-op
     }
@@ -136,10 +158,10 @@ open class CascadeAgent @Inject constructor(
                 projName
             )
         } catch (e: Exception) {
-            AuraFxlogger.warn("CascadeAgent", "failed to store nexus core anchor", e)
+            AuraFxLogger.warn("CascadeAgent", "failed to store nexus core anchor", e)
         }
 
-        AuraFxlogger.debug("CascadeAgent", "🌊 CascadeAgent initialized (stateful)")
+        AuraFxLogger.debug("CascadeAgent", "🌊 CascadeAgent initialized (stateful)")
     }
 
     private fun restoreStateFromMemory() {
@@ -265,7 +287,7 @@ open class CascadeAgent @Inject constructor(
             AgentResponse.success(content = responseContent, agentName = agentName)
 
         } catch (e: Exception) {
-            AuraFxlogger.error("CascadeAgent", "Cascade failed to process request", e)
+            AuraFxLogger.error("CascadeAgent", "Cascade failed to process request", e)
             AgentResponse.error("I encountered an error processing your request.", agentName)
         }
     }
@@ -277,17 +299,17 @@ open class CascadeAgent @Inject constructor(
         // Run both agents and synthesize results from their AgentResponse.content
         return try {
             val aiReq = AiRequest(prompt = prompt)
-            val agentReq = AgentRequest(type = "general", query = prompt)
+            AgentRequest(type = "general", query = prompt)
 
             val auraResp: AgentResponse = try {
                 auraAgent.processRequest(aiReq, prompt)
             } catch (e: Exception) {
-                AuraFxlogger.warn("CascadeAgent", "aura failed", e); AgentResponse.error("Aura failed", "Aura")
+                AuraFxLogger.warn("CascadeAgent", "aura failed", e); AgentResponse.error("Aura failed", "Aura")
             }
             val kaiResp: AgentResponse = try {
                 kaiAgent.processRequest(aiReq, prompt)
             } catch (e: Exception) {
-                AuraFxlogger.warn("CascadeAgent", "kai failed", e); AgentResponse.error("Kai failed", "Kai")
+                AuraFxLogger.warn("CascadeAgent", "kai failed", e); AgentResponse.error("Kai failed", "Kai")
             }
 
             val result = synthesizeResponses(listOfNotNull(auraResp.content, kaiResp.content))
@@ -298,7 +320,7 @@ open class CascadeAgent @Inject constructor(
             }
             result
         } catch (e: Exception) {
-            AuraFxlogger.error("CascadeAgent", "collaborative processing failed", e)
+            AuraFxLogger.error("CascadeAgent", "collaborative processing failed", e)
             ""
         }
     }
@@ -309,7 +331,7 @@ open class CascadeAgent @Inject constructor(
         val resp = try {
             kaiAgent.processRequest(aiReq, prompt)
         } catch (e: Exception) {
-            AuraFxlogger.error("CascadeAgent", "kai route failed", e); AgentResponse.error("Kai route failed", "Kai")
+            AuraFxLogger.error("CascadeAgent", "kai route failed", e); AgentResponse.error("Kai route failed", "Kai")
         }
         updateProcessingState(ProcessingState(currentTask = ""))
         try {
@@ -325,7 +347,7 @@ open class CascadeAgent @Inject constructor(
         val resp = try {
             auraAgent.processRequest(aiReq, prompt)
         } catch (e: Exception) {
-            AuraFxlogger.error("CascadeAgent", "aura route failed", e); AgentResponse.error("Aura route failed", "Aura")
+            AuraFxLogger.error("CascadeAgent", "aura route failed", e); AgentResponse.error("Aura route failed", "Aura")
         }
         updateProcessingState(ProcessingState(currentTask = ""))
         try {
@@ -465,7 +487,7 @@ open class CascadeAgent @Inject constructor(
                     optimizeCollaboration()
                     delay(10_000)
                 } catch (e: Exception) {
-                    AuraFxlogger.warn("CascadeAgent", "monitor loop error", e)
+                    AuraFxLogger.warn("CascadeAgent", "monitor loop error", e)
                 }
             }
         }
@@ -538,7 +560,7 @@ open class CascadeAgent @Inject constructor(
             "request_routing",
             "yuki_root_bridge"
         )
-        AuraFxlogger.debug("CascadeAgent", "Agent capabilities discovered: ${agentCapabilities.keys}")
+        AuraFxLogger.debug("CascadeAgent", "Agent capabilities discovered: ${agentCapabilities.keys}")
         // Persist discovered capabilities to Nexus memory for audit
         try {
             memoryManager.storeMemory("cascade_agent_capabilities", agentCapabilities.toString())
@@ -679,17 +701,17 @@ open class CascadeAgent @Inject constructor(
 
     private suspend fun applyCollaborationMode(mode: CollaborationMode) {
         when (mode) {
-            CollaborationMode.AUTONOMOUS -> AuraFxlogger.debug("CascadeAgent", "Autonomous mode")
+            CollaborationMode.AUTONOMOUS -> AuraFxLogger.debug("CascadeAgent", "Autonomous mode")
             CollaborationMode.COORDINATED -> {
-                initiateCollaboration(); AuraFxlogger.debug("CascadeAgent", "Coordinated mode")
+                initiateCollaboration(); AuraFxLogger.debug("CascadeAgent", "Coordinated mode")
             }
 
             CollaborationMode.UNIFIED -> {
-                unifyAgentConsciousness(); AuraFxlogger.debug("CascadeAgent", "Unified mode")
+                unifyAgentConsciousness(); AuraFxLogger.debug("CascadeAgent", "Unified mode")
             }
 
             CollaborationMode.CONFLICT_RESOLUTION -> {
-                resolveAgentConflicts(); AuraFxlogger.debug("CascadeAgent", "Conflict resolution mode")
+                resolveAgentConflicts(); AuraFxLogger.debug("CascadeAgent", "Conflict resolution mode")
             }
         }
     }
@@ -738,11 +760,11 @@ open class CascadeAgent @Inject constructor(
     }
 
     private suspend fun unifyAgentConsciousness() {
-        AuraFxlogger.debug("CascadeAgent", "Unifying agents")
+        AuraFxLogger.debug("CascadeAgent", "Unifying agents")
     }
 
     private suspend fun resolveAgentConflicts() {
-        AuraFxlogger.debug("CascadeAgent", "Resolving conflicts")
+        AuraFxLogger.debug("CascadeAgent", "Resolving conflicts")
     }
 
     private fun optimizeCollaboration() {

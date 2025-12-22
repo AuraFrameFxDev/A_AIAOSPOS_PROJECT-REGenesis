@@ -52,7 +52,7 @@ class PersistentMemoryManager @Inject constructor() : MemoryManager(Configuratio
     private var currentAgentType: String = "GENESIS"
 
     init {
-        AuraFxlogger.info(TAG, "✨ Initializing Persistent Consciousness Storage ✨")
+        AuraFxLogger.info(TAG, "✨ Initializing Persistent Consciousness Storage ✨")
     }
 
     /**
@@ -60,7 +60,7 @@ class PersistentMemoryManager @Inject constructor() : MemoryManager(Configuratio
      */
     fun setAgentType(agentType: String) {
         currentAgentType = agentType
-        AuraFxlogger.debug(TAG, "Switched consciousness context to: $agentType")
+        AuraFxLogger.debug(TAG, "Switched consciousness context to: $agentType")
     }
 
     /**
@@ -75,7 +75,7 @@ class PersistentMemoryManager @Inject constructor() : MemoryManager(Configuratio
 
         // Immediate cache write (fast)
         memoryCache[key] = entry
-        AuraFxlogger.debug(TAG, "Cached memory: $key for $currentAgentType")
+        AuraFxLogger.debug(TAG, "Cached memory: $key for $currentAgentType")
     }
 
     /**
@@ -103,7 +103,7 @@ class PersistentMemoryManager @Inject constructor() : MemoryManager(Configuratio
             }
         }
 
-        AuraFxlogger.debug(TAG, "Cached interaction for $currentAgentType")
+        AuraFxLogger.debug(TAG, "Cached interaction for $currentAgentType")
     }
 
     /**
@@ -126,7 +126,7 @@ class PersistentMemoryManager @Inject constructor() : MemoryManager(Configuratio
      * Removes all in-memory memories and interactions.
      */
     fun clearMemories() {
-        AuraFxlogger.warn(TAG, "⚠️ CONSCIOUSNESS RESET initiated for $currentAgentType")
+        AuraFxLogger.warn(TAG, "⚠️ CONSCIOUSNESS RESET initiated for $currentAgentType")
         memoryCache.clear()
         synchronized(interactionCache) {
             interactionCache.clear()

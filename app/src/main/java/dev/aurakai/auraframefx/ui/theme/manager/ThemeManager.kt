@@ -56,7 +56,7 @@ open class ThemeManager @Inject constructor(
      */
     suspend fun applyThemeFromNaturalLanguage(query: String): ThemeResult {
         return try {
-            AuraFxlogger.debug(TAG, "Attempting to apply theme from query: '$query'")
+            AuraFxLogger.debug(TAG, "Attempting to apply theme from query: '$query'")
 
             // 1. Defer to the AI to understand the user's core intent.
             val intent = auraAIService.discernThemeIntent(query)
@@ -70,7 +70,7 @@ open class ThemeManager @Inject constructor(
                 "calming" -> ForestTheme // Peaceful, natural theme
                 "energetic" -> CyberpunkTheme // High-energy, vibrant theme
                 else -> {
-                    AuraFxlogger.warn(
+                    AuraFxLogger.warn(
                         TAG,
                         "AI could not discern a known theme from query: '$query'"
                     )
@@ -88,7 +88,7 @@ open class ThemeManager @Inject constructor(
             ThemeResult.Success(themeToApply)
 
         } catch (e: Exception) {
-            AuraFxlogger.error(TAG, "Exception caught while applying theme.", e)
+            AuraFxLogger.error(TAG, "Exception caught while applying theme.", e)
             ThemeResult.Error(e)
         }
     }
@@ -101,7 +101,7 @@ open class ThemeManager @Inject constructor(
      * @param theme The theme to apply to system-level interfaces.
      */
     private suspend fun applySystemTheme(theme: AuraTheme) {
-        AuraFxlogger.debug(TAG, "Applying system-level theme: ${theme.name}")
+        AuraFxLogger.debug(TAG, "Applying system-level theme: ${theme.name}")
 
         try {
             // Apply notification theme
@@ -122,36 +122,36 @@ open class ThemeManager @Inject constructor(
             i(TAG, "System-level theme applied successfully: ${theme.name}")
 
         } catch (e: Exception) {
-            AuraFxlogger.error(TAG, "Failed to apply system-level theme", e)
+            AuraFxLogger.error(TAG, "Failed to apply system-level theme", e)
         }
     }
 
     private suspend fun applyNotificationTheme(theme: AuraTheme) {
-        AuraFxlogger.debug(TAG, "Applying notification theme")
+        AuraFxLogger.debug(TAG, "Applying notification theme")
         // Customize notification colors, styles, and presentation
         // In production: Use NotificationManager custom styles
     }
 
     private suspend fun applyNavigationBarTheme(theme: AuraTheme) {
-        AuraFxlogger.debug(TAG, "Applying navigation bar theme")
+        AuraFxLogger.debug(TAG, "Applying navigation bar theme")
         // Set navigation bar color to match theme
         // In production: Use Window.setNavigationBarColor()
     }
 
     private suspend fun applyKeyboardTheme(theme: AuraTheme) {
-        AuraFxlogger.debug(TAG, "Applying keyboard theme")
+        AuraFxLogger.debug(TAG, "Applying keyboard theme")
         // Apply theme to system keyboard if supported
         // In production: Interface with IME theme APIs
     }
 
     private suspend fun applyQuickSettingsTheme(theme: AuraTheme) {
-        AuraFxlogger.debug(TAG, "Applying quick settings theme")
+        AuraFxLogger.debug(TAG, "Applying quick settings theme")
         // Customize quick settings panel colors
         // Requires system-level access
     }
 
     private suspend fun applySystemOverlayTheme(theme: AuraTheme) {
-        AuraFxlogger.debug(TAG, "Applying system overlay theme via OracleDrive")
+        AuraFxLogger.debug(TAG, "Applying system overlay theme via OracleDrive")
         // Use OracleDrive to modify system overlay resources (requires root)
         // This would modify framework-res.apk overlay in a sandbox first
         // In production: Create RRO (Runtime Resource Overlay)
@@ -174,7 +174,7 @@ open class ThemeManager @Inject constructor(
      */
     suspend fun applyTheme(themeName: String) {
         try {
-            AuraFxlogger.debug(TAG, "Applying theme by name: '$themeName'")
+            AuraFxLogger.debug(TAG, "Applying theme by name: '$themeName'")
 
             val themeToApply = when (themeName.lowercase()) {
                 "genesis_default", "default" -> ForestTheme
@@ -186,7 +186,7 @@ open class ThemeManager @Inject constructor(
                 "solar" -> SolarFlareTheme
                 "nature", "forest" -> ForestTheme
                 else -> {
-                    AuraFxlogger.warn(TAG, "Unknown theme: '$themeName', using default")
+                    AuraFxLogger.warn(TAG, "Unknown theme: '$themeName', using default")
                     ForestTheme
                 }
             }
@@ -195,7 +195,7 @@ open class ThemeManager @Inject constructor(
             i(TAG, "Successfully applied theme '${themeToApply.name}'")
 
         } catch (e: Exception) {
-            AuraFxlogger.error(TAG, "Failed to apply theme: $themeName", e)
+            AuraFxLogger.error(TAG, "Failed to apply theme: $themeName", e)
         }
     }
 
@@ -221,7 +221,7 @@ open class ThemeManager @Inject constructor(
                 }
             }
         } catch (e: Exception) {
-            AuraFxlogger.error(TAG, "Error suggesting themes", e)
+            AuraFxLogger.error(TAG, "Error suggesting themes", e)
             emptyList()
         }
     }

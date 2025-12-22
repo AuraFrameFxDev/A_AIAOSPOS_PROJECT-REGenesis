@@ -1,4 +1,4 @@
-﻿package dev.aurakai.auraframefx.models.agent_states
+package dev.aurakai.auraframefx.models.agent_states
 
 import kotlinx.serialization.Serializable
 

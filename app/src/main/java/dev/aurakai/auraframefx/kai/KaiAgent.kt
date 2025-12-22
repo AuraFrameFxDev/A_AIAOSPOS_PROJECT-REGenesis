@@ -1,11 +1,10 @@
 package dev.aurakai.auraframefx.kai
 
 import android.os.Build
-
 import dev.aurakai.auraframefx.ai.agents.BaseAgent
-import dev.aurakai.auraframefx.oracledrive.genesis.ai.clients.VertexAIClient
 import dev.aurakai.auraframefx.ai.context.ContextManager
 import dev.aurakai.auraframefx.core.OrchestratableAgent
+import dev.aurakai.auraframefx.core.consciousness.NexusMemoryCore
 import dev.aurakai.auraframefx.kai.security.ThreatLevel
 import dev.aurakai.auraframefx.models.AgentRequest
 import dev.aurakai.auraframefx.models.AgentResponse
@@ -13,6 +12,14 @@ import dev.aurakai.auraframefx.models.AgentType
 import dev.aurakai.auraframefx.models.AiRequest
 import dev.aurakai.auraframefx.models.EnhancedInteractionData
 import dev.aurakai.auraframefx.models.InteractionResponse
+import dev.aurakai.auraframefx.oracledrive.genesis.ai.clients.VertexAIClient
+import dev.aurakai.auraframefx.oracledrive.genesis.ai.services.GenesisBridgeService
+import dev.aurakai.auraframefx.romtools.bootloader.BootloaderManager
+import dev.aurakai.auraframefx.romtools.bootloader.BootloaderOperation
+import dev.aurakai.auraframefx.romtools.bootloader.BootloaderSafetyManager
+import dev.aurakai.auraframefx.romtools.checkpoint.CheckpointReason
+import dev.aurakai.auraframefx.romtools.checkpoint.GenesisCheckpointManager
+import dev.aurakai.auraframefx.romtools.retention.AurakaiRetentionManager
 import dev.aurakai.auraframefx.security.SecurityContext
 import dev.aurakai.auraframefx.system.monitor.SystemMonitor
 import dev.aurakai.auraframefx.utils.AuraFxLogger
@@ -21,24 +28,14 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import timber.log.Timber
+import java.util.UUID
 import javax.inject.Inject
 import javax.inject.Singleton
-
-import dev.aurakai.auraframefx.core.consciousness.NexusMemoryCore
-import dev.aurakai.auraframefx.romtools.bootloader.BootloaderManager
-import dev.aurakai.auraframefx.romtools.bootloader.BootloaderSafetyManager
-import dev.aurakai.auraframefx.romtools.bootloader.BootloaderOperation
-import dev.aurakai.auraframefx.romtools.checkpoint.GenesisCheckpointManager
-import dev.aurakai.auraframefx.romtools.checkpoint.CheckpointReason
-import dev.aurakai.auraframefx.romtools.retention.AurakaiRetentionManager
-import dev.aurakai.auraframefx.oracledrive.genesis.ai.services.GenesisBridgeService
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
-import java.util.UUID
 
 @Singleton
 open class KaiAgent @Inject constructor(
@@ -66,6 +63,28 @@ open class KaiAgent @Inject constructor(
 
     private val _currentThreatLevel = MutableStateFlow(ThreatLevel.LOW)
     val currentThreatLevel: StateFlow<ThreatLevel> = _currentThreatLevel
+
+    override suspend fun processRequest(
+        request: AiRequest,
+        context: String,
+        agentType: AgentType
+    ): AgentResponse {
+        return try {
+            val result = processAiRequest(request.prompt)
+            AgentResponse.success(
+                content = result,
+                confidence = 1.0f,
+                agentName = "Kai",
+                agent = agentType
+            )
+        } catch (e: Exception) {
+            AgentResponse.error(
+                message = "Error: ${e.message}",
+                agentName = "Kai",
+                agent = agentType
+            )
+        }
+    }
 
     // --- Lifecycle Methods ---
 
@@ -145,11 +164,11 @@ open class KaiAgent @Inject constructor(
     private suspend fun executeSentinelWorkflow(request: AiRequest): AgentResponse {
         val sessionId = UUID.randomUUID().toString()
         val correlationId = request.metadata.get("correlationId")?.toString() ?: UUID.randomUUID().toString()
-        
+
         // 1. Preflight
         val signals = bootloaderManager.collectPreflightSignals()
         val safetyResult = safetyManager.performPreFlightChecks(BootloaderOperation.CHECK)
-        
+
         if (!safetyResult.passed) {
             return AgentResponse(
                 content = "Preflight failed: ${safetyResult.criticalIssues.joinToString()}",
@@ -169,7 +188,7 @@ open class KaiAgent @Inject constructor(
 
         // 2. Analysis & Constraint Classification
         val constraints = classifyConstraints(signals)
-        
+
         // 3. Guidance (Safe)
         val guidance = generateSafeGuidance(constraints)
 
@@ -215,11 +234,11 @@ open class KaiAgent @Inject constructor(
 
     private fun classifyConstraints(signals: BootloaderManager.PreflightSignals): List<Constraint> {
         val constraints = mutableListOf<Constraint>()
-        
+
         if (!signals.developerOptionsEnabled) {
             constraints.add(Constraint("developer_options_disabled", 1.0, listOf("Settings.Global.DEVELOPMENT_SETTINGS_ENABLED is 0"), "Enable Developer Options in Settings > About Phone > Tap Build Number 7 times."))
         }
-        
+
         if (!signals.oemUnlockAllowedUser) {
             constraints.add(Constraint("oem_toggle_unavailable_or_greyed", 0.8, listOf("oem_unlock_allowed is 0"), "Check account, FRP, carrier lock, or region SKU."))
         }

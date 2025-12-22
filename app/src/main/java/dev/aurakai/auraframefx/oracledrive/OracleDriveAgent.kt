@@ -80,6 +80,28 @@ open class OracleDriveAgent @Inject constructor(
         // Initialize storage subsystem
     }
 
+    override suspend fun processRequest(
+        request: AiRequest,
+        context: String,
+        agentType: dev.aurakai.auraframefx.models.AgentType
+    ): dev.aurakai.auraframefx.models.AgentResponse {
+        return try {
+            val result = processAiRequest(request.prompt)
+            dev.aurakai.auraframefx.models.AgentResponse.success(
+                content = result,
+                confidence = 1.0f,
+                agentName = "OracleDrive",
+                agent = agentType
+            )
+        } catch (e: Exception) {
+            dev.aurakai.auraframefx.models.AgentResponse.error(
+                message = "Error: ${e.message}",
+                agentName = "OracleDrive",
+                agent = agentType
+            )
+        }
+    }
+
     override fun initializeAdaptiveProtection() {
         Timber.d("OracleDrive: Initializing adaptive protection for storage")
         // Initialize storage security and encryption

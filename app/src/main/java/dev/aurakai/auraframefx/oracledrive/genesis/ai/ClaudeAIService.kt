@@ -130,7 +130,7 @@ class ClaudeAIService @Inject constructor(
 
         if (cached != null) {
             cacheHits++
-            AuraFxlogger.debug(
+            AuraFxLogger.debug(
                 "ClaudeAIService",
                 "Cache HIT! Saved API call. Stats: $cacheHits hits / $cacheMisses misses (${getCacheHitRate()}% hit rate)"
             )
@@ -138,7 +138,7 @@ class ClaudeAIService @Inject constructor(
         }
 
         cacheMisses++
-        AuraFxlogger.debug(
+        AuraFxLogger.debug(
             "ClaudeAIService",
             "Cache miss. Generating new response. Stats: $cacheHits hits / $cacheMisses misses"
         )
@@ -167,7 +167,12 @@ class ClaudeAIService @Inject constructor(
         // Confidence based on context completeness
         val confidence = calculateConfidence(request, context)
 
-        val agentResponse = AgentResponse(response, confidence,)
+        val agentResponse = AgentResponse.success(
+            content = response,
+            confidence = confidence,
+            agentName = "Claude",
+            agent = AgentType.CLAUDE
+        )
 
         // Store in cache for future requests
         synchronized(responseCache) {
@@ -184,7 +189,7 @@ class ClaudeAIService @Inject constructor(
      * @return A Flow emitting AgentResponse with systematic analysis.
      */
     override fun processRequestFlow(request: AiRequest): Flow<AgentResponse> {
-        AuraFxlogger.debug("ClaudeAIService", "Streaming systematic analysis for: ${request.query}")
+        AuraFxLogger.debug("ClaudeAIService", "Streaming systematic analysis for: ${request.query}")
 
         val response = "**Claude's Systematic Analysis (Streaming):**\n\n" +
                 "Analyzing: ${request.query}\n\n" +
@@ -192,7 +197,14 @@ class ClaudeAIService @Inject constructor(
                 "Checking build system compatibility...\n" +
                 "Synthesizing comprehensive solution..."
 
-        return flowOf(AgentResponse(response, 0.9f,))
+        return flowOf(
+            AgentResponse.success(
+                content = response,
+                confidence = 0.9f,
+                agentName = "Claude",
+                agent = AgentType.CLAUDE
+            )
+        )
     }
 
     /**

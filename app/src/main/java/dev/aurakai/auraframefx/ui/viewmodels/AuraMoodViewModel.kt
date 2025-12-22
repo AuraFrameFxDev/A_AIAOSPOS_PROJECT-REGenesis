@@ -1,4 +1,4 @@
-﻿package dev.aurakai.auraframefx.ui
+package dev.aurakai.auraframefx.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

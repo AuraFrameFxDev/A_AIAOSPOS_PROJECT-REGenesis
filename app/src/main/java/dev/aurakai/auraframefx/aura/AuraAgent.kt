@@ -3,15 +3,15 @@ package dev.aurakai.auraframefx.aura
 // TODO: KaiAgent implementation pending
 import android.R.attr.duration
 import dev.aurakai.auraframefx.ai.agents.BaseAgent
-import dev.aurakai.auraframefx.oracledrive.genesis.ai.clients.VertexAIClient
 import dev.aurakai.auraframefx.ai.context.ContextManager
-import dev.aurakai.auraframefx.oracledrive.genesis.ai.services.AuraAIService
 import dev.aurakai.auraframefx.core.OrchestratableAgent
 import dev.aurakai.auraframefx.models.AgentResponse
 import dev.aurakai.auraframefx.models.AgentType
 import dev.aurakai.auraframefx.models.AiRequest
 import dev.aurakai.auraframefx.models.ThemeConfiguration
 import dev.aurakai.auraframefx.models.ThemePreferences
+import dev.aurakai.auraframefx.oracledrive.genesis.ai.clients.VertexAIClient
+import dev.aurakai.auraframefx.oracledrive.genesis.ai.services.AuraAIService
 import dev.aurakai.auraframefx.oracledrive.genesis.ai.services.KaiAIService
 import dev.aurakai.auraframefx.security.SecurityContext
 import dev.aurakai.auraframefx.utils.AuraFxLogger
@@ -60,6 +60,28 @@ open class AuraAgent @Inject constructor(
 
     fun iRequest() {
         // No-op or default initialization
+    }
+
+    override suspend fun processRequest(
+        request: AiRequest,
+        context: String,
+        agentType: AgentType
+    ): AgentResponse {
+        return try {
+            val result = processAiRequest(request.prompt)
+            AgentResponse.success(
+                content = result,
+                confidence = 1.0f,
+                agentName = "Aura",
+                agent = agentType
+            )
+        } catch (e: Exception) {
+            AgentResponse.error(
+                message = "Error: ${e.message}",
+                agentName = "Aura",
+                agent = agentType
+            )
+        }
     }
 
     private val sessionId: String = "aura_${System.currentTimeMillis()}"

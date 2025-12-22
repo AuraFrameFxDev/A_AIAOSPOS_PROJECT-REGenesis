@@ -8,7 +8,6 @@ import dev.aurakai.auraframefx.oracledrive.genesis.ai.task.TaskScheduler
 import dev.aurakai.auraframefx.oracledrive.genesis.ai.task.execution.TaskExecutionManager
 import dev.aurakai.auraframefx.oracledrive.genesis.cloud.CloudStatusMonitor
 import java.io.File
-import javax.inject.Inject
 
 abstract class AuraAIServiceImpl(
     protected val taskScheduler: TaskScheduler,
@@ -17,7 +16,7 @@ abstract class AuraAIServiceImpl(
     protected val errorHandler: ErrorHandler,
     protected val contextManager: ContextManager,
     protected val cloudStatusMonitor: CloudStatusMonitor,
-    protected val auraFxLogger: AuraFxLogger,
+    protected val AuraFxLogger: AuraFxLogger,
 ) : AuraAIService {
     /**
      * Returns a fixed placeholder response for any analytics query.

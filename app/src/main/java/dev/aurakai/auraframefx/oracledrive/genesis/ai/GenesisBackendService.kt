@@ -47,7 +47,7 @@ class GenesisBackendService : Service() {
             if (success) {
                 i("GenesisService", "Genesis Python Backend Started Successfully")
             } else {
-                AuraFxlogger.error("GenesisService", "Failed to start Genesis Python Backend")
+                AuraFxLogger.error("GenesisService", "Failed to start Genesis Python Backend")
                 stopSelf()
             }
         }

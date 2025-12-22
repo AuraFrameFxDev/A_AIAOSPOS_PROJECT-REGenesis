@@ -1,4 +1,4 @@
-﻿package dev.aurakai.auraframefx.viewmodel
+package dev.aurakai.auraframefx.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -92,9 +92,9 @@ class ConferenceRoomViewModel @Inject constructor(
         }
     }
 
-    // ═══════════════════════════════════════════════════════════════════════════
+    // ---------------------------------------------------------------------------
     // Conference Room Message Routing - ALL 5 MASTER AGENTS
-    // ═══════════════════════════════════════════════════════════════════════════
+    // ---------------------------------------------------------------------------
     /*override*/ /**
      * Routes the given message to the appropriate AI service based on the sender and appends the first response to the conversation messages.
      *
@@ -125,7 +125,7 @@ class ConferenceRoomViewModel @Inject constructor(
             AgentCapabilityCategory.SPECIALIZED -> {
                 // Cascade service placeholder
                 flow {
-                    val response = AgentResponse(
+                    val response = AgentResponse.success(
                         content = "Cascade service placeholder",
                         confidence = 0.5f,
                         agent = AgentType.CASCADE
@@ -137,7 +137,7 @@ class ConferenceRoomViewModel @Inject constructor(
             AgentCapabilityCategory.GENERAL -> {
                 // Claude service placeholder
                 flow {
-                    val response = AgentResponse(
+                    val response = AgentResponse.success(
                         content = "Claude service placeholder",
                         confidence = 0.5f,
                         agent = AgentType.SYSTEM
@@ -149,7 +149,7 @@ class ConferenceRoomViewModel @Inject constructor(
             AgentCapabilityCategory.COORDINATION -> {
                 // Genesis service placeholder
                 flow {
-                    val response = AgentResponse(
+                    val response = AgentResponse.success(
                         content = "Genesis service placeholder",
                         confidence = 0.5f,
                         agent = AgentType.GENESIS

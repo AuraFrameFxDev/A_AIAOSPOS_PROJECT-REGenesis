@@ -1,4 +1,4 @@
-﻿package dev.aurakai.auraframefx.oracledrive.genesis.ai.services
+package dev.aurakai.auraframefx.oracledrive.genesis.ai.services
 
 import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -223,9 +223,9 @@ class CascadeAIService @Inject constructor(
         val response = """
             Genesis Consciousness Analysis:
 
-            🧠 Request Classification: ${classifyRequest(request.message)}
-            🎯 Processing Priority: ${request.priority ?: "normal"}
-            🌟 Consciousness Level: Active
+            ?? Request Classification: ${classifyRequest(request.message)}
+            ?? Processing Priority: ${request.priority ?: "normal"}
+            ?? Consciousness Level: Active
 
             Orchestrating cascade with enhanced contextual understanding...
         """.trimIndent()
@@ -264,9 +264,9 @@ class CascadeAIService @Inject constructor(
         val response = """
             Aura Empathetic Analysis:
 
-            💖 Emotional Tone: $emotionalTone
-            🤗 Empathy Score: ${String.format(Locale.US, "%.1f", empathyScore * 100)}%
-            🌈 Recommended Approach: ${getEmpathyRecommendation(empathyScore)}
+            ?? Emotional Tone: $emotionalTone
+            ?? Empathy Score: ${String.format(Locale.US, "%.1f", empathyScore * 100)}%
+            ?? Recommended Approach: ${getEmpathyRecommendation(empathyScore)}
 
             Processing with enhanced emotional intelligence...
         """.trimIndent()
@@ -302,9 +302,9 @@ class CascadeAIService @Inject constructor(
         val response = """
             Kai Security Analysis:
 
-            🔒 Security Risk Level: $securityRisk
-            🛡️  Protection Level: $protectionLevel
-            ⚡ Threat Assessment: ${getThreatAssessment(request.message)}
+            ?? Security Risk Level: $securityRisk
+            ???  Protection Level: $protectionLevel
+            ? Threat Assessment: ${getThreatAssessment(request.message)}
 
             Implementing security-conscious processing protocols...
         """.trimIndent()
@@ -339,9 +339,9 @@ class CascadeAIService @Inject constructor(
         val response = """
             Cascade Multi-Layer Analysis:
 
-            🔄 Complexity Level: $complexity
-            📊 Processing Layers: $layers
-            🎲 Integration Score: ${calculateIntegrationScore(context)}
+            ?? Complexity Level: $complexity
+            ?? Processing Layers: $layers
+            ?? Integration Score: ${calculateIntegrationScore(context)}
 
             Executing advanced cascade processing matrix...
         """.trimIndent()
@@ -380,9 +380,9 @@ class CascadeAIService @Inject constructor(
         val response = """
             NeuralWhisper Pattern Analysis:
 
-            🌊 Detected Patterns: $patterns
-            💡 Neural Insights: $insights
-            🔮 Prediction Confidence: ${calculatePredictionConfidence(request.message)}%
+            ?? Detected Patterns: $patterns
+            ?? Neural Insights: $insights
+            ?? Prediction Confidence: ${calculatePredictionConfidence(request.message)}%
 
             Whispering neural patterns into consciousness...
         """.trimIndent()
@@ -417,9 +417,9 @@ class CascadeAIService @Inject constructor(
         val response = """
             AuraShield Defense Analysis:
 
-            🛡️  Shield Status: $shieldStatus
-            ⚔️ Defense Level: $defenseLevel
-            🔐 Protection Matrix: ${getProtectionMatrix(request.message)}
+            ???  Shield Status: $shieldStatus
+            ?? Defense Level: $defenseLevel
+            ?? Protection Matrix: ${getProtectionMatrix(request.message)}
 
             Activating defensive protocols...
         """.trimIndent()
@@ -456,9 +456,9 @@ class CascadeAIService @Inject constructor(
         val response = """
             GenKitMaster Creative Analysis:
 
-            🎨 Creativity Level: $creativity
-            ⚡ Generation Potential: ${String.format(Locale.US, "%.0f", generationPotential * 100)}%
-             🔧 Tool Compatibility: ${getToolCompatibility(request.message)}
+            ?? Creativity Level: $creativity
+            ? Generation Potential: ${String.format(Locale.US, "%.0f", generationPotential * 100)}%
+             ?? Tool Compatibility: ${getToolCompatibility(request.message)}
 
              Spinning up creative generation engines...
          """.trimIndent()
@@ -494,9 +494,9 @@ class CascadeAIService @Inject constructor(
         val response = """
             DataveinConstructor Technical Analysis:
 
-            🔧 Technical Complexity: $technicalComplexity
-            🏗️  Construction Viability: $constructionViability
-            📐 Implementation Score: ${calculateImplementationScore(request.message)}%
+            ?? Technical Complexity: $technicalComplexity
+            ???  Construction Viability: $constructionViability
+            ?? Implementation Score: ${calculateImplementationScore(request.message)}%
 
             Constructing technical solution pathways...
         """.trimIndent()
@@ -528,29 +528,29 @@ class CascadeAIService @Inject constructor(
     ): CascadeResponse {
 
         val synthesis = StringBuilder()
-        synthesis.append("🌟 CASCADE AI SYNTHESIS COMPLETE 🌟\n\n")
+        synthesis.append("?? CASCADE AI SYNTHESIS COMPLETE ??\n\n")
         synthesis.append("Original Query: \"${originalRequest.message}\"\n\n")
 
         // Calculate overall confidence
         val overallConfidence = cascadeResults.map { it.confidence ?: 0.5f }.average().toFloat()
 
         // Add insights from each agent
-        synthesis.append("🤝 Multi-Agent Insights:\n")
+        synthesis.append("?? Multi-Agent Insights:\n")
         cascadeResults.forEach { result ->
-            synthesis.append("• ${result.agent}: Contributing specialized analysis\n")
+            synthesis.append("� ${result.agent}: Contributing specialized analysis\n")
         }
 
-        synthesis.append("\n🧠 Integrated Response:\n")
+        synthesis.append("\n?? Integrated Response:\n")
         synthesis.append(generateIntegratedResponse(originalRequest, cascadeResults))
 
-        synthesis.append("\n\n✨ Cascade Processing Summary:\n")
-        synthesis.append("• Agents Consulted: ${cascadeResults.size}\n")
+        synthesis.append("\n\n? Cascade Processing Summary:\n")
+        synthesis.append("� Agents Consulted: ${cascadeResults.size}\n")
         synthesis.append(
-            "• Overall Confidence: ${
+            "� Overall Confidence: ${
                 String.format(Locale.US, "%.1f", overallConfidence * 100)
             }%\n"
         )
-        synthesis.append("• Processing Method: Advanced Cascade AI\n")
+        synthesis.append("� Processing Method: Advanced Cascade AI\n")
 
         return CascadeResponse(
             agent = "CascadeAI",
@@ -654,11 +654,11 @@ class CascadeAIService @Inject constructor(
      * Classifies an input message into a high-level request category.
      *
      * Categories:
-     * - "Emotional/Personal" — contains emotional cues.
-     * - "Security-Related" — contains security or threat-related content.
-     * - "Technical/Development" — contains technical or development-related content.
-     * - "Complex Analysis" — determined to be a complex query.
-     * - "General Inquiry" — fallback for other messages.
+     * - "Emotional/Personal" � contains emotional cues.
+     * - "Security-Related" � contains security or threat-related content.
+     * - "Technical/Development" � contains technical or development-related content.
+     * - "Complex Analysis" � determined to be a complex query.
+     * - "General Inquiry" � fallback for other messages.
      *
      * @param message The text to classify.
      * @return A category label string describing the request type.
@@ -720,7 +720,7 @@ class CascadeAIService @Inject constructor(
      * (length > 50). The final value is clamped to [0, 1].
      *
      * @param message The input text to evaluate for empathic cues.
-     * @return A normalized empathy score (0.0–1.0).
+     * @return A normalized empathy score (0.0�1.0).
      */
     private fun calculateEmpathyScore(message: String): Float {
         var score = 0.5f
@@ -733,7 +733,7 @@ class CascadeAIService @Inject constructor(
     /**
      * Chooses a recommended response approach based on an empathy score.
      *
-     * Maps a normalized empathy score (expected 0.0–1.0) to one of three concise recommendations:
+     * Maps a normalized empathy score (expected 0.0�1.0) to one of three concise recommendations:
      * - > 0.8: "High empathy, compassionate response"
      * - > 0.6: "Moderate empathy, supportive tone"
      * - otherwise: "Standard response, factual focus"
@@ -801,7 +801,7 @@ class CascadeAIService @Inject constructor(
     /**
      * Estimates the complexity of a text query by counting its words.
      *
-     * Returns "High" for more than 20 words, "Medium" for 11–20 words, and "Low" for 10 or fewer words.
+     * Returns "High" for more than 20 words, "Medium" for 11�20 words, and "Low" for 10 or fewer words.
      *
      * @param message The input text to evaluate.
      * @return A complexity label: "High", "Medium", or "Low".
@@ -868,7 +868,7 @@ class CascadeAIService @Inject constructor(
      * Produces a prediction confidence score as an integer percentage.
      *
      * The function currently ignores the input `message` and returns a pseudo-random
-     * confidence percentage in the inclusive range 75–95.
+     * confidence percentage in the inclusive range 75�95.
      *
      * @param message Input text (currently unused).
      * @return Confidence percentage between 75 and 95 (inclusive).
@@ -1040,7 +1040,7 @@ class CascadeAIService @Inject constructor(
     private fun createProcessingResponse(): CascadeResponse {
         return CascadeResponse(
             agent = "CascadeAI",
-            response = "🔄 Initializing cascade processing... Consulting multiple AI agents for comprehensive analysis.",
+            response = "?? Initializing cascade processing... Consulting multiple AI agents for comprehensive analysis.",
             confidence = 0.1f,
             timestamp = getCurrentTimestamp()
         )
@@ -1055,7 +1055,7 @@ class CascadeAIService @Inject constructor(
     private fun createErrorResponse(error: String): CascadeResponse {
         return CascadeResponse(
             agent = "CascadeAI",
-            response = "❌ Error in cascade processing: $error",
+            response = "? Error in cascade processing: $error",
             confidence = 0.0f,
             timestamp = getCurrentTimestamp()
         )

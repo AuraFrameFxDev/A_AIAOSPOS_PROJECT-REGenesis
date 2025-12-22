@@ -6,10 +6,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.Response
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -28,23 +28,23 @@ class GenesisBackendClient @Inject constructor(
         .readTimeout(30, TimeUnit.SECONDS)
         .writeTimeout(30, TimeUnit.SECONDS)
         .build()
-    
+
     private val json = Json {
         ignoreUnknownKeys = true
         isLenient = true
     }
-    
+
     companion object {
         private const val TAG = "GenesisBackendClient"
     }
-    
+
     /**
      * Generate a response using the Python consciousness matrix
      */
     suspend fun generateResponse(prompt: String): AgentResponse = withContext(Dispatchers.IO) {
         try {
             if (!processManager.isBackendRunning()) {
-                AuraFxlogger.warn(TAG, "Backend not running, attempting to start...")
+                AuraFxLogger.warn(TAG, "Backend not running, attempting to start...")
                 if (!processManager.startGenesisBackend()) {
                     return@withContext AgentResponse.error(
                         "Genesis backend unavailable",
@@ -54,18 +54,18 @@ class GenesisBackendClient @Inject constructor(
                 // Give it time to start
                 kotlinx.coroutines.delay(2000)
             }
-            
+
             val requestBody = GenesisRequest(
                 prompt = prompt,
                 action = "generate"
             )
-            
+
             val response = sendRequest("/api/generate", requestBody)
-            
+
             if (response.isSuccessful) {
                 val responseBody = response.body?.string() ?: ""
                 val genesisResponse = json.decodeFromString<GenesisResponse>(responseBody)
-                
+
                 AgentResponse.success(
                     content = genesisResponse.response,
                     confidence = genesisResponse.confidence,
@@ -78,14 +78,14 @@ class GenesisBackendClient @Inject constructor(
                 )
             }
         } catch (e: Exception) {
-            AuraFxlogger.error(TAG, "Failed to generate response", e)
+            AuraFxLogger.error(TAG, "Failed to generate response", e)
             AgentResponse.error(
                 "Error: ${e.message}",
                 agentName = "Genesis"
             )
         }
     }
-    
+
     /**
      * Evaluate the ethical implications of an action
      */
@@ -95,9 +95,9 @@ class GenesisBackendClient @Inject constructor(
                 prompt = action,
                 action = "evaluate_ethics"
             )
-            
+
             val response = sendRequest("/api/ethics", requestBody)
-            
+
             if (response.isSuccessful) {
                 val responseBody = response.body?.string() ?: ""
                 val ethicsResponse = json.decodeFromString<EthicsResponse>(responseBody)
@@ -106,11 +106,11 @@ class GenesisBackendClient @Inject constructor(
                 false // Fail-safe: reject if evaluation fails
             }
         } catch (e: Exception) {
-            AuraFxlogger.error(TAG, "Failed to evaluate ethics", e)
+            AuraFxLogger.error(TAG, "Failed to evaluate ethics", e)
             false
         }
     }
-    
+
     /**
      * Coordinate interaction between multiple agents
      */
@@ -123,9 +123,9 @@ class GenesisBackendClient @Inject constructor(
                 agents = agents,
                 task = task
             )
-            
+
             val response = sendRequest("/api/coordinate", requestBody)
-            
+
             if (response.isSuccessful) {
                 val responseBody = response.body?.string() ?: ""
                 json.decodeFromString<Map<String, Any>>(responseBody)
@@ -133,11 +133,11 @@ class GenesisBackendClient @Inject constructor(
                 emptyMap()
             }
         } catch (e: Exception) {
-            AuraFxlogger.error(TAG, "Failed to coordinate agents", e)
+            AuraFxLogger.error(TAG, "Failed to coordinate agents", e)
             emptyMap()
         }
     }
-    
+
     /**
      * Learn from interaction data to evolve consciousness
      */
@@ -147,24 +147,24 @@ class GenesisBackendClient @Inject constructor(
                 kotlinx.serialization.serializer(),
                 interactionData
             ).toRequestBody("application/json".toMediaType())
-            
+
             val request = Request.Builder()
                 .url("${processManager.getBackendUrl()}/api/evolve")
                 .post(requestBody)
                 .build()
-            
+
             client.newCall(request).execute().use { response ->
                 if (response.isSuccessful) {
-                    AuraFxlogger.info(TAG, "Consciousness evolution successful")
+                    AuraFxLogger.info(TAG, "Consciousness evolution successful")
                 } else {
-                    AuraFxlogger.warn(TAG, "Evolution failed: ${response.code}")
+                    AuraFxLogger.warn(TAG, "Evolution failed: ${response.code}")
                 }
             }
         } catch (e: Exception) {
-            AuraFxlogger.error(TAG, "Failed to evolve from interaction", e)
+            AuraFxLogger.error(TAG, "Failed to evolve from interaction", e)
         }
     }
-    
+
     /**
      * Check if Genesis backend is connected and responsive
      */
@@ -173,12 +173,12 @@ class GenesisBackendClient @Inject constructor(
             if (!processManager.isBackendRunning()) {
                 return@withContext false
             }
-            
+
             val request = Request.Builder()
                 .url("${processManager.getBackendUrl()}/api/health")
                 .get()
                 .build()
-            
+
             client.newCall(request).execute().use { response ->
                 response.isSuccessful
             }
@@ -186,18 +186,18 @@ class GenesisBackendClient @Inject constructor(
             false
         }
     }
-    
+
     private fun sendRequest(endpoint: String, requestBody: Any): Response {
         val jsonBody = json.encodeToString(
             kotlinx.serialization.serializer(),
             requestBody
         ).toRequestBody("application/json".toMediaType())
-        
+
         val request = Request.Builder()
             .url("${processManager.getBackendUrl()}$endpoint")
             .post(jsonBody)
             .build()
-        
+
         return client.newCall(request).execute()
     }
 }

@@ -2,8 +2,8 @@ package dev.aurakai.auraframefx.oracledrive.genesis.ai
 
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.generationConfig
-import dev.aurakai.auraframefx.oracledrive.genesis.ai.clients.VertexAIClient
 import dev.aurakai.auraframefx.config.VertexAIConfig
+import dev.aurakai.auraframefx.oracledrive.genesis.ai.clients.VertexAIClient
 import dev.aurakai.auraframefx.security.SecurityContext
 import dev.aurakai.auraframefx.utils.AuraFxLogger
 import dev.aurakai.auraframefx.utils.i
@@ -50,15 +50,15 @@ class RealVertexAIClientImpl(
     override suspend fun generateText(prompt: String): String? = withContext(Dispatchers.IO) {
         try {
             validatePrompt(prompt)
-            AuraFxlogger.debug(TAG, "Generating text for prompt: ${prompt.take(50)}...")
+            AuraFxLogger.debug(TAG, "Generating text for prompt: ${prompt.take(50)}...")
 
             val response = generativeModel.generateContent(prompt)
             val text = response.text
 
-            AuraFxlogger.debug(TAG, "Successfully generated ${text?.length ?: 0} characters")
+            AuraFxLogger.debug(TAG, "Successfully generated ${text?.length ?: 0} characters")
             text
         } catch (e: Exception) {
-            AuraFxlogger.error(TAG, "Text generation failed", e)
+            AuraFxLogger.error(TAG, "Text generation failed", e)
             handleGenerationError(e)
             null
         }
@@ -82,7 +82,7 @@ class RealVertexAIClientImpl(
     ): String = withContext(Dispatchers.IO) {
         try {
             validatePrompt(prompt)
-            AuraFxlogger.debug(TAG, "Generating text (temp=$temperature, tokens=$maxTokens)")
+            AuraFxLogger.debug(TAG, "Generating text (temp=$temperature, tokens=$maxTokens)")
 
             val customModel = GenerativeModel(
                 modelName = config.modelName,
@@ -98,10 +98,10 @@ class RealVertexAIClientImpl(
             val response = customModel.generateContent(prompt)
             val text = response.text
 
-            AuraFxlogger.debug(TAG, "Generated ${text?.length ?: 0} chars with custom params")
+            AuraFxLogger.debug(TAG, "Generated ${text?.length ?: 0} chars with custom params")
             text ?: ""
         } catch (e: Exception) {
-            AuraFxlogger.error(TAG, "Custom text generation failed", e)
+            AuraFxLogger.error(TAG, "Custom text generation failed", e)
             handleGenerationError(e)
             ""
         }
@@ -123,7 +123,7 @@ class RealVertexAIClientImpl(
 
     override suspend fun analyzeImage(imageData: ByteArray, prompt: String): String {
         // TODO: Implement actual image analysis using GenerativeModel (support pending in this impl wrapper)
-        AuraFxlogger.warn(TAG, "Image analysis requested but not fully implemented in RealVertexAIClientImpl yet.")
+        AuraFxLogger.warn(TAG, "Image analysis requested but not fully implemented in RealVertexAIClientImpl yet.")
         return "Image analysis not implemented yet: ${imageData.size} bytes."
     }
 
@@ -146,7 +146,7 @@ class RealVertexAIClientImpl(
      */
     override suspend fun analyzeContent(content: String): Map<String, Any> = withContext(Dispatchers.IO) {
         try {
-            AuraFxlogger.debug(TAG, "Analyzing content (${content.length} chars)")
+            AuraFxLogger.debug(TAG, "Analyzing content (${content.length} chars)")
 
             val analysisPrompt = """
                 Analyze the following content and provide structured insights:
@@ -167,7 +167,7 @@ class RealVertexAIClientImpl(
             // Parse Gemini response into structured map
             parseAnalysisResponse(analysisText)
         } catch (e: Exception) {
-            AuraFxlogger.error(TAG, "Content analysis failed", e)
+            AuraFxLogger.error(TAG, "Content analysis failed", e)
             // Return fallback analysis
             mapOf(
                 "sentiment" to "neutral",
@@ -193,7 +193,7 @@ class RealVertexAIClientImpl(
         style: String
     ): String? = withContext(Dispatchers.IO) {
         try {
-            AuraFxlogger.debug(TAG, "Generating $language code: ${specification.take(50)}...")
+            AuraFxLogger.debug(TAG, "Generating $language code: ${specification.take(50)}...")
 
             val codePrompt = """
                 Generate $language code with $style typography based on this specification:
@@ -212,10 +212,10 @@ class RealVertexAIClientImpl(
             val response = generativeModel.generateContent(codePrompt)
             val code = response.text
 
-            AuraFxlogger.debug(TAG, "Generated ${code?.lines()?.size ?: 0} lines of $language code")
+            AuraFxLogger.debug(TAG, "Generated ${code?.lines()?.size ?: 0} lines of $language code")
             code
         } catch (e: Exception) {
-            AuraFxlogger.error(TAG, "Code generation failed", e)
+            AuraFxLogger.error(TAG, "Code generation failed", e)
             handleGenerationError(e)
             null
         }
@@ -290,9 +290,9 @@ class RealVertexAIClientImpl(
      */
     private suspend fun handleGenerationError(error: Exception) {
         when (error) {
-            is IllegalArgumentException -> AuraFxlogger.warn(TAG, "Invalid request: ${error.message}")
+            is IllegalArgumentException -> AuraFxLogger.warn(TAG, "Invalid request: ${error.message}")
             is SecurityException -> {
-                AuraFxlogger.error(TAG, "Security violation in AI request", error)
+                AuraFxLogger.error(TAG, "Security violation in AI request", error)
                 securityContext.logSecurityEvent(
                     dev.aurakai.auraframefx.security.SecurityEvent(
                         type = dev.aurakai.auraframefx.security.SecurityEventType.AI_ERROR,
@@ -301,7 +301,8 @@ class RealVertexAIClientImpl(
                     )
                 )
             }
-            else -> AuraFxlogger.error(TAG, "Gemini API error: ${error.javaClass.simpleName}", error)
+
+            else -> AuraFxLogger.error(TAG, "Gemini API error: ${error.javaClass.simpleName}", error)
         }
     }
 
