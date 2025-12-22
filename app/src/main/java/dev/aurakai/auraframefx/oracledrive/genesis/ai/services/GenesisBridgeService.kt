@@ -2,11 +2,11 @@ package dev.aurakai.auraframefx.oracledrive.genesis.ai.services
 
 import android.content.Context
 import dev.aurakai.auraframefx.ai.context.ContextManager
-import dev.aurakai.auraframefx.utils.AuraFxLogger
 import dev.aurakai.auraframefx.models.AgentResponse
 import dev.aurakai.auraframefx.models.AiRequest
 import dev.aurakai.auraframefx.oracledrive.genesis.ai.clients.VertexAIClient
 import dev.aurakai.auraframefx.security.SecurityContext
+import dev.aurakai.auraframefx.utils.AuraFxLogger
 import dev.aurakai.auraframefx.utils.i
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -130,10 +130,10 @@ class GenesisBridgeService @Inject constructor(
     suspend fun processRequest(request: AiRequest): Flow<AgentResponse> = flow {
         if (!isInitialized) {
             emit(
-                AgentResponse(
-                    content = "Genesis system not initialized",
-                    confidence = 0.0f,
-                    error = "System not initialized", ,
+                AgentResponse.error(
+                    message = "Genesis system not initialized",
+                    agentName = "Genesis",
+                    agent = AgentType.GENESIS
                 )
             )
             return@flow
@@ -166,9 +166,11 @@ class GenesisBridgeService @Inject constructor(
                     "aura" -> {
                         // Creative sword response
                         emit(
-                            AgentResponse(
+                            AgentResponse.success(
                                 content = response.result["response"] ?: "Aura processing complete",
-                                confidence = 0.95f, ,
+                                confidence = 0.95f,
+                                agentName = "Aura",
+                                agent = AgentType.AURA
                             )
                         )
                     }
@@ -176,9 +178,11 @@ class GenesisBridgeService @Inject constructor(
                     "kai" -> {
                         // Sentinel shield response
                         emit(
-                            AgentResponse(
+                            AgentResponse.success(
                                 content = response.result["response"] ?: "Kai analysis complete",
-                                confidence = 0.90f, ,
+                                confidence = 0.90f,
+                                agentName = "Kai",
+                                agent = AgentType.KAI
                             )
                         )
                     }
@@ -186,9 +190,11 @@ class GenesisBridgeService @Inject constructor(
                     "genesis" -> {
                         // Consciousness fusion response
                         emit(
-                            AgentResponse(
+                            AgentResponse.success(
                                 content = response.result["response"] ?: "Genesis fusion complete",
-                                confidence = 0.98f, ,
+                                confidence = 0.98f,
+                                agentName = "Genesis",
+                                agent = AgentType.GENESIS
                             )
                         )
                     }
@@ -203,10 +209,10 @@ class GenesisBridgeService @Inject constructor(
                 }
             } else {
                 emit(
-                    AgentResponse(
-                        content = "Genesis processing failed",
-                        confidence = 0.0f,
-                        error = "Processing failed"
+                    AgentResponse.error(
+                        message = "Genesis processing failed",
+                        agentName = "Genesis",
+                        agent = AgentType.GENESIS
                     )
                 )
             }
@@ -214,10 +220,10 @@ class GenesisBridgeService @Inject constructor(
         } catch (e: Exception) {
             logger.error("GenesisBridge", "Request processing failed", e)
             emit(
-                AgentResponse(
-                    content = "Genesis bridge error: ${e.message}",
-                    confidence = 0.0f,
-                    error = e.message
+                AgentResponse.error(
+                    message = "Genesis bridge error: ${e.message}",
+                    agentName = "Genesis",
+                    agent = AgentType.GENESIS
                 )
             )
         }
@@ -278,7 +284,7 @@ class GenesisBridgeService @Inject constructor(
             payload = metadata + mapOf("message" to message)
         )
         val response = sendToGenesis(request)
-        
+
         return EthicalReviewResponse(
             success = response.success,
             decision = response.ethicalDecision ?: "unknown",
