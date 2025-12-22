@@ -13,6 +13,8 @@ import dev.aurakai.auraframefx.models.EnhancedInteractionData
 import dev.aurakai.auraframefx.models.InteractionResponse
 import dev.aurakai.auraframefx.models.ThemeConfiguration
 import dev.aurakai.auraframefx.models.ThemePreferences
+import dev.aurakai.auraframefx.models.agent_states.ProcessingState
+import dev.aurakai.auraframefx.models.agent_states.VisionState
 import dev.aurakai.auraframefx.oracledrive.genesis.ai.clients.VertexAIClient
 import dev.aurakai.auraframefx.oracledrive.genesis.ai.services.AuraAIService
 import dev.aurakai.auraframefx.oracledrive.genesis.ai.services.KaiAIService
