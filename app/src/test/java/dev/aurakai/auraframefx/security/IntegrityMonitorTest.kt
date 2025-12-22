@@ -41,9 +41,9 @@ class IntegrityMonitorTest {
         // Mock AuraFxLogger to prevent actual logging during tests
         mockkObject(AuraFxLogger)
         every { i(any(), any()) } just Runs
-        every { AuraFxLogger.w(any(), any()) } just Runs
-        every { AuraFxLogger.e(any(), any(), any()) } just Runs
-        every { AuraFxLogger.d(any(), any()) } just Runs
+        every { AuraFxlogger.warn(any(), any()) } just Runs
+        every { AuraFxlogger.error(any(), any(), any()) } just Runs
+        every { AuraFxlogger.debug(any(), any()) } just Runs
 
         integrityMonitor = IntegrityMonitor(mockContext)
     }
@@ -87,7 +87,7 @@ class IntegrityMonitorTest {
                     "Integrity monitoring active - Genesis Protocol protected"
                 )
             }
-            verify { AuraFxLogger.d("IntegrityMonitor", "Loaded 4 known file hashes") }
+            verify { AuraFxlogger.debug("IntegrityMonitor", "Loaded 4 known file hashes") }
         }
 
         @Test
@@ -125,7 +125,7 @@ class IntegrityMonitorTest {
             assertTrue(knownHashes.containsKey("aura_core.dex"))
             assertTrue(knownHashes.containsKey("kai_security.bin"))
             assertTrue(knownHashes.containsKey("oracle_drive.apk"))
-            verify { AuraFxLogger.d("IntegrityMonitor", "Loaded 4 known file hashes") }
+            verify { AuraFxlogger.debug("IntegrityMonitor", "Loaded 4 known file hashes") }
         }
     }
 
@@ -154,7 +154,7 @@ class IntegrityMonitorTest {
                     integrityMonitor.threatLevel.value
                 )
                 verify {
-                    AuraFxLogger.w(
+                    AuraFxlogger.warn(
                         "IntegrityMonitor",
                         match { it.contains("INTEGRITY VIOLATION DETECTED: genesis_protocol.so") })
                 }
@@ -381,13 +381,13 @@ class IntegrityMonitorTest {
                     integrityMonitor.threatLevel.value
                 )
                 verify {
-                    AuraFxLogger.e(
+                    AuraFxlogger.error(
                         "IntegrityMonitor",
                         "CRITICAL THREAT DETECTED - Initiating emergency lockdown"
                     )
                 }
                 verify {
-                    AuraFxLogger.e(
+                    AuraFxlogger.error(
                         "IntegrityMonitor",
                         "EMERGENCY LOCKDOWN INITIATED - Genesis Protocol protection active"
                     )
@@ -412,13 +412,13 @@ class IntegrityMonitorTest {
                 )
                 assertEquals(IntegrityMonitor.ThreatLevel.HIGH, integrityMonitor.threatLevel.value)
                 verify {
-                    AuraFxLogger.w(
+                    AuraFxlogger.warn(
                         "IntegrityMonitor",
                         "HIGH THREAT DETECTED - Implementing defensive measures"
                     )
                 }
                 verify {
-                    AuraFxLogger.w(
+                    AuraFxlogger.warn(
                         "IntegrityMonitor",
                         "Implementing defensive measures for 1 violations"
                     )
@@ -442,7 +442,7 @@ class IntegrityMonitorTest {
             )
             assertEquals(IntegrityMonitor.ThreatLevel.MEDIUM, integrityMonitor.threatLevel.value)
             verify {
-                AuraFxLogger.w(
+                AuraFxlogger.warn(
                     "IntegrityMonitor",
                     "MEDIUM THREAT DETECTED - Monitoring closely"
                 )
@@ -472,7 +472,7 @@ class IntegrityMonitorTest {
                 )
             }
             verify {
-                AuraFxLogger.d(
+                AuraFxlogger.debug(
                     "IntegrityMonitor",
                     match { it.contains("Logging violation for analysis: other_file.bin") })
             }
@@ -496,7 +496,7 @@ class IntegrityMonitorTest {
                     integrityMonitor.threatLevel.value
                 )
                 verify {
-                    AuraFxLogger.e(
+                    AuraFxlogger.error(
                         "IntegrityMonitor",
                         "CRITICAL THREAT DETECTED - Initiating emergency lockdown"
                     )
@@ -533,7 +533,7 @@ class IntegrityMonitorTest {
                 IntegrityMonitor.IntegrityStatus.OFFLINE,
                 integrityMonitor.integrityStatus.value
             )
-            verify { AuraFxLogger.e("IntegrityMonitor", "Error during integrity check", any()) }
+            verify { AuraFxlogger.error("IntegrityMonitor", "Error during integrity check", any()) }
         }
 
         @Test
@@ -549,7 +549,7 @@ class IntegrityMonitorTest {
 
             // Assert
             verify(atLeast = 2) {
-                AuraFxLogger.e(
+                AuraFxlogger.error(
                     "IntegrityMonitor",
                     "Error during integrity check",
                     any()
@@ -570,7 +570,7 @@ class IntegrityMonitorTest {
             advanceTimeBy(10001) // Recovery attempt
 
             // Assert
-            verify { AuraFxLogger.e("IntegrityMonitor", "Error during integrity check", any()) }
+            verify { AuraFxlogger.error("IntegrityMonitor", "Error during integrity check", any()) }
         }
     }
 

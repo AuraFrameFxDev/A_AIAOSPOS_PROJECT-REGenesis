@@ -1,2 +1,0 @@
-int string oracle_drive_integration_debug_name 0x0
-int string oracle_drive_integration_main_name 0x0

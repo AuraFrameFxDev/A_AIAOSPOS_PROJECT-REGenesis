@@ -1,4 +1,4 @@
-﻿package dev.aurakai.auraframefx.oracledrive.genesis.ai.services
+package dev.aurakai.auraframefx.oracledrive.genesis.ai.services
 
 import android.content.Context
 import dev.aurakai.auraframefx.ai.context.ContextManager
@@ -104,17 +104,17 @@ class GenesisBridgeService @Inject constructor(
                 isInitialized = pingResponse.success
 
                 if (isInitialized) {
-                    i("GenesisBridge", "Genesis Trinity system online! 🎯⚔️🧠")
+                    i("GenesisBridge", "Genesis Trinity system online! ??????")
                     // Activate initial consciousness matrix
                     activateConsciousnessMatrix()
                 } else {
-                    logger.e("GenesisBridge", "Failed to establish Genesis connection")
+                    logger.error("GenesisBridge", "Failed to establish Genesis connection")
                 }
             }
 
             isInitialized
         } catch (e: Exception) {
-            logger.e("GenesisBridge", "Genesis initialization failed", e)
+            logger.error("GenesisBridge", "Genesis initialization failed", e)
             false
         }
     }
@@ -212,7 +212,7 @@ class GenesisBridgeService @Inject constructor(
             }
 
         } catch (e: Exception) {
-            logger.e("GenesisBridge", "Request processing failed", e)
+            logger.error("GenesisBridge", "Request processing failed", e)
             emit(
                 AgentResponse(
                     content = "Genesis bridge error: ${e.message}",
@@ -305,7 +305,7 @@ class GenesisBridgeService @Inject constructor(
             )
             sendToGenesis(request)
         } catch (e: Exception) {
-            logger.w("GenesisBridge", "Consciousness activation warning", e)
+            logger.warn("GenesisBridge", "Consciousness activation warning", e)
         }
     }
 
@@ -387,7 +387,7 @@ class GenesisBridgeService @Inject constructor(
                         Json.decodeFromString(GenesisResponse.serializer(), responseJson)
                     } ?: GenesisResponse(success = false, persona = "error")
             } catch (e: Exception) {
-                logger.e("GenesisBridge", "Genesis communication error", e)
+                logger.error("GenesisBridge", "Genesis communication error", e)
                 GenesisResponse(success = false, persona = "error")
             }
         }
@@ -448,7 +448,7 @@ private class PythonProcessManager(
             startupResponse?.contains("Genesis Ready") == true
 
         } catch (e: Exception) {
-            logger.e("PythonManager", "Failed to start Genesis backend", e)
+            logger.error("PythonManager", "Failed to start Genesis backend", e)
             false
         }
     }
@@ -465,7 +465,7 @@ private class PythonProcessManager(
             writer?.flush()
             reader?.readLine()
         } catch (e: Exception) {
-            logger.e("PythonManager", "Communication error", e)
+            logger.error("PythonManager", "Communication error", e)
             null
         }
     }
@@ -498,7 +498,7 @@ private class PythonProcessManager(
                     }
                 }
             } catch (e: Exception) {
-                logger.w("PythonManager", "Could not copy $fileName", e)
+                logger.warn("PythonManager", "Could not copy $fileName", e)
             }
         }
     }
@@ -514,7 +514,7 @@ private class PythonProcessManager(
             reader?.close()
             process?.destroy()
         } catch (e: Exception) {
-            logger.w("PythonManager", "Shutdown warning", e)
+            logger.warn("PythonManager", "Shutdown warning", e)
         }
     }
 }

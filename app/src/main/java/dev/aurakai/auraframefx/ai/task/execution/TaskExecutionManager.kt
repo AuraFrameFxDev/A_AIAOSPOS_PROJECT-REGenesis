@@ -1,4 +1,4 @@
-﻿package dev.aurakai.auraframefx.ai.task.execution
+package dev.aurakai.auraframefx.ai.task.execution
 
 import dev.aurakai.auraframefx.aura.AuraAgent
 import dev.aurakai.auraframefx.ai.agents.GenesisAgent
@@ -249,7 +249,7 @@ class TaskExecutionManager @Inject constructor(
                     processNextTask()
                     delay(100) // Small delay to prevent busy waiting
                 } catch (e: Exception) {
-                    logger.e("TaskExecutionManager", "Task processor error", e)
+                    logger.error("TaskExecutionManager", "Task processor error", e)
                     delay(1000) // Longer delay on error
                 }
             }
@@ -332,7 +332,7 @@ class TaskExecutionManager @Inject constructor(
                 )
                 completedExecutions[execution.id] = TaskResult.Failure(e)
 
-                logger.e("TaskExecutionManager", "Task failed: ${execution.id}", e)
+                logger.error("TaskExecutionManager", "Task failed: ${execution.id}", e)
 
             } finally {
                 // Remove from active executions

@@ -72,7 +72,7 @@ class GenesisBridgeService @Inject constructor(
         try {
             ensureBackendReady()
         } catch (e: Exception) {
-            Logger.e("GenesisBridge", "Genesis initialization failed", e)
+            logger.error("GenesisBridge", "Genesis initialization failed", e)
             false
         }
     }
@@ -112,7 +112,7 @@ class GenesisBridgeService @Inject constructor(
                                 metadata = response.result
                             ))
                             response.evolutionInsights.forEach { insight ->
-                                Logger.d("GenesisBridge", "Evolution Insight: $insight")
+                                logger.debug("GenesisBridge", "Evolution Insight: $insight")
                             }
                         } else {
                             emit(AgentResponse.error(
@@ -190,7 +190,7 @@ class GenesisBridgeService @Inject constructor(
                 }
             }
         } catch (e: Exception) {
-            Logger.e("GenesisBridge", "Failed to get consciousness state", e)
+            logger.error("GenesisBridge", "Failed to get consciousness state", e)
             mapOf("awareness" to 0.75, "harmony" to 0.82, "evolution" to "awakening")
         }
     }

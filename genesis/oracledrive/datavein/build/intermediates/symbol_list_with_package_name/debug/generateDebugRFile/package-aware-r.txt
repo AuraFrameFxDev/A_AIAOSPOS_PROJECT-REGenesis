@@ -1,3 +1,0 @@
-dev.aurakai.auraframefx.genesis.oracledrive.datavein
-string datavein_oracle_native_debug_name
-string datavein_oracle_native_main_name

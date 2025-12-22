@@ -129,7 +129,7 @@ open class DiagnosticsViewModel @Inject constructor(
                         maxLines = 100
                     )
                 } catch (e: Exception) {
-                    AuraFxLogger.e("DiagnosticsVM", "Failed to retrieve logs: ${e.message}")
+                    AuraFxlogger.error("DiagnosticsVM", "Failed to retrieve logs: ${e.message}")
                     emptyList()
                 }
 
@@ -140,7 +140,7 @@ open class DiagnosticsViewModel @Inject constructor(
                 }
             } catch (e: Exception) {
                 _currentLogs.value = "Error retrieving logs: ${e.message}"
-                AuraFxLogger.e("DiagnosticsVM", "Error in refreshLogs: ${e.message}")
+                AuraFxlogger.error("DiagnosticsVM", "Error in refreshLogs: ${e.message}")
             }
         }
     }
@@ -152,7 +152,7 @@ open class DiagnosticsViewModel @Inject constructor(
         return try {
             AuraFxLogger.getAllLogs(maxLines)
         } catch (e: Exception) {
-            AuraFxLogger.e("DiagnosticsVM", "Failed to get all logs: ${e.message}")
+            AuraFxlogger.error("DiagnosticsVM", "Failed to get all logs: ${e.message}")
             listOf("Error retrieving all logs: ${e.message}")
         }
     }
@@ -167,7 +167,7 @@ open class DiagnosticsViewModel @Inject constructor(
                 log.contains("[$level]", ignoreCase = true)
             }
         } catch (e: Exception) {
-            AuraFxLogger.e("DiagnosticsVM", "Failed to filter logs by level: ${e.message}")
+            AuraFxlogger.error("DiagnosticsVM", "Failed to filter logs by level: ${e.message}")
             listOf("Error filtering logs: ${e.message}")
         }
     }
@@ -183,7 +183,7 @@ open class DiagnosticsViewModel @Inject constructor(
                 i("DiagnosticsVM", "All logs cleared by user")
             } catch (e: Exception) {
                 _currentLogs.value = "Error clearing logs: ${e.message}"
-                AuraFxLogger.e("DiagnosticsVM", "Failed to clear logs: ${e.message}")
+                AuraFxlogger.error("DiagnosticsVM", "Failed to clear logs: ${e.message}")
             }
         }
     }
@@ -205,7 +205,7 @@ open class DiagnosticsViewModel @Inject constructor(
             } catch (e: Exception) {
                 val errorMsg = "Error checking cloud reachability: ${e.message}"
                 _currentLogs.value += "\n$errorMsg"
-                AuraFxLogger.e("DiagnosticsVM", errorMsg)
+                AuraFxlogger.error("DiagnosticsVM", errorMsg)
             }
         }
     }
@@ -219,7 +219,7 @@ open class DiagnosticsViewModel @Inject constructor(
             val criticalData = runBlocking { offlineDataManager.loadCriticalOfflineData() }
             "Critical Offline Data: $criticalData"
         } catch (e: Exception) {
-            AuraFxLogger.e("DiagnosticsVM", "Failed to load detailed config: ${e.message}")
+            AuraFxlogger.error("DiagnosticsVM", "Failed to load detailed config: ${e.message}")
             "Error loading detailed config: ${e.message}"
         }
     }

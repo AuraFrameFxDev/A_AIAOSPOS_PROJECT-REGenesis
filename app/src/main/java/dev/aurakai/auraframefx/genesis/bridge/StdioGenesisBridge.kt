@@ -20,7 +20,7 @@ class StdioGenesisBridge @Inject constructor(
             pythonProcess.start()
             BridgeInitResult(true, "Python backend started")
         } catch (e: Exception) {
-            logger.e("Bridge init failed", e)
+            logger.error("Bridge init failed", e)
             BridgeInitResult(false, "Failed", e.message)
         }
     }
@@ -85,7 +85,7 @@ class StdioGenesisBridge @Inject constructor(
             memorySink.persistInteraction(interaction)
             null
         } catch (e: Exception) {
-            logger.e("Memory persist failed", e)
+            logger.error("Memory persist failed", e)
             null
         }
     }

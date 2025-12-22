@@ -117,7 +117,7 @@ class BuildScriptTest {
         @Test
         fun `networking stack present`() {
             val txt = readBuildFile()
-            assertAll { assertTrue(txt.contains("implementation(libs.retrofit)"), "missing retrofit") }
+            equals { assertTrue(txt.contains("implementation(libs.retrofit)"), "missing retrofit") }
         }
 
         @Test

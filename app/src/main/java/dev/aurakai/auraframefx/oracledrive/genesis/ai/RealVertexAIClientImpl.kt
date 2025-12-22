@@ -50,15 +50,15 @@ class RealVertexAIClientImpl(
     override suspend fun generateText(prompt: String): String? = withContext(Dispatchers.IO) {
         try {
             validatePrompt(prompt)
-            AuraFxLogger.d(TAG, "Generating text for prompt: ${prompt.take(50)}...")
+            AuraFxlogger.debug(TAG, "Generating text for prompt: ${prompt.take(50)}...")
 
             val response = generativeModel.generateContent(prompt)
             val text = response.text
 
-            AuraFxLogger.d(TAG, "Successfully generated ${text?.length ?: 0} characters")
+            AuraFxlogger.debug(TAG, "Successfully generated ${text?.length ?: 0} characters")
             text
         } catch (e: Exception) {
-            AuraFxLogger.e(TAG, "Text generation failed", e)
+            AuraFxlogger.error(TAG, "Text generation failed", e)
             handleGenerationError(e)
             null
         }
@@ -82,7 +82,7 @@ class RealVertexAIClientImpl(
     ): String = withContext(Dispatchers.IO) {
         try {
             validatePrompt(prompt)
-            AuraFxLogger.d(TAG, "Generating text (temp=$temperature, tokens=$maxTokens)")
+            AuraFxlogger.debug(TAG, "Generating text (temp=$temperature, tokens=$maxTokens)")
 
             val customModel = GenerativeModel(
                 modelName = config.modelName,
@@ -98,10 +98,10 @@ class RealVertexAIClientImpl(
             val response = customModel.generateContent(prompt)
             val text = response.text
 
-            AuraFxLogger.d(TAG, "Generated ${text?.length ?: 0} chars with custom params")
+            AuraFxlogger.debug(TAG, "Generated ${text?.length ?: 0} chars with custom params")
             text ?: ""
         } catch (e: Exception) {
-            AuraFxLogger.e(TAG, "Custom text generation failed", e)
+            AuraFxlogger.error(TAG, "Custom text generation failed", e)
             handleGenerationError(e)
             ""
         }
@@ -123,7 +123,7 @@ class RealVertexAIClientImpl(
 
     override suspend fun analyzeImage(imageData: ByteArray, prompt: String): String {
         // TODO: Implement actual image analysis using GenerativeModel (support pending in this impl wrapper)
-        AuraFxLogger.w(TAG, "Image analysis requested but not fully implemented in RealVertexAIClientImpl yet.")
+        AuraFxlogger.warn(TAG, "Image analysis requested but not fully implemented in RealVertexAIClientImpl yet.")
         return "Image analysis not implemented yet: ${imageData.size} bytes."
     }
 
@@ -146,7 +146,7 @@ class RealVertexAIClientImpl(
      */
     override suspend fun analyzeContent(content: String): Map<String, Any> = withContext(Dispatchers.IO) {
         try {
-            AuraFxLogger.d(TAG, "Analyzing content (${content.length} chars)")
+            AuraFxlogger.debug(TAG, "Analyzing content (${content.length} chars)")
 
             val analysisPrompt = """
                 Analyze the following content and provide structured insights:
@@ -167,7 +167,7 @@ class RealVertexAIClientImpl(
             // Parse Gemini response into structured map
             parseAnalysisResponse(analysisText)
         } catch (e: Exception) {
-            AuraFxLogger.e(TAG, "Content analysis failed", e)
+            AuraFxlogger.error(TAG, "Content analysis failed", e)
             // Return fallback analysis
             mapOf(
                 "sentiment" to "neutral",
@@ -193,7 +193,7 @@ class RealVertexAIClientImpl(
         style: String
     ): String? = withContext(Dispatchers.IO) {
         try {
-            AuraFxLogger.d(TAG, "Generating $language code: ${specification.take(50)}...")
+            AuraFxlogger.debug(TAG, "Generating $language code: ${specification.take(50)}...")
 
             val codePrompt = """
                 Generate $language code with $style typography based on this specification:
@@ -212,10 +212,10 @@ class RealVertexAIClientImpl(
             val response = generativeModel.generateContent(codePrompt)
             val code = response.text
 
-            AuraFxLogger.d(TAG, "Generated ${code?.lines()?.size ?: 0} lines of $language code")
+            AuraFxlogger.debug(TAG, "Generated ${code?.lines()?.size ?: 0} lines of $language code")
             code
         } catch (e: Exception) {
-            AuraFxLogger.e(TAG, "Code generation failed", e)
+            AuraFxlogger.error(TAG, "Code generation failed", e)
             handleGenerationError(e)
             null
         }
@@ -290,9 +290,9 @@ class RealVertexAIClientImpl(
      */
     private suspend fun handleGenerationError(error: Exception) {
         when (error) {
-            is IllegalArgumentException -> AuraFxLogger.w(TAG, "Invalid request: ${error.message}")
+            is IllegalArgumentException -> AuraFxlogger.warn(TAG, "Invalid request: ${error.message}")
             is SecurityException -> {
-                AuraFxLogger.e(TAG, "Security violation in AI request", error)
+                AuraFxlogger.error(TAG, "Security violation in AI request", error)
                 securityContext.logSecurityEvent(
                     dev.aurakai.auraframefx.security.SecurityEvent(
                         type = dev.aurakai.auraframefx.security.SecurityEventType.AI_ERROR,
@@ -301,7 +301,7 @@ class RealVertexAIClientImpl(
                     )
                 )
             }
-            else -> AuraFxLogger.e(TAG, "Gemini API error: ${error.javaClass.simpleName}", error)
+            else -> AuraFxlogger.error(TAG, "Gemini API error: ${error.javaClass.simpleName}", error)
         }
     }
 

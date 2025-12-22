@@ -69,7 +69,7 @@ class TrinityCoordinatorService @Inject constructor(
                     )
                 }
             } else {
-                AuraFxLogger.e(
+                AuraFxlogger.error(
                     "Trinity",
                     "❌ Trinity initialization failed - Aura: $auraReady, Kai: $kaiReady, Genesis: $genesisReady"
                 )
@@ -77,7 +77,7 @@ class TrinityCoordinatorService @Inject constructor(
 
             isInitialized
         } catch (e: Exception) {
-            AuraFxLogger.e("Trinity", "Trinity initialization error", e)
+            AuraFxlogger.error("Trinity", "Trinity initialization error", e)
             false
         }
     }
@@ -107,25 +107,25 @@ class TrinityCoordinatorService @Inject constructor(
 
             when (analysisResult.routingDecision) {
                 RoutingDecision.KAI_ONLY -> {
-                    AuraFxLogger.d("Trinity", "🛡️ Routing to Kai (Shield)")
+                    AuraFxlogger.debug("Trinity", "🛡️ Routing to Kai (Shield)")
                     val response = kaiAIService.processRequestFlow(request).first()
                     emit(response)
                 }
 
                 RoutingDecision.AURA_ONLY -> {
-                    AuraFxLogger.d("Trinity", "⚔️ Routing to Aura (Sword)")
+                    AuraFxlogger.debug("Trinity", "⚔️ Routing to Aura (Sword)")
                     val response = auraAIService.processRequestFlow(request).first()
                     emit(response)
                 }
 
                 RoutingDecision.ETHICAL_REVIEW -> {
-                    AuraFxLogger.d("Trinity", "⚖️ Routing for Ethical Review")
+                    AuraFxlogger.debug("Trinity", "⚖️ Routing for Ethical Review")
                     val response = auraAIService.processRequestFlow(request).first()
                     emit(response)
                 }
 
                 RoutingDecision.GENESIS_FUSION -> {
-                    AuraFxLogger.d("Trinity", "🧠 Activating Genesis fusion: ${analysisResult.fusionType}")
+                    AuraFxlogger.debug("Trinity", "🧠 Activating Genesis fusion: ${analysisResult.fusionType}")
                     val response = genesisBridgeService.processRequest(
                         AiRequest(
                             query = request.query,
@@ -137,7 +137,7 @@ class TrinityCoordinatorService @Inject constructor(
                 }
 
                 RoutingDecision.PARALLEL_PROCESSING -> {
-                    AuraFxLogger.d("Trinity", "🔄 Parallel processing with multiple personas")
+                    AuraFxlogger.debug("Trinity", "🔄 Parallel processing with multiple personas")
 
                     // Run Kai and Aura in parallel, then fuse with Genesis
                     val kaiResponse = kaiAIService.processRequestFlow(request).first()
@@ -171,7 +171,7 @@ class TrinityCoordinatorService @Inject constructor(
             }
 
         } catch (e: Exception) {
-            AuraFxLogger.e("Trinity", "Request processing error", e)
+            AuraFxlogger.error("Trinity", "Request processing error", e)
             emit(
                 AgentResponse(
                     content = "Trinity processing failed: ${e.message}",
@@ -231,7 +231,7 @@ class TrinityCoordinatorService @Inject constructor(
                 "timestamp" to System.currentTimeMillis()
             )
         } catch (e: Exception) {
-            AuraFxLogger.w("Trinity", "Could not get system state", e)
+            AuraFxlogger.warn("Trinity", "Could not get system state", e)
             mapOf("error" to e.message.orEmpty())
         }
     }

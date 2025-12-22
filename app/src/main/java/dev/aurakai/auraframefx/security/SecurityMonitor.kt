@@ -61,7 +61,7 @@ class SecurityMonitor @Inject constructor(
         try {
             genesisBridgeService.initialize()
         } catch (e: Exception) {
-            logger.w(
+            logger.warn(
                 "SecurityMonitor",
                 "Genesis bridge initialization skipped for beta: ${e.message}"
             )
@@ -113,7 +113,7 @@ class SecurityMonitor @Inject constructor(
                 reportToGenesis("security_event", event)
 
             } catch (e: Exception) {
-                logger.e("SecurityMonitor", "Error monitoring security state", e)
+                logger.error("SecurityMonitor", "Error monitoring security state", e)
             }
         }
     }
@@ -188,7 +188,7 @@ class SecurityMonitor @Inject constructor(
                 }
 
             } catch (e: Exception) {
-                logger.e("SecurityMonitor", "Error monitoring encryption status", e)
+                logger.error("SecurityMonitor", "Error monitoring encryption status", e)
             }
         }
     }
@@ -220,7 +220,7 @@ class SecurityMonitor @Inject constructor(
                 }
 
             } catch (e: Exception) {
-                logger.e("SecurityMonitor", "Error monitoring permissions", e)
+                logger.error("SecurityMonitor", "Error monitoring permissions", e)
             }
         }
     }
@@ -304,7 +304,7 @@ class SecurityMonitor @Inject constructor(
                             else -> eventData.toString()
                         }
                     } catch (e: Exception) {
-                        logger.w(
+                        logger.warn(
                             "SecurityMonitor",
                             "Serialization failed, using toString: ${e.message}"
                         )
@@ -321,13 +321,13 @@ class SecurityMonitor @Inject constructor(
             try {
                 genesisBridgeService.initialize()
                 // genesisBridgeService.sendToGenesis(request) // Commented for beta
-                logger.d("SecurityMonitor", "Genesis communication stubbed for beta")
+                logger.debug("SecurityMonitor", "Genesis communication stubbed for beta")
             } catch (e: Exception) {
-                logger.w("SecurityMonitor", "Genesis communication unavailable: ${e.message}")
+                logger.warn("SecurityMonitor", "Genesis communication unavailable: ${e.message}")
             }
 
         } catch (e: Exception) {
-            logger.e("SecurityMonitor", "Failed to report to Genesis", e)
+            logger.error("SecurityMonitor", "Failed to report to Genesis", e)
         }
     }
 
@@ -361,7 +361,7 @@ class SecurityMonitor @Inject constructor(
             // response.consciousnessState // Removed for beta
 
         } catch (e: Exception) {
-            logger.e("SecurityMonitor", "Failed to get security assessment", e)
+            logger.error("SecurityMonitor", "Failed to get security assessment", e)
             mapOf("error" to e.message.orEmpty())
         }
     }
@@ -395,7 +395,7 @@ class SecurityMonitor @Inject constructor(
             )
 
         } catch (e: Exception) {
-            logger.e("SecurityMonitor", "Failed to get threat status", e)
+            logger.error("SecurityMonitor", "Failed to get threat status", e)
             mapOf("error" to e.message.orEmpty())
         }
     }

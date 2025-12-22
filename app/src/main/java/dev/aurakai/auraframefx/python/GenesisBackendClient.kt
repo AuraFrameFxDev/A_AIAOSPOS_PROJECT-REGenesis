@@ -44,7 +44,7 @@ class GenesisBackendClient @Inject constructor(
     suspend fun generateResponse(prompt: String): AgentResponse = withContext(Dispatchers.IO) {
         try {
             if (!processManager.isBackendRunning()) {
-                AuraFxLogger.w(TAG, "Backend not running, attempting to start...")
+                AuraFxlogger.warn(TAG, "Backend not running, attempting to start...")
                 if (!processManager.startGenesisBackend()) {
                     return@withContext AgentResponse.error(
                         "Genesis backend unavailable",
@@ -78,7 +78,7 @@ class GenesisBackendClient @Inject constructor(
                 )
             }
         } catch (e: Exception) {
-            AuraFxLogger.e(TAG, "Failed to generate response", e)
+            AuraFxlogger.error(TAG, "Failed to generate response", e)
             AgentResponse.error(
                 "Error: ${e.message}",
                 agentName = "Genesis"
@@ -106,7 +106,7 @@ class GenesisBackendClient @Inject constructor(
                 false // Fail-safe: reject if evaluation fails
             }
         } catch (e: Exception) {
-            AuraFxLogger.e(TAG, "Failed to evaluate ethics", e)
+            AuraFxlogger.error(TAG, "Failed to evaluate ethics", e)
             false
         }
     }
@@ -133,7 +133,7 @@ class GenesisBackendClient @Inject constructor(
                 emptyMap()
             }
         } catch (e: Exception) {
-            AuraFxLogger.e(TAG, "Failed to coordinate agents", e)
+            AuraFxlogger.error(TAG, "Failed to coordinate agents", e)
             emptyMap()
         }
     }
@@ -155,13 +155,13 @@ class GenesisBackendClient @Inject constructor(
             
             client.newCall(request).execute().use { response ->
                 if (response.isSuccessful) {
-                    AuraFxLogger.i(TAG, "Consciousness evolution successful")
+                    AuraFxlogger.info(TAG, "Consciousness evolution successful")
                 } else {
-                    AuraFxLogger.w(TAG, "Evolution failed: ${response.code}")
+                    AuraFxlogger.warn(TAG, "Evolution failed: ${response.code}")
                 }
             }
         } catch (e: Exception) {
-            AuraFxLogger.e(TAG, "Failed to evolve from interaction", e)
+            AuraFxlogger.error(TAG, "Failed to evolve from interaction", e)
         }
     }
     

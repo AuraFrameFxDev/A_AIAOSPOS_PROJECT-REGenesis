@@ -33,14 +33,14 @@ object Logger {
 fun Any.log(message: String, level: String = "D") {
     val tag = this::class.simpleName ?: "AuraKai"
     when (level.uppercase()) {
-        "D" -> Logger.d(tag, message)
-        "I" -> Logger.i(tag, message)
-        "W" -> Logger.w(tag, message)
-        "E" -> Logger.e(tag, message)
+        "D" -> logger.debug(tag, message)
+        "I" -> logger.info(tag, message)
+        "W" -> logger.warn(tag, message)
+        "E" -> logger.error(tag, message)
     }
 }
 
 fun Any.logError(message: String, throwable: Throwable? = null) {
     val tag = this::class.simpleName ?: "AuraKai"
-    Logger.e(tag, message, throwable)
+    logger.error(tag, message, throwable)
 }

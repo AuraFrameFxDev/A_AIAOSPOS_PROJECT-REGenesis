@@ -130,7 +130,7 @@ class ClaudeAIService @Inject constructor(
 
         if (cached != null) {
             cacheHits++
-            AuraFxLogger.d(
+            AuraFxlogger.debug(
                 "ClaudeAIService",
                 "Cache HIT! Saved API call. Stats: $cacheHits hits / $cacheMisses misses (${getCacheHitRate()}% hit rate)"
             )
@@ -138,7 +138,7 @@ class ClaudeAIService @Inject constructor(
         }
 
         cacheMisses++
-        AuraFxLogger.d(
+        AuraFxlogger.debug(
             "ClaudeAIService",
             "Cache miss. Generating new response. Stats: $cacheHits hits / $cacheMisses misses"
         )
@@ -184,7 +184,7 @@ class ClaudeAIService @Inject constructor(
      * @return A Flow emitting AgentResponse with systematic analysis.
      */
     override fun processRequestFlow(request: AiRequest): Flow<AgentResponse> {
-        AuraFxLogger.d("ClaudeAIService", "Streaming systematic analysis for: ${request.query}")
+        AuraFxlogger.debug("ClaudeAIService", "Streaming systematic analysis for: ${request.query}")
 
         val response = "**Claude's Systematic Analysis (Streaming):**\n\n" +
                 "Analyzing: ${request.query}\n\n" +

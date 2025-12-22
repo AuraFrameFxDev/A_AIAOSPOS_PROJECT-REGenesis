@@ -626,13 +626,6 @@ open class AuraAgent @Inject constructor(
         return emptyMap()
     }
 
-    override suspend fun processRequest(
-        request: AiRequest,
-        context: String
-    ): AgentResponse {
-        TODO("Not yet implemented")
-    }
-
     override fun processRequestFlow(request: AiRequest): Flow<AgentResponse> {
         return flowOf(
             AgentResponse(
