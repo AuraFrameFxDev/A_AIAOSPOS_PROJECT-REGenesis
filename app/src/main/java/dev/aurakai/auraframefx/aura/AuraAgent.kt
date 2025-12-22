@@ -317,13 +317,16 @@ open class AuraAgent @Inject constructor(
             }
 
             InteractionResponse(
-                content = creativeResponse, metadata = mapOf(
+                content = creativeResponse,
+                success = true,
+                metadata = mapOf(
                 "agent" to "AURA",
                 "confidence" to 0.9f,
                 "creative_intent" to creativeIntent.name,
                 "mood_influence" to _currentMood.value,
                 "innovation_level" to "high"
-            ).toKotlinJsonObject(), timestamp = System.currentTimeMillis()
+            ).toKotlinJsonObject(),
+                timestamp = System.currentTimeMillis()
             )
 
         } catch (e: Exception) {
@@ -331,6 +334,7 @@ open class AuraAgent @Inject constructor(
 
             InteractionResponse(
                 content = "My creative energies are temporarily scattered. Let me refocus and try again.",
+                success = false,
                 metadata = mapOf(
                     "agent" to "AURA",
                     "confidence" to 0.3f,

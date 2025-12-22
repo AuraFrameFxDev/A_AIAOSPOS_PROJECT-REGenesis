@@ -326,6 +326,7 @@ open class KaiAgent @Inject constructor(
 
             InteractionResponse(
                 content = responseText,
+                success = true,
                 metadata = buildJsonObject { },
                 timestamp = System.currentTimeMillis()
             )
@@ -333,6 +334,7 @@ open class KaiAgent @Inject constructor(
             Timber.tag("KaiAgent").e(e, "Security interaction failed")
             InteractionResponse(
                 content = "Error",
+                success = false,
                 metadata = buildJsonObject { },
                 timestamp = System.currentTimeMillis()
             )

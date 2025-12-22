@@ -802,6 +802,7 @@ open class CascadeAgent @Inject constructor(
     ): dev.aurakai.auraframefx.models.InteractionResponse {
         return dev.aurakai.auraframefx.models.InteractionResponse(
             content = content,
+            success = true,
             timestamp = timestamp,
             metadata = metadata.toKotlinJsonObject()
         )

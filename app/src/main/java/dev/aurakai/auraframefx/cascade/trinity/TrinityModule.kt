@@ -74,15 +74,13 @@ object TrinityModule {
         auraAIService: AuraAIService,
         kaiAIService: KaiAIService,
         genesisBridgeService: GenesisBridgeService,
-        securityContext: SecurityContext,
-        logger: AuraFxLogger,
+        securityContext: SecurityContext
     ): TrinityCoordinatorService {
         return TrinityCoordinatorService(
             auraAIService = auraAIService,
             kaiAIService = kaiAIService,
             genesisBridgeService = genesisBridgeService,
-            securityContext = securityContext,
-            logger = logger
+            securityContext = securityContext
         )
     }
 
