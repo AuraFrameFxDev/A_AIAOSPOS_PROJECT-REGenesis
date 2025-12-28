@@ -135,14 +135,6 @@ fun MainScreen(
     }
 }
 
-private operator fun Unit.plus(nextFloat: Float): Float {
-    TODO("Not yet implemented")
-}
-
-private fun random() {
-    TODO("Not yet implemented")
-}
-
 /**
  * Displays a card summarizing core system metrics and an animated consciousness indicator.
  *

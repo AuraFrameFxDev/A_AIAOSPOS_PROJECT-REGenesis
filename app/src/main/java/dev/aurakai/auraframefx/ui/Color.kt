@@ -76,3 +76,17 @@ val PressOverlay = Color(0x1AFF00FF)   // Semi-transparent pink press
 
 // Transparency constant
 val TRANSPARENT = Color(0x00000000)
+
+// Glassmorphism Color Objects (for GlassmorphismUtils)
+object GlassColorsObj {
+    val DarkMedium = Color(0x99000000)
+    val DarkStrong = Color(0xCC000000)
+    val Dark = Color(0x66000000)
+}
+
+// Space Colors Object (for EnhancedGateCarousel)
+object SpaceColorsObj {
+    val GradientStart = Color(0xFF1A1A2E)
+    val GradientEnd = Color(0xFF16213E)
+    val Black = Color(0xFF000000)
+}

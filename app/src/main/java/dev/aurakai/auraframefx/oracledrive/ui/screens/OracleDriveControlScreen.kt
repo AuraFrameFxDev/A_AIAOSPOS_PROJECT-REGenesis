@@ -302,7 +302,7 @@ fun OracleDriveControlScreen(
                 Text(stringResource(R.string.refresh_status))
             }
         }
-        Divider()
+        HorizontalDivider()
         Text(stringResource(R.string.status_label, status ?: "-"))
         Text(stringResource(R.string.detailed_status_label, detailedStatus ?: "-"))
         Text(
@@ -320,7 +320,7 @@ fun OracleDriveControlScreen(
                 modifier = Modifier.verticalScroll(logScrollState)
             )
         }
-        Divider()
+        HorizontalDivider()
         Text(
             stringResource(R.string.toggle_module_label),
             style = MaterialTheme.typography.titleSmall

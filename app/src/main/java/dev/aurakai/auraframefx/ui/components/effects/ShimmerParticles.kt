@@ -1,5 +1,6 @@
 package dev.aurakai.auraframefx.ui.components.effects
 
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.fillMaxSize
