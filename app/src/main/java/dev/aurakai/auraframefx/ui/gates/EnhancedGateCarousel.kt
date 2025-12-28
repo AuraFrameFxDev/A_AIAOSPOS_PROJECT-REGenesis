@@ -58,12 +58,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import dev.aurakai.auraframefx.navigation.GenesisRoutes
-import dev.aurakai.auraframefx.ui.theme.NeonCyan
-import dev.aurakai.auraframefx.ui.theme.NeonPink
-import dev.aurakai.auraframefx.ui.theme.NeonPurple
-import dev.aurakai.auraframefx.ui.theme.NeonPurpleDark
-import dev.aurakai.auraframefx.ui.theme.NeonTeal
-import dev.aurakai.auraframefx.ui.theme.SpaceColors
+import dev.aurakai.auraframefx.ui.NeonCyan
+import dev.aurakai.auraframefx.ui.NeonPink
+import dev.aurakai.auraframefx.ui.NeonPurple
+import dev.aurakai.auraframefx.ui.NeonPurpleDark
+import dev.aurakai.auraframefx.ui.NeonTeal
+import dev.aurakai.auraframefx.ui.SpaceColorsObj
 
 /**
  * 🌌 Enhanced Gate Carousel - Ported from Figma React Design
@@ -221,7 +221,7 @@ fun EnhancedGateCarousel(
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(SpaceColors.Black),
+            .background(SpaceColorsObj.Black),
         contentAlignment = Alignment.Center
     ) {
         // Card Container
